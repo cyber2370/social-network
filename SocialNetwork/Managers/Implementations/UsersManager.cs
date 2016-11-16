@@ -24,9 +24,9 @@ namespace Managers.Implementations
                 .Select(Mapper.Map<User, UserModel>);
         }
 
-        public async Task<UserModel> GetUserByEmail(string email)
+        public async Task<UserModel> GetUserById(int id)
         {
-            return Mapper.Map<User, UserModel>(await _usersRepository.GetItemAsync(email));
+            return Mapper.Map<User, UserModel>(await _usersRepository.GetItemAsync(id));
         }
 
         public async Task<UserModel> AddUser(UserModel user)
@@ -43,11 +43,11 @@ namespace Managers.Implementations
             return Mapper.Map<User, UserModel>(await _usersRepository.UpdateItemAsync(dbUser));
         }
 
-        public async Task<bool> DeleteUser(string email)
+        public async Task<bool> DeleteUser(int id)
         {
             try
             {
-                await _usersRepository.RemoveItemAsync(email);
+                await _usersRepository.RemoveItemAsync(id);
                 return true;
             }
             catch

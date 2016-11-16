@@ -12,7 +12,7 @@
             string street)
         {
             Country = country;
-            City = city; ;
+            City = city;
             Street = street;
         }
 

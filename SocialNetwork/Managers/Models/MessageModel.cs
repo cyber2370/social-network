@@ -2,25 +2,8 @@
 
 namespace Managers.Models
 {
-
     public class MessageModel
     {
-        public MessageModel()
-        {
-        }
-
-        public MessageModel(
-            UserModel sender,
-            UserModel addressee,
-            string text,
-            DateTime sendedDateTime)
-        {
-            Sender = sender;
-            Addresee = addressee;
-            Text = text;
-            SendedDateTime = sendedDateTime;
-        }
-
         public int Id { get; set; }
 
         public string SenderId { get; set; }

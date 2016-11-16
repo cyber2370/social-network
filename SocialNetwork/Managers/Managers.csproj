@@ -69,7 +69,8 @@
     <Compile Include="Interfaces\IUsersWorkplacesManager.cs" />
     <Compile Include="Interfaces\IWorkplacesManager.cs" />
     <Compile Include="MapperInitializer.cs" />
-    <Compile Include="Models\FriendRequestModel.cs" />
+    <Compile Include="Models\Friends\FriendModel.cs" />
+    <Compile Include="Models\Friends\FriendRequestModel.cs" />
     <Compile Include="Models\LocationModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\UserModel.cs" />

@@ -4,24 +4,6 @@ namespace Managers.Models
 {
     public class UserWorkplaceModel
     {
-        public UserWorkplaceModel()
-        {
-        }
-
-        public UserWorkplaceModel(
-            int userId,
-            int workplaceId,
-            string position,
-            DateTime startWorkDate,
-            DateTime? endWorkDate)
-        {
-            UserId = userId;
-            WorkplaceId = workplaceId;
-            Position = position;
-            StartWorkDate = startWorkDate;
-            EndWorkDate = endWorkDate;
-        }
-
         public int Id { get; set; }
 
         public int UserId { get; set; }

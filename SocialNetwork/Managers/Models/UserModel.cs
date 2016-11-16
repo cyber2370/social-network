@@ -4,37 +4,7 @@ namespace Managers.Models
 {
     public class UserModel
     {
-        public UserModel()
-        {
-        }
-
-        public UserModel(
-            string name,
-            string surname,
-            string sex,
-            string avatarUri,
-            DateTime birthDate,
-            DateTime registrationDate,
-            string email,
-            string additionalInformation,
-            string status,
-            DateTime statusUpdated,
-            string relationshipStatus,
-            int homelandId)
-        {
-            Name = name;
-            Surname = surname;
-            Sex = sex;
-            AvatarUri = avatarUri;
-            BirthDate = birthDate;
-            RegistrationDate = registrationDate;
-            Email = email;
-            AdditionalInformation = additionalInformation;
-            Status = status;
-            StatusUpdated = statusUpdated;
-            RelationshipStatus = relationshipStatus;
-            HomelandId = homelandId;
-        }
+        public int Id { get; set; }
         
         public string Email { get; set; }
 
@@ -44,7 +14,7 @@ namespace Managers.Models
 
         public string Sex { get; set; }
 
-        public string AvatarUri { get; set; }
+        public Uri AvatarUri { get; set; }
 
         public DateTime BirthDate { get; set; }
 

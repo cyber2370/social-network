@@ -10,23 +10,23 @@ namespace DbContext.Entities
         }
 
         public Message(
-            string userSenderId,
-            string userAddresseeId,
+            int senderId,
+            int addresseeId,
             string text,
             DateTime sendedDateTime)
         {
-            SenderId = userSenderId;
-            AddresseeId = userAddresseeId;
+            SenderId = senderId;
+            AddresseeId = addresseeId;
             Text = text;
             SendedDateTime = sendedDateTime;
         }
 
         public int Id { get; set; }
 
-        public string SenderId { get; set; }
+        public int SenderId { get; set; }
         public User Sender { get; set; }
 
-        public string AddresseeId { get; set; }
+        public int AddresseeId { get; set; }
         public User Addresee { get; set; }
 
         public string Text { get; set; }

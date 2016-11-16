@@ -8,12 +8,12 @@ namespace Managers.Interfaces
     {
         Task<IEnumerable<UserModel>> GetAllUsers();
 
-        Task<UserModel> GetUserByEmail(string email);
+        Task<UserModel> GetUserById(int id);
 
         Task<UserModel> AddUser(UserModel user);
 
         Task<UserModel> UpdateUser(UserModel user);
 
-        Task<bool> DeleteUser(string email);
+        Task<bool> DeleteUser(int id);
     }
 }
