@@ -1,16 +1,15 @@
 ﻿using System;
 
-namespace DbContext.Entities
+namespace Managers.Models
 {
-
-    public class UserWorkplace
+    public class UserWorkplaceModel
     {
-        public UserWorkplace()
+        public UserWorkplaceModel()
         {
         }
 
-        public UserWorkplace(
-            string userId,
+        public UserWorkplaceModel(
+            int userId,
             int workplaceId,
             string position,
             DateTime startWorkDate,
@@ -25,11 +24,15 @@ namespace DbContext.Entities
 
         public int Id { get; set; }
 
-        public string UserId { get; set; }
+        public int UserId { get; set; }
+        public UserModel User { get; set; }
 
         public int WorkplaceId { get; set; }
+        public WorkplaceModel Workplace { get; set; }
 
         public string Position { get; set; }
+
+        public bool IsCurrentWorkplace { get; set; }
 
         public DateTime StartWorkDate { get; set; }
 

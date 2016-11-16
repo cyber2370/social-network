@@ -1,5 +1,4 @@
-﻿using DbContext.Entities;
-using Ninject;
+﻿using Ninject;
 using Repositories.Implementations;
 using Repositories.Interfaces;
 

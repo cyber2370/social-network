@@ -1,22 +1,22 @@
 ﻿using System;
 
-namespace DbContext.Entities
+namespace Managers.Models
 {
 
-    public class Message
+    public class MessageModel
     {
-        public Message()
+        public MessageModel()
         {
         }
 
-        public Message(
-            string userSenderId,
-            string userAddresseeId,
+        public MessageModel(
+            UserModel sender,
+            UserModel addressee,
             string text,
             DateTime sendedDateTime)
         {
-            SenderId = userSenderId;
-            AddresseeId = userAddresseeId;
+            Sender = sender;
+            Addresee = addressee;
             Text = text;
             SendedDateTime = sendedDateTime;
         }
@@ -24,10 +24,10 @@ namespace DbContext.Entities
         public int Id { get; set; }
 
         public string SenderId { get; set; }
-        public User Sender { get; set; }
+        public UserModel Sender { get; set; }
 
         public string AddresseeId { get; set; }
-        public User Addresee { get; set; }
+        public UserModel Addresee { get; set; }
 
         public string Text { get; set; }
 
