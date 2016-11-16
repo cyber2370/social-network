@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DbContext.Entities
 {
@@ -16,24 +12,22 @@ namespace DbContext.Entities
         public UserWorkplace(
             int userId,
             int workplaceId,
-            bool isCurrentWorkplace,
             string position,
             DateTime startWorkDate,
-            DateTime endWorkDate)
+            DateTime? endWorkDate)
         {
             UserId = userId;
             WorkplaceId = workplaceId;
-            IsCurrentWorkplace = isCurrentWorkplace;
             Position = position;
             StartWorkDate = startWorkDate;
             EndWorkDate = endWorkDate;
         }
 
+        public int Id { get; set; }
+
         public int UserId { get; set; }
 
         public int WorkplaceId { get; set; }
-
-        public bool IsCurrentWorkplace { get; set; }
 
         public string Position { get; set; }
 

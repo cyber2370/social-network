@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DbContext.Entities
 {
@@ -36,7 +37,8 @@ namespace DbContext.Entities
             HomelandId = homelandId;
         }
 
-        public int Id { get; set; }
+        [Key]
+        public string Email { get; set; }
 
         public string Name { get; set; }
 
@@ -49,8 +51,6 @@ namespace DbContext.Entities
         public DateTime BirthDate { get; set; }
 
         public DateTime RegistrationDate { get; set; }
-
-        public string Email { get; set; }
 
         public string AdditionalInformation { get; set; }
 

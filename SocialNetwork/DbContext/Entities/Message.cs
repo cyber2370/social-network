@@ -13,9 +13,7 @@ namespace DbContext.Entities
             int userSenderId,
             int userAddresseeId,
             string text,
-            DateTime sendedDateTime
-           
-            )
+            DateTime sendedDateTime)
         {
             UserSenderId = userSenderId;
             UserAddresseeId = userAddresseeId;
