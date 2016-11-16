@@ -23,6 +23,6 @@ namespace Managers.Interfaces
 
         Task<FriendRequestModel> ConfirmFriendRequest(FriendRequestModel friendRequest);
 
-        Task<bool> DeleteFriendRequest(int id);
+        Task<bool> DeleteFriendRequest(int userId, int friendId);
     }
 }

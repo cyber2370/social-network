@@ -89,11 +89,17 @@ namespace Managers.Implementations
             return await UpdateFriendRequest(friendRequest);
         }
 
-        public async Task<bool> DeleteFriendRequest(int id)
+        public async Task<bool> DeleteFriendRequest(int userId, int friendId)
         {
             try
             {
-                await _friendRequestsRepository.RemoveItemAsync(id);
+                FriendRequest friendRequest = await _friendRequestsRepository.GetItemAsync
+                (x => x.Where(fr => (fr.RequesterId == userId && fr.ConfirmerId == friendId)
+                                    || (fr.RequesterId == friendId && fr.ConfirmerId == userId)));
+
+
+                await _friendRequestsRepository.RemoveItemAsync(friendRequest);
+
                 return true;
             }
             catch

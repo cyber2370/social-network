@@ -10,14 +10,14 @@ namespace Managers.Interfaces
 
         Task<IEnumerable<UserWorkplaceModel>> GetUsersWorkplacesByWorkplaceId(int workplaceId);
 
-        Task<IEnumerable<UserWorkplaceModel>> GetUsersWorkplacesByUserId(string userId);
+        Task<IEnumerable<UserWorkplaceModel>> GetUsersWorkplacesByUserId(int userId);
 
-        Task<UserWorkplaceModel> GetUserWorkplaceById(string userId, int workplaceId);
+        Task<UserWorkplaceModel> GetUserWorkplaceById(int userId, int workplaceId);
 
         Task<UserWorkplaceModel> AddUserWorkplace(UserWorkplaceModel userWorkplace);
 
         Task<UserWorkplaceModel> UpdateUserWorkplace(UserWorkplaceModel userWorkplace);
 
-        Task<bool> DeleteUserWorkplace(string userId, int workplaceId);
+        Task<bool> DeleteUserWorkplace(int userId, int workplaceId);
     }
 }
