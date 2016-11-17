@@ -159,6 +159,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="scripts\react\components\App.js" />
+    <Content Include="scripts\react\components\Main.js" />
+    <Content Include="scripts\react\index.js" />
+    <Content Include="scripts\redux\middlewares\promisesMiddleware.js" />
+    <Content Include="scripts\redux\reducers\index.js" />
+    <Content Include="scripts\redux\store.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -168,9 +174,11 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="scripts\api\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

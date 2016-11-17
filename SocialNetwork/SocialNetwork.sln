@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialNetwork", "SocialNetwork\SocialNetwork.csproj", "{FC6783EF-199C-4059-83DB-3FAD62408CD1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactApp", "SocialNetwork\ReactApp.csproj", "{FC6783EF-199C-4059-83DB-3FAD62408CD1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbContext", "DbContext\DbContext.csproj", "{19919570-DCEC-4C7A-BD2D-4CE5CC86AD80}"
 EndProject
