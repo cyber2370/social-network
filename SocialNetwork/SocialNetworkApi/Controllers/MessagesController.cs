@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Managers.Interfaces;
 using Managers.Models;
-using Managers.Models.Friends;
 
 namespace SocialNetworkApi.Controllers
 {
@@ -18,13 +14,6 @@ namespace SocialNetworkApi.Controllers
         public MessagesController(IMessagesManager messagesManager)
         {
             _messagesManager = messagesManager;
-        }
-
-        [HttpGet]
-        [Route("api/users/{id}/messages/{opponentId}")]
-        public async Task<IEnumerable<MessageModel>> GetUserMessagesWith(int id, int opponentId)
-        {
-            return await _messagesManager.GetMessagesBetween(id, opponentId);
         }
 
         [HttpPost]
@@ -39,7 +28,7 @@ namespace SocialNetworkApi.Controllers
         }
         
         [HttpDelete]
-        public async Task<bool> RemoveFriends(int id)
+        public async Task<bool> RemoveMessage(int id)
         {
             return await _messagesManager.DeleteMessage(id);
         }

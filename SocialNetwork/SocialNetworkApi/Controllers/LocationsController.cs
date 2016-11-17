@@ -7,7 +7,8 @@ using Managers.Models;
 
 namespace SocialNetworkApi.Controllers
 {
-    public class LocationsController : ApiController
+    [RoutePrefix("locations")]
+    public class LocationsController : ApiControllerBase
     {
 
         private readonly ILocationsManager _locationsManager;
@@ -17,19 +18,18 @@ namespace SocialNetworkApi.Controllers
             _locationsManager = locationsManager;
         }
 
-        // GET api/<controller>
+        [HttpGet]
         public async Task<IEnumerable<LocationModel>> GetLocations()
         {
             return await _locationsManager.GetAllLocations();
         }
-
-        // GET api/<controller>/5
+        
+        [HttpGet]
         public async Task<LocationModel> GetLocationById(int id)
         {
             return await _locationsManager.GetLocationById(id);
         }
-
-        // POST api/<controller>
+        
         [HttpPost]
         public async Task<LocationModel> AddLocation([FromBody]LocationModel model)
         {
@@ -40,18 +40,22 @@ namespace SocialNetworkApi.Controllers
 
             return await _locationsManager.AddLocation(model);
         }
-
-        // PUT api/<controller>/5
+        
         [HttpPut]
         public async Task<LocationModel> UpdateLocation(int id, [FromBody]LocationModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpRequestException("Invalid model state");
+            }
+
             model.Id = id;
 
             return await _locationsManager.UpdateLocation(model);
         }
 
-        // DELETE api/<controller>/5
-        public async Task<bool> Delete(int id)
+        [HttpDelete]
+        public async Task<bool> DeleteLocation(int id)
         {
             return await _locationsManager.DeleteLocation(id);
         }
