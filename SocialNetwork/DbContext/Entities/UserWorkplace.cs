@@ -5,24 +5,6 @@ namespace DbContext.Entities
 
     public class UserWorkplace
     {
-        public UserWorkplace()
-        {
-        }
-
-        public UserWorkplace(
-            int userId,
-            int workplaceId,
-            string position,
-            DateTime startWorkDate,
-            DateTime? endWorkDate = null)
-        {
-            UserId = userId;
-            WorkplaceId = workplaceId;
-            Position = position;
-            StartWorkDate = startWorkDate;
-            EndWorkDate = endWorkDate;
-        }
-
         public int Id { get; set; }
 
         public int UserId { get; set; }

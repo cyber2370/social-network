@@ -4,10 +4,6 @@ namespace DbContext.Entities
 {
     public class FriendRequest
     {
-        public FriendRequest()
-        {
-        }
-
         public int Id { get; set; }
 
         public int RequesterId { get; set; }

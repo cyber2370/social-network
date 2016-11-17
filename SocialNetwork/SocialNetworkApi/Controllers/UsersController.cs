@@ -8,7 +8,7 @@ using Managers.Models.Friends;
 namespace SocialNetworkApi.Controllers
 {
     [RoutePrefix("users")]
-    public class UsersController : ApiControllerBase
+    public class UsersController : ApiController
     {
         private readonly IUsersManager _usersManager;
         private readonly IFriendRequestsManager _friendRequestsManager;
@@ -89,10 +89,17 @@ namespace SocialNetworkApi.Controllers
         #region MessagesOperations
 
         [HttpGet]
-        [Route("{id}/messagesWith/{opponentId}")]
-        public async Task<IEnumerable<MessageModel>> GetUserMessagesWith(int id, int opponentId)
+        [Route("{userId}/messagesWith/{opponentId}")]
+        public async Task<IEnumerable<MessageModel>> GetUserMessagesWith(int userId, int opponentId)
         {
-            return await _messagesManager.GetMessagesBetween(id, opponentId);
+            return await _messagesManager.GetMessagesBetween(userId, opponentId);
+        }
+
+        [HttpGet]
+        [Route("{userId}/messages")]
+        public async Task<IEnumerable<MessageModel>> GetUserMessages(int userId)
+        {
+            return await _messagesManager.GetMessagesOf(userId);
         }
 
         #endregion

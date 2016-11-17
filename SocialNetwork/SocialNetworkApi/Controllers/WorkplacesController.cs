@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Managers.Interfaces;
 using Managers.Models;
-using Managers.Models.Friends;
 
 namespace SocialNetworkApi.Controllers
 {
     [RoutePrefix("workplaces")]
-    public class WorkplacesController : ApiControllerBase
+    public class WorkplacesController : ApiController
     {
         private readonly IWorkplacesManager _workplacesManager;
         private readonly IUsersWorkplacesManager _usersWorkplacesManager;

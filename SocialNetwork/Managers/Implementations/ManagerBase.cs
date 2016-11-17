@@ -2,9 +2,5 @@
 {
     class ManagerBase
     {
-        static ManagerBase()
-        {
-            MapperInitializer.CreateMap();
-        }
     }
 }

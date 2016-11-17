@@ -7,11 +7,13 @@ using Managers.Models;
 
 namespace SocialNetworkApi.Controllers
 {
+    [RoutePrefix("messages")]
     public class MessagesController : ApiController
     {
         private readonly IMessagesManager _messagesManager;
 
         public MessagesController(IMessagesManager messagesManager)
+
         {
             _messagesManager = messagesManager;
         }

@@ -8,7 +8,7 @@ using Managers.Models;
 namespace SocialNetworkApi.Controllers
 {
     [RoutePrefix("locations")]
-    public class LocationsController : ApiControllerBase
+    public class LocationsController : ApiController
     {
 
         private readonly ILocationsManager _locationsManager;
