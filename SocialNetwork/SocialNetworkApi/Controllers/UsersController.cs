@@ -18,7 +18,7 @@ namespace SocialNetworkApi.Controllers
         public UsersController(
             IUsersManager usersManager,
             IFriendRequestsManager friendRequestsManager,
-            IMessagesManager messagesManager,me
+            IMessagesManager messagesManager,
             IUsersWorkplacesManager usersWorkplacesManager)
         {
             _usersManager = usersManager;
