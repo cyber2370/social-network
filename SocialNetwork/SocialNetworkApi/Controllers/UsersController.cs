@@ -30,7 +30,7 @@ namespace SocialNetworkApi.Controllers
         #region UsersOperations
 
         [HttpGet]
-        public async Task<UserModel> GetUser(int id)
+        public async Task<UserModel> GetUser(string email)
         {
             return await _usersManager.GetUserByEmail(email);
         }
