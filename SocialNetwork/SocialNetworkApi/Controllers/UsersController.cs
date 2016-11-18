@@ -23,9 +23,9 @@ namespace SocialNetworkApi.Controllers
         }
 
         // GET api/<controller>/5
-        public async Task<UserModel> GetUser(int id)
+        public async Task<UserModel> GetUser(string email)
         {
-            return await _usersManager.GetUserById(id);
+            return await _usersManager.GetUserByEmail(email);
         }
 
         // POST api/<controller>

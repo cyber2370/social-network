@@ -29,6 +29,13 @@ namespace Managers.Implementations
             return Mapper.Map<User, UserModel>(await _usersRepository.GetItemAsync(id));
         }
 
+        public async Task<UserModel> GetUserByEmail(string email)
+        {
+            User user = await _usersRepository.GetItemAsync(x => x.Where(u => u.Email == email));
+
+            return Mapper.Map<User, UserModel>(user);
+        }
+
         public async Task<UserModel> AddUser(UserModel user)
         {
             User dbUser = Mapper.Map<UserModel, User>(user);
