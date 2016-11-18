@@ -1,3 +1,6 @@
+using System.Web.Http;
+using Ninject.Web.WebApi;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(SocialNetworkApi.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(SocialNetworkApi.App_Start.NinjectWebCommon), "Stop")]
 
@@ -46,6 +49,7 @@ namespace SocialNetworkApi.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
                 return kernel;
             }
             catch

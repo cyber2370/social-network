@@ -1,42 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DbContext.Entities
 {
     public class User
     {
-        public User()
-        {
-        }
-
-        public User(
-            string name,
-            string surname,
-            string sex,
-            string avatarUri,
-            DateTime birthDate,
-            DateTime registrationDate,
-            string email,
-            string additionalInformation,
-            string status,
-            DateTime statusUpdated,
-            string relationshipStatus,
-            int homelandId)
-        {
-            Name = name;
-            Surname = surname;
-            Sex = sex;
-            AvatarUri = avatarUri;
-            BirthDate = birthDate;
-            RegistrationDate = registrationDate;
-            Email = email;
-            AdditionalInformation = additionalInformation;
-            Status = status;
-            StatusUpdated = statusUpdated;
-            RelationshipStatus = relationshipStatus;
-            HomelandId = homelandId;
-        }
-
         public int Id { get; set; }
 
         public string Email { get; set; }
@@ -63,5 +32,8 @@ namespace DbContext.Entities
 
         public int HomelandId { get; set; }
         public Location Homeland { get; set; }
+
+        public IList<FriendRequest> IncomingFriendRequests { get; set; }
+        public IList<FriendRequest> OutgoingFriendRequests { get; set; }
     }
 }

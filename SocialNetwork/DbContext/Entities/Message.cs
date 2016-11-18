@@ -5,22 +5,6 @@ namespace DbContext.Entities
 
     public class Message
     {
-        public Message()
-        {
-        }
-
-        public Message(
-            int senderId,
-            int addresseeId,
-            string text,
-            DateTime sendedDateTime)
-        {
-            SenderId = senderId;
-            AddresseeId = addresseeId;
-            Text = text;
-            SendedDateTime = sendedDateTime;
-        }
-
         public int Id { get; set; }
 
         public int SenderId { get; set; }

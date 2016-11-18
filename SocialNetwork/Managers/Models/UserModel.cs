@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using DbContext.Entities;
 
 namespace Managers.Models
 {
@@ -30,5 +32,8 @@ namespace Managers.Models
 
         public int HomelandId { get; set; }
         public LocationModel Homeland { get; set; }
+
+        public IList<FriendRequest> IncomingFriendRequests { get; set; }
+        public IList<FriendRequest> OutgoingFriendRequests { get; set; }
     }
 }
