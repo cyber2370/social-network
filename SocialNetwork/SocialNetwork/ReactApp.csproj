@@ -169,7 +169,12 @@
     <Content Include="scripts\react\components\Main.js" />
     <Content Include="scripts\react\index.js" />
     <Content Include="scripts\redux\middlewares\promisesMiddleware.js" />
+    <Content Include="scripts\redux\reducers\friends.js" />
     <Content Include="scripts\redux\reducers\index.js" />
+    <Content Include="scripts\redux\reducers\locations.js" />
+    <Content Include="scripts\redux\reducers\messages.js" />
+    <Content Include="scripts\redux\reducers\userWorkplaces.js" />
+    <Content Include="scripts\redux\reducers\workplaces.js" />
     <Content Include="scripts\redux\store.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
