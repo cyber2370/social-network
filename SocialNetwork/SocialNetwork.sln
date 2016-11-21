@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Managers", "Managers\Manage
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialNetworkApi", "SocialNetworkApi\SocialNetworkApi.csproj", "{09DA4CA0-9769-4363-ADBD-4DE400E97239}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNApi", "SNApi\SNApi.csproj", "{493C42F7-0E91-4160-AFB3-17C10A4E281F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{09DA4CA0-9769-4363-ADBD-4DE400E97239}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09DA4CA0-9769-4363-ADBD-4DE400E97239}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09DA4CA0-9769-4363-ADBD-4DE400E97239}.Release|Any CPU.Build.0 = Release|Any CPU
+		{493C42F7-0E91-4160-AFB3-17C10A4E281F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{493C42F7-0E91-4160-AFB3-17C10A4E281F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{493C42F7-0E91-4160-AFB3-17C10A4E281F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{493C42F7-0E91-4160-AFB3-17C10A4E281F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
