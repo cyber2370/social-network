@@ -159,11 +159,22 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="scripts\api\fetchRequests.js" />
+    <Content Include="scripts\api\friendsApiPromises.js" />
+    <Content Include="scripts\api\locationsApiPromises.js" />
+    <Content Include="scripts\api\messagesApiPromises.js" />
+    <Content Include="scripts\api\usersApiPromises.js" />
+    <Content Include="scripts\api\workplacesApiPromises.js" />
     <Content Include="scripts\react\components\App.js" />
     <Content Include="scripts\react\components\Main.js" />
     <Content Include="scripts\react\index.js" />
     <Content Include="scripts\redux\middlewares\promisesMiddleware.js" />
+    <Content Include="scripts\redux\reducers\friends.js" />
     <Content Include="scripts\redux\reducers\index.js" />
+    <Content Include="scripts\redux\reducers\locations.js" />
+    <Content Include="scripts\redux\reducers\messages.js" />
+    <Content Include="scripts\redux\reducers\userWorkplaces.js" />
+    <Content Include="scripts\redux\reducers\workplaces.js" />
     <Content Include="scripts\redux\store.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -178,7 +189,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="scripts\api\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
