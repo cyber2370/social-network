@@ -9,7 +9,6 @@ using System.Web.Http;
 using DbContext.Entities.AspNet;
 using Managers.Implementations;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
@@ -27,10 +26,6 @@ namespace SocialNetworkApi.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private AspNetUserManager _userManager;
-
-        public AccountController()
-        {
-        }
 
         public AccountController(AspNetUserManager userManager,
             ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
@@ -308,7 +303,7 @@ namespace SocialNetworkApi.Controllers
                     {
                         provider = description.AuthenticationType,
                         response_type = "token",
-                        client_id = App_Start.Startup.PublicClientId,
+                        client_id = Startup.PublicClientId,
                         redirect_uri = new Uri(Request.RequestUri, returnUrl).AbsoluteUri,
                         state
                     }),

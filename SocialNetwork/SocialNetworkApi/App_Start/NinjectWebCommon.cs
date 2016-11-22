@@ -1,4 +1,10 @@
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Web.Http;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.DataHandler;
+using Microsoft.Owin.Security.DataHandler.Encoder;
+using Microsoft.Owin.Security.DataHandler.Serializer;
+using Microsoft.Owin.Security.DataProtection;
 using Ninject.Web.WebApi;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(SocialNetworkApi.App_Start.NinjectWebCommon), "Start")]
@@ -66,6 +72,11 @@ namespace SocialNetworkApi.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             Managers.NinjectInitializer.Register(kernel);
+
+            kernel.Bind<ITextEncoder>().To<Base64UrlTextEncoder>();
+            kernel.Bind<IDataSerializer<AuthenticationTicket>>().To<TicketSerializer>();
+            kernel.Bind<IDataProtector>().ToMethod(context => new DpapiDataProtectionProvider().Create("ASP.NET Identity"));
+            kernel.Bind<ISecureDataFormat<AuthenticationTicket>>().To<SecureDataFormat<AuthenticationTicket>>();
         }        
     }
 }

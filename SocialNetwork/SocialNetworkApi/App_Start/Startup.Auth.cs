@@ -6,9 +6,12 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
+using SocialNetworkApi;
 using SocialNetworkApi.Providers;
 
-namespace SocialNetworkApi.App_Start
+[assembly: OwinStartup(typeof(Startup))]
+
+namespace SocialNetworkApi
 {
     public class Startup
     {
@@ -17,7 +20,7 @@ namespace SocialNetworkApi.App_Start
         public static string PublicClientId { get; private set; }
 
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
-        public void ConfigureAuth(IAppBuilder app)
+        public void Configuration(IAppBuilder app)
         {
             // Configure the db context and user manager to use a single instance per request
             app.CreatePerOwinContext(AppDbContext.Create);
