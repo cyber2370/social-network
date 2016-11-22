@@ -4,7 +4,7 @@ using Managers.Models;
 
 namespace Managers.Interfaces
 {
-    public interface IUsersManager
+    public interface IUserProfilesManager
     {
         Task<IEnumerable<UserModel>> GetAllUsers();
 

@@ -38,7 +38,7 @@ namespace Managers.Implementations
             {
                 bool isCurrentUserRequester = userId == f.RequesterId;
 
-                UserModel friend = Mapper.Map<User, UserModel>(isCurrentUserRequester ? f.Confirmer : f.Requester);
+                UserModel friend = Mapper.Map<UserProfile, UserModel>(isCurrentUserRequester ? f.Confirmer : f.Requester);
 
                 return Mapper.Map<UserModel, FriendModel>(friend);
             });
