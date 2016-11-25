@@ -8,15 +8,15 @@ using Managers.Models.Friends;
 namespace SocialNetworkApi.Controllers
 {
     [RoutePrefix("users")]
-    public class UsersController : ApiController
+    public class UserProfilesController : ApiController
     {
-        private readonly IUsersManager _usersManager;
+        private readonly IUserProfilesManager _usersManager;
         private readonly IFriendRequestsManager _friendRequestsManager;
         private readonly IMessagesManager _messagesManager;
         private readonly IUsersWorkplacesManager _usersWorkplacesManager;
 
-        public UsersController(
-            IUsersManager usersManager,
+        public UserProfilesController(
+            IUserProfilesManager usersManager,
             IFriendRequestsManager friendRequestsManager,
             IMessagesManager messagesManager,
             IUsersWorkplacesManager usersWorkplacesManager)

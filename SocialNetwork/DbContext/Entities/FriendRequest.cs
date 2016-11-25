@@ -7,10 +7,10 @@ namespace DbContext.Entities
         public int Id { get; set; }
 
         public int RequesterId { get; set; }
-        public User Requester { get; set; }
+        public UserProfile Requester { get; set; }
 
         public int ConfirmerId { get; set; }
-        public User Confirmer { get; set; }
+        public UserProfile Confirmer { get; set; }
 
         public DateTime RequestedDateTime { get; set; }
 

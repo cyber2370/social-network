@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using DbContext.Entities.AspNet;
 
 namespace DbContext.Entities
 {
-    public class User
+    public class UserProfile
     {
         public int Id { get; set; }
 
@@ -32,6 +33,9 @@ namespace DbContext.Entities
 
         public int HomelandId { get; set; }
         public Location Homeland { get; set; }
+
+        public AspNetUser AspNetUser { get; set; }
+        public int AspNetUserId { get; set; }
 
         public IList<FriendRequest> IncomingFriendRequests { get; set; }
         public IList<FriendRequest> OutgoingFriendRequests { get; set; }

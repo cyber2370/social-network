@@ -12,7 +12,7 @@ namespace Managers
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<User, UserModel>()
+                cfg.CreateMap<UserProfile, UserModel>()
                     .ForMember(dest => dest.AvatarUri, x => x.MapFrom(src => new Uri(src.AvatarUri)))
                     .ReverseMap();
 

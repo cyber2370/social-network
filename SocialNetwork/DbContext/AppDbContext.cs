@@ -1,10 +1,12 @@
 ﻿using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
 using DbContext.Entities;
-
+using DbContext.Entities.AspNet;
+using Microsoft.AspNet.Identity.EntityFramework;
+    
 namespace DbContext
 {
-    public class AppDbContext : System.Data.Entity.DbContext
+    public class AppDbContext : IdentityDbContext<AspNetUser, AspNetRole, int,
+        AspNetUserLogin, AspNetUserRole, AspNetUserClaim>
     {
         private const string ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog = SocialNetworkDb; Integrated Security = True; Connect Timeout = 30; Encrypt=False; TrustServerCertificate=True; ApplicationIntent=ReadWrite; MultiSubnetFailover=False";
 
@@ -13,7 +15,7 @@ namespace DbContext
 
         }
 
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserProfile> UserProfiles { get; set; }
 
         public virtual DbSet<Location> Locations { get; set; }
 
@@ -40,6 +42,15 @@ namespace DbContext
                 .HasRequired(p => p.Confirmer)
                 .WithMany(x => x.IncomingFriendRequests)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder
+                .Entity<AspNetUserLogin>()
+                .HasKey(x => new {x.UserId, x.LoginProvider, x.ProviderKey});
+        }
+
+        public static AppDbContext Create()
+        {
+            return new AppDbContext();
         }
     }
 }
