@@ -97,12 +97,14 @@
     </Compile>
     <Compile Include="Presentation\Helpers\Extensions.cs" />
     <Compile Include="Presentation\Models\PageKeys.cs" />
+    <Compile Include="Presentation\Models\RegistrationModel.cs" />
     <Compile Include="Presentation\Services\Implementations\CustomNavigationService.cs" />
     <Compile Include="Presentation\Services\Implementations\NavigationServiceHelper.cs" />
     <Compile Include="Presentation\Services\Interfaces\ICustomNavigationService.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelBase.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelLocator.cs" />
     <Compile Include="Presentation\ViewModels\Login\LoginViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Login\RegisterViewModel.cs" />
     <Compile Include="Presentation\Views\Login\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
