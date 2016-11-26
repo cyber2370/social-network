@@ -1,5 +1,7 @@
-﻿using System.Windows.Input;
+﻿using System.Collections.Generic;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using SocialNetwork_UWP.Presentation.Models;
 using SocialNetwork_UWP.Presentation.ViewModels.Common;
 
 namespace SocialNetwork_UWP.Presentation.ViewModels.Login
@@ -21,7 +23,7 @@ namespace SocialNetwork_UWP.Presentation.ViewModels.Login
 
         private void Register()
         {
-            var registrationModel = new RegisterViewModel
+            var registrationModel = new RegistrationModel
             {
                 Email = Email,
                 Password = Password,

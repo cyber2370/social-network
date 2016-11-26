@@ -95,6 +95,24 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\Api\ApiRouting.cs" />
+    <Compile Include="Data\Api\HttpException.cs" />
+    <Compile Include="Data\Api\ApiException.cs" />
+    <Compile Include="Data\Api\Rest\IRequestInterceptor.cs" />
+    <Compile Include="Data\Api\Rest\PostFormUrlEncodedRequestBuilder.cs" />
+    <Compile Include="Data\Api\Rest\Request.cs" />
+    <Compile Include="Data\Api\Rest\RequestInterceptorBase.cs" />
+    <Compile Include="Data\Api\Rest\RestApiBase.cs" />
+    <Compile Include="Data\Api\Rest\UrlRequestBuilder.cs" />
+    <Compile Include="Data\Api\SocialNetworkApi\Auth\Entities\ChangePasswordModel.cs" />
+    <Compile Include="Data\Api\SocialNetworkApi\Auth\Entities\SessionInfo.cs" />
+    <Compile Include="Data\Api\SocialNetworkApi\Auth\Entities\UserInfo.cs" />
+    <Compile Include="Data\Api\SocialNetworkApi\Auth\Implementations\AuthApi.cs" />
+    <Compile Include="Data\Api\SocialNetworkApi\Auth\Implementations\RestApi.cs" />
+    <Compile Include="Data\Api\SocialNetworkApi\Auth\Interfaces\IAuthApi.cs" />
+    <Compile Include="Data\Api\SocialNetworkApi\Social\Interfaces\ISocialApi.cs" />
+    <Compile Include="Data\Local\Implementations\PreferencesManager.cs" />
+    <Compile Include="Data\Local\Interfaces\IPreferencesService.cs" />
     <Compile Include="Presentation\Helpers\Extensions.cs" />
     <Compile Include="Presentation\Models\PageKeys.cs" />
     <Compile Include="Presentation\Models\RegistrationModel.cs" />
@@ -143,7 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Business\" />
-    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Presentation\Views\Login\LoginPage.xaml">

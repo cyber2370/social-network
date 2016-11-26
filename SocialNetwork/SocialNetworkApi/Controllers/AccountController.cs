@@ -111,9 +111,10 @@ namespace SocialNetworkApi.Controllers
             };
         }
 
-        // POST api/Account/ChangePassword
+        // PUT api/Account/ChangePassword
         [Route("ChangePassword")]
-        public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
+        [HttpPut]
+        public async Task<IHttpActionResult> ChangePassword([FromBody]ChangePasswordBindingModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -318,7 +319,7 @@ namespace SocialNetworkApi.Controllers
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
-        public async Task<IHttpActionResult> Register(RegisterBindingModel model)
+        public async Task<IHttpActionResult> Register([FromBody]RegisterBindingModel model)
         {
             if (!ModelState.IsValid)
             {
