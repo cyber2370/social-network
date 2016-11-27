@@ -7,7 +7,7 @@ namespace Managers.Models
         public int Id { get; set; }
 
         public int UserId { get; set; }
-        public UserModel User { get; set; }
+        public UserProfileModel User { get; set; }
 
         public int WorkplaceId { get; set; }
         public WorkplaceModel Workplace { get; set; }

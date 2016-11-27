@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using DbContext.Entities;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Managers.Models
+namespace SocialNetwork_UWP.Data.Api.SocialNetworkApi.Social.Entities
 {
-    public class UserModel
+    public class Profile
     {
         public int Id { get; set; }
-        
-        public string Email { get; set; }
 
         public string Name { get; set; }
 
@@ -30,10 +30,7 @@ namespace Managers.Models
 
         public string RelationshipStatus { get; set; }
 
-        public int HomelandId { get; set; }
-        public LocationModel Homeland { get; set; }
-
-        public IList<FriendRequest> IncomingFriendRequests { get; set; }
-        public IList<FriendRequest> OutgoingFriendRequests { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

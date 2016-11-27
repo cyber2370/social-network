@@ -1,0 +1,70 @@
+﻿<Page
+    x:Class="SocialNetwork_UWP.Presentation.Views.Auth.RegisterPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SocialNetwork_UWP.Presentation.Views.Auth"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="using:Syncfusion.UI.Xaml.Controls.Input"
+    DataContext="{Binding Register, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+
+    <Grid Background="Beige">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" MinWidth="375" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="26"
+            Text="Registration" />
+
+        <StackPanel
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            Margin="20">
+            <TextBox
+                x:Name="LoginTextBox"
+                Margin="0,10,0,0"
+                FontSize="22"
+                Header="Email"
+                IsSpellCheckEnabled="False"
+                Text="{Binding Username, Mode=TwoWay}" />
+            <PasswordBox
+                x:Name="PasswordBox"
+                Margin="0,10,0,0"
+                FontSize="22"
+                Header="Password"
+                Password="{Binding Password, Mode=TwoWay}" />
+            <PasswordBox
+                x:Name="ConfirmPasswordBox"
+                Margin="0,10,0,0"
+                FontSize="22"
+                Header="Confirm Password"
+                Password="{Binding ConfirmPassword, Mode=TwoWay}" />
+
+            <Button
+                Height="50"
+                Margin="0,15,0,0"
+                HorizontalAlignment="Stretch"
+                Background="Tomato"
+                BorderBrush="Tomato"
+                Command="{Binding RegisterCommand}"
+                Content="Register"
+                FontSize="22"
+                FontWeight="Bold" />
+        </StackPanel>
+
+    </Grid>
+</Page>

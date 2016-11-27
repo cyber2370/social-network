@@ -1,5 +1,6 @@
 ﻿using Ninject;
 using Repositories.Implementations;
+using Repositories.Implementations.AspNet;
 using Repositories.Interfaces;
 
 namespace Repositories

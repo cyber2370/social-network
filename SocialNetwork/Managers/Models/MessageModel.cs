@@ -7,10 +7,10 @@ namespace Managers.Models
         public int Id { get; set; }
 
         public string SenderId { get; set; }
-        public UserModel Sender { get; set; }
+        public UserProfileModel Sender { get; set; }
 
         public string AddresseeId { get; set; }
-        public UserModel Addresee { get; set; }
+        public UserProfileModel Addresee { get; set; }
 
         public string Text { get; set; }
 

@@ -36,8 +36,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -116,11 +116,12 @@
     <Compile Include="Interfaces\IUsersWorkplacesManager.cs" />
     <Compile Include="Interfaces\IWorkplacesManager.cs" />
     <Compile Include="AutoMapperWebConfiguration.cs" />
+    <Compile Include="Models\AspNet\AspNetUserModel.cs" />
     <Compile Include="Models\Friends\FriendModel.cs" />
     <Compile Include="Models\Friends\FriendRequestModel.cs" />
     <Compile Include="Models\LocationModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\UserProfileModel.cs" />
     <Compile Include="Models\UserWorkplaceModel.cs" />
     <Compile Include="Models\WorkplaceModel.cs" />
     <Compile Include="NinjectInitializer.cs" />

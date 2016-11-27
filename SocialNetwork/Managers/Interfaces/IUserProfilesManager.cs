@@ -6,16 +6,18 @@ namespace Managers.Interfaces
 {
     public interface IUserProfilesManager
     {
-        Task<IEnumerable<UserModel>> GetAllUsers();
+        Task<IEnumerable<UserProfileModel>> GetAllUsers();
 
-        Task<UserModel> GetUserById(int id);
+        Task<UserProfileModel> GetUserProfile(int userId);
 
-        Task<UserModel> GetUserByEmail(string email);
+        Task<UserProfileModel> GetUserProfileById(int id);
 
-        Task<UserModel> AddUser(UserModel user);
+        Task<UserProfileModel> GetUserProfileByEmail(string email);
 
-        Task<UserModel> UpdateUser(UserModel user);
+        Task<UserProfileModel> CreateProfile(int aspNetUserId, UserProfileModel profile);
 
-        Task<bool> DeleteUser(int id);
+        Task<UserProfileModel> UpdateProfile(UserProfileModel user);
+
+        Task<bool> DeleteProfile(int id);
     }
 }

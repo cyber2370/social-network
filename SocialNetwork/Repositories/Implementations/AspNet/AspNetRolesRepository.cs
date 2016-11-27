@@ -1,9 +1,8 @@
 ﻿using DbContext;
 using DbContext.Entities.AspNet;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Repositories.Interfaces;
 
-namespace Repositories.Implementations
+namespace Repositories.Implementations.AspNet
 {
     public class AspNetRolesRepository : RoleStore<AspNetRole, int, AspNetUserRole>
     {

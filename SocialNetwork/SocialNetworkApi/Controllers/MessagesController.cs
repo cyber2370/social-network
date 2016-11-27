@@ -7,6 +7,7 @@ using Managers.Models;
 
 namespace SocialNetworkApi.Controllers
 {
+    [Authorize]
     [RoutePrefix("messages")]
     public class MessagesController : ApiController
     {

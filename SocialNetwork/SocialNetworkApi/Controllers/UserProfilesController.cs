@@ -1,16 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Managers;
 using Managers.Interfaces;
 using Managers.Models;
 using Managers.Models.Friends;
 
 namespace SocialNetworkApi.Controllers
 {
-    [RoutePrefix("users")]
+    [Authorize]
+    [RoutePrefix("userProfiles")]
     public class UserProfilesController : ApiController
     {
-        private readonly IUserProfilesManager _usersManager;
+        private readonly IUserProfilesManager _userProfilesManager;
         private readonly IFriendRequestsManager _friendRequestsManager;
         private readonly IMessagesManager _messagesManager;
         private readonly IUsersWorkplacesManager _usersWorkplacesManager;
@@ -21,7 +23,7 @@ namespace SocialNetworkApi.Controllers
             IMessagesManager messagesManager,
             IUsersWorkplacesManager usersWorkplacesManager)
         {
-            _usersManager = usersManager;
+            _userProfilesManager = usersManager;
             _friendRequestsManager = friendRequestsManager;
             _messagesManager = messagesManager;
             _usersWorkplacesManager = usersWorkplacesManager;
@@ -30,29 +32,37 @@ namespace SocialNetworkApi.Controllers
         #region UsersOperations
 
         [HttpGet]
-        public async Task<UserModel> GetUser(string email)
+        public async Task<UserProfileModel> GetUserProfile()
         {
-            return await _usersManager.GetUserByEmail(email);
+            int userId = GetCurrentUserId();
+
+            return await _userProfilesManager.GetUserProfile(userId);
+        }
+
+        [HttpGet]
+        public async Task<UserProfileModel> GetUserProfileById(int id)
+        {
+            return await _userProfilesManager.GetUserProfileById(id);
         }
 
         [HttpPost]
-        public async Task<UserModel> RegisterUser([FromBody]UserModel model)
+        public async Task<UserProfileModel> CreateProfile([FromBody]UserProfileModel model)
         {
-            return await _usersManager.AddUser(model);
+            int userId = GetCurrentUserId();
+
+            return await _userProfilesManager.CreateProfile(userId, model);
         }
-
+        
         [HttpPut]
-        public async Task<UserModel> UpdateUserInformation(int id, [FromBody]UserModel model)
+        public async Task<UserProfileModel> UpdateProfile([FromBody]UserProfileModel model)
         {
-            model.Id = id;
-
-            return await _usersManager.UpdateUser(model);
+            return await _userProfilesManager.UpdateProfile(model);
         }
 
         [HttpDelete]
-        public async Task<bool> DeleteUser(int id)
+        public async Task<bool> DeleteProfile(int id)
         {
-            return await _usersManager.DeleteUser(id);
+            return await _userProfilesManager.DeleteProfile(id);
         }
 
         #endregion
@@ -60,27 +70,35 @@ namespace SocialNetworkApi.Controllers
         #region FriendsOperations
 
         [Route("{userId}/friends/")]
-        public async Task<IEnumerable<FriendModel>> GetFriendsOf(int userId)
+        public async Task<IEnumerable<FriendModel>> GetFriendsOf()
         {
+            int userId = 1;
+
             return await _friendRequestsManager.GetFriendsOf(userId);
         }
         
         [Route("{userId}/sendedFriendsRequests")]
-        public async Task<IEnumerable<FriendRequestModel>> GetFriendRequestsOf(int userId)
+        public async Task<IEnumerable<FriendRequestModel>> GetFriendRequestsOf()
         {
+            int userId = 1;
+
             return await _friendRequestsManager.GetFriendRequestsFrom(userId);
         }
         
         [Route("{userId}/recievedFriendsRequests")]
-        public async Task<IEnumerable<FriendRequestModel>> GetFriendRequestsTo(int userId)
+        public async Task<IEnumerable<FriendRequestModel>> GetFriendRequestsTo()
         {
+            int userId = 1;
+
             return await _friendRequestsManager.GetFriendRequestsTo(userId);
         }
         
         [HttpDelete]
         [Route("{userId}/friends/{friendId}")]
-        public async Task<bool> RemoveFriends(int userId, int friendId)
+        public async Task<bool> RemoveFriends(int friendId)
         {
+            int userId = 1;
+
             return await _friendRequestsManager.DeleteFriendRequest(userId, friendId);
         }
 
@@ -90,15 +108,19 @@ namespace SocialNetworkApi.Controllers
 
         [HttpGet]
         [Route("{userId}/messagesWith/{opponentId}")]
-        public async Task<IEnumerable<MessageModel>> GetUserMessagesWith(int userId, int opponentId)
+        public async Task<IEnumerable<MessageModel>> GetUserMessagesWith(int opponentId)
         {
+            int userId = 1;
+
             return await _messagesManager.GetMessagesBetween(userId, opponentId);
         }
 
         [HttpGet]
         [Route("{userId}/messages")]
-        public async Task<IEnumerable<MessageModel>> GetUserMessages(int userId)
+        public async Task<IEnumerable<MessageModel>> GetUserMessages()
         {
+            int userId = 1;
+
             return await _messagesManager.GetMessagesOf(userId);
         }
 
@@ -108,18 +130,27 @@ namespace SocialNetworkApi.Controllers
 
         [HttpGet]
         [Route("{userId}/workplaces/")]
-        public async Task<IEnumerable<UserWorkplaceModel>> GetUserWorkplaces(int userId)
+        public async Task<IEnumerable<UserWorkplaceModel>> GetUserWorkplaces()
         {
+            int userId = 1;
+
             return await _usersWorkplacesManager.GetUsersWorkplacesByUserId(userId);
         }
 
         [HttpDelete]
         [Route("{userId}/workplaces/{workplaceId}")]
-        public async Task<bool> RemoveWorkplaceFromUser(int userId, int workplaceId)
+        public async Task<bool> RemoveWorkplaceFromUser(int workplaceId)
         {
+            int userId = 1;
+
             return await _usersWorkplacesManager.DeleteUserWorkplace(userId, workplaceId);
         }
 
         #endregion
+
+        private int GetCurrentUserId()
+        {
+            return RequestContext.Principal.Identity.GetUserIdIntPk();
+        }
     }
 }
