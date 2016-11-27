@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using SocialNetwork_UWP.Data.Api.SocialNetworkApi.Social.Entities;
+using SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities;
 
-namespace SocialNetwork_UWP.Data.Api.SocialNetworkApi.Social.Interfaces
+namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Interfaces
 {
     public interface ISocialApi
     {

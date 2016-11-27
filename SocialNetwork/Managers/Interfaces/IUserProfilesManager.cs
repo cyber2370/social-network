@@ -10,7 +10,7 @@ namespace Managers.Interfaces
 
         Task<UserProfileModel> GetUserProfile(int userId);
 
-        Task<UserProfileModel> GetUserProfileById(int id);
+        Task<UserProfileModel> GetProfileById(int id);
 
         Task<UserProfileModel> GetUserProfileByEmail(string email);
 

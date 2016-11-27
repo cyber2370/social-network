@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
 using Newtonsoft.Json;
-using SocialNetwork_UWP.Data.Api.Rest;
-using SocialNetwork_UWP.Data.Api.SocialNetworkApi.Social.Entities;
+using SocialNetworkUwpClient.Data.Api.Rest;
+using SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities;
 
-namespace SocialNetwork_UWP.Data.Api.SocialNetworkApi.Social.Implementations
+namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementations
 {
     public class RestApi : RestApiBase
     {

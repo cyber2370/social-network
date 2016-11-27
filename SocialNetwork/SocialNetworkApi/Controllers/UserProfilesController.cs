@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Routing;
 using Managers;
 using Managers.Interfaces;
 using Managers.Models;
@@ -38,11 +39,18 @@ namespace SocialNetworkApi.Controllers
 
             return await _userProfilesManager.GetUserProfile(userId);
         }
+        
+        [HttpGet]
+        public async Task<UserProfileModel> GetProfileById(int id)
+        {
+            return await _userProfilesManager.GetProfileById(id);
+        }
 
         [HttpGet]
-        public async Task<UserProfileModel> GetUserProfileById(int id)
+        [Route("users/{userId}")]
+        public async Task<UserProfileModel> GetUserProfile(int userId)
         {
-            return await _userProfilesManager.GetUserProfileById(id);
+            return await _userProfilesManager.GetUserProfile(userId);
         }
 
         [HttpPost]

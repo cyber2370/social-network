@@ -1,0 +1,15 @@
+﻿<Application
+    x:Class="SocialNetworkUwpClient.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:common="using:SocialNetworkUwpClient.Presentation.ViewModels.Common"
+    xmlns:local="using:SocialNetworkUwpClient"
+    RequestedTheme="Light">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <common:ViewModelLocator x:Key="Locator" />
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

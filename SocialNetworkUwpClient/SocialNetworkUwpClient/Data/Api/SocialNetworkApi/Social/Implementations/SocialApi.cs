@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using SocialNetwork_UWP.Data.Api.SocialNetworkApi.Social.Entities;
-using SocialNetwork_UWP.Data.Api.SocialNetworkApi.Social.Interfaces;
+using SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities;
+using SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Interfaces;
 
-namespace SocialNetwork_UWP.Data.Api.SocialNetworkApi.Social.Implementations
+namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementations
 {
     public class SocialApi : ISocialApi
     {
