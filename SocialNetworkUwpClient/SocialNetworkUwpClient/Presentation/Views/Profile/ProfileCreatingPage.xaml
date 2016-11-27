@@ -1,0 +1,83 @@
+﻿<Page
+    x:Class="SocialNetworkUwpClient.Presentation.Views.Profile.ProfileCreatingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SocialNetworkUwpClient.Presentation.Views.Profile"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="using:Syncfusion.UI.Xaml.Controls.Input"
+    xmlns:my1="using:Syncfusion.UI.Xaml.RichTextBoxAdv"
+    DataContext="{Binding ProfileCreating, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+
+    <Grid Background="Beige">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" MinWidth="375" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            FontSize="26"
+            FontWeight="Bold"
+            Text="Creating Profile" />
+
+        <ScrollViewer
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="20">
+            <StackPanel>
+                <TextBox
+                    x:Name="NameTextBox"
+                    FontSize="22"
+                    Header="Name"
+                    Text="{Binding Name, Mode=TwoWay}" />
+                <TextBox
+                    x:Name="SurnameTextBox"
+                    FontSize="22"
+                    Header="Surname"
+                    Text="{Binding Surname, Mode=TwoWay}" />
+                <DatePicker
+                    x:Name="BirthdayDatePicker"
+                    Date="{Binding BirthDate, Mode=TwoWay}"
+                    FontSize="22"
+                    Header="Birthday" />
+                <TextBox
+                    x:Name="RelationshipStatus"
+                    FontSize="22"
+                    Header="Relationship Status"
+                    Text="{Binding RelationshipStatus, Mode=TwoWay}" />
+                <TextBox
+                    x:Name="Sex"
+                    FontSize="22"
+                    Header="Sex"
+                    Text="{Binding Sex, Mode=TwoWay}" />
+                <TextBox
+                    x:Name="AdditionalInfo"
+                    FontSize="22"
+                    Header="Additional Information"
+                    Text="{Binding AdditionalInformation, Mode=TwoWay}" />
+            </StackPanel>
+        </ScrollViewer>
+
+
+        <Button
+            x:Name="SaveButton"
+            Grid.Row="2"
+            Grid.Column="1"
+            Height="30"
+            Margin="70,0"
+            HorizontalAlignment="Stretch"
+            Background="BurlyWood"
+            Command="{Binding CreateProfileCommand}"
+            Content="Create Profile" />
+    </Grid>
+</Page>

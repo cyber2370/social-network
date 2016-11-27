@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Practices.ServiceLocation;
 using SocialNetworkUwpClient.Presentation.ViewModels.Login;
+using SocialNetworkUwpClient.Presentation.ViewModels.Profile;
 
 namespace SocialNetworkUwpClient.Presentation.ViewModels.Common
 {
@@ -8,6 +9,9 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Common
     {
         public LoginViewModel Login => GetViewModel<LoginViewModel>();
         public RegisterViewModel Register => GetViewModel<RegisterViewModel>();
+        public ProfileCreatingViewModel ProfileCreating => GetViewModel<ProfileCreatingViewModel>();
+
+        
 
 
         private T GetViewModel<T>()

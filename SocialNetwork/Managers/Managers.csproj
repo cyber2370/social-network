@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B04088F6-2B07-48EA-B301-56FECDF7B6B0}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Managers</RootNamespace>
     <AssemblyName>Managers</AssemblyName>
@@ -125,7 +125,6 @@
     <Compile Include="Models\UserWorkplaceModel.cs" />
     <Compile Include="Models\WorkplaceModel.cs" />
     <Compile Include="NinjectInitializer.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

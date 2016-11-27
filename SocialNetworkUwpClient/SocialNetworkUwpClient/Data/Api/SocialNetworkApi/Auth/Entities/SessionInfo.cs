@@ -24,7 +24,7 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Auth.Entities
 
         public override string ToString()
         {
-            return AccessToken;
+            return "Bearer " + AccessToken;
         }
     }
 }

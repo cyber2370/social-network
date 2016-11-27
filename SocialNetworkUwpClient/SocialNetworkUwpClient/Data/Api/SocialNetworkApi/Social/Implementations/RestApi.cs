@@ -30,8 +30,7 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
                 QueryItems.Clear();
 
                 QueryItems.Add(new KeyValuePair<string, string>("Accept", "application/json"));
-                QueryItems.Add(new KeyValuePair<string, string>("Accept-Language", "en-US"));
-                QueryItems.Add(new KeyValuePair<string, string>("UA-Resolution", "240"));
+                //QueryItems.Add(new KeyValuePair<string, string>("Content-Type", "application/json"));
 
                 var sessionInfo = _sessionInfoHolder.SessionInfo;
                 if (sessionInfo != null)
@@ -74,7 +73,7 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
                 .Param("name", profile.Name)
                 .Param("surname", profile.Surname)
                 .Param("sex", profile.Sex)
-                .Param("avatarUri", profile.AvatarUri.ToString())
+                .Param("avatarUri", profile.AvatarUri?.ToString() ?? "")
                 .Param("birthDate", JsonConvert.SerializeObject(profile.BirthDate))
                 .Param("registrationDate", JsonConvert.SerializeObject(profile.RegistrationDate))
                 .Param("additionalInformation", profile.AdditionalInformation)

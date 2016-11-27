@@ -17,6 +17,7 @@ using SocialNetworkUwpClient.Data.Local.Interfaces;
 using SocialNetworkUwpClient.Presentation.Services.Implementations;
 using SocialNetworkUwpClient.Presentation.Services.Interfaces;
 using SocialNetworkUwpClient.Presentation.ViewModels.Login;
+using SocialNetworkUwpClient.Presentation.ViewModels.Profile;
 using SocialNetworkUwpClient.Presentation.Views.Auth;
 
 namespace SocialNetworkUwpClient
@@ -127,7 +128,10 @@ namespace SocialNetworkUwpClient
 
             SimpleIoc.Default.Register<ICustomNavigationService, CustomNavigationService>();
             SimpleIoc.Default.Register<IPreferencesService, PreferencesService>();
+
             SimpleIoc.Default.Register<IAuthenticationManager, AuthenticationManager>();
+            SimpleIoc.Default.Register<IProfilesManager, ProfilesManager>();
+
             SimpleIoc.Default.Register<IApiFactory, ApiFactory>();
             SimpleIoc.Default.Register<SessionInfoHolder>();
 
@@ -137,6 +141,7 @@ namespace SocialNetworkUwpClient
 
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<RegisterViewModel>();
+            SimpleIoc.Default.Register<ProfileCreatingViewModel>(); 
 
             #endregion
         }

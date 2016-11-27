@@ -1,21 +1,22 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities;
 
-namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Interfaces
+namespace SocialNetworkUwpClient.Business.Managers.Interfaces
 {
-    public interface ISocialApi
+    public interface IProfilesManager
     {
-        Task<User> GetUser();
-
-        Task<Profile> GetProfile();
-
         Task<Profile> GetProfileById(int id);
+
+        Task<Profile> GetCurrentProfile();
 
         Task<Profile> GetProfileOf(int userId);
 
         Task<Profile> CreateProfile(Profile profile);
 
         Task<Profile> UpdateProfile(Profile profile);
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using SocialNetworkUwpClient.Presentation.Views.Auth;
+using SocialNetworkUwpClient.Presentation.Views.Profile;
 using LoginPage = SocialNetworkUwpClient.Presentation.Views.Auth.LoginPage;
 
 namespace SocialNetworkUwpClient.Presentation.Models
@@ -10,6 +11,8 @@ namespace SocialNetworkUwpClient.Presentation.Models
         Login,
         [PageType(typeof(RegisterPage))]
         Register,
+        [PageType(typeof(ProfileCreatingPage))]
+        ProfileCreating
     }
 
     public class PageTypeAttribute : Attribute

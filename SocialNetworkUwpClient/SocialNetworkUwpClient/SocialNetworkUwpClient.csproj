@@ -94,7 +94,9 @@
     <Compile Include="Business\Factories\Implementations\ApiFactory.cs" />
     <Compile Include="Business\Factories\Interfaces\IApiFactory.cs" />
     <Compile Include="Business\Managers\Implementations\AuthenticationManager.cs" />
+    <Compile Include="Business\Managers\Implementations\ProfilesManager.cs" />
     <Compile Include="Business\Managers\Interfaces\IAuthenticationManager.cs" />
+    <Compile Include="Business\Managers\Interfaces\IProfilesManager.cs" />
     <Compile Include="Data\Api\ApiException.cs" />
     <Compile Include="Data\Api\ApiRouting.cs" />
     <Compile Include="Data\Api\HttpException.cs" />
@@ -127,11 +129,18 @@
     <Compile Include="Presentation\ViewModels\Common\ViewModelLocator.cs" />
     <Compile Include="Presentation\ViewModels\Login\LoginViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Login\RegisterViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Profile\ProfileCreatingViewModel.cs" />
     <Compile Include="Presentation\Views\Auth\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Auth\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Profile\CurrentProfilePage.xaml.cs">
+      <DependentUpon>CurrentProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Profile\ProfileCreatingPage.xaml.cs">
+      <DependentUpon>ProfileCreatingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -168,6 +177,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Presentation\Views\Profile\CurrentProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Profile\ProfileCreatingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Syncfusion Controls for UWP XAML, Version=14.4.0.15">
+      <Name>Syncfusion Controls for UWP XAML</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

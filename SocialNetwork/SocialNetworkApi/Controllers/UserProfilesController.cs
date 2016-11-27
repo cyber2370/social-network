@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Routing;
@@ -57,6 +58,8 @@ namespace SocialNetworkApi.Controllers
         public async Task<UserProfileModel> CreateProfile([FromBody]UserProfileModel model)
         {
             int userId = GetCurrentUserId();
+
+            model.RegistrationDate = DateTime.Now;
 
             return await _userProfilesManager.CreateProfile(userId, model);
         }

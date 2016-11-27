@@ -7,39 +7,47 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
 {
     public class SocialApi : ISocialApi
     {
-        private readonly RestApi _restApi;
+        private readonly string _apiBaseAddress;
 
         public SocialApi()
         {
             var apiRouting = new ApiRouting();
-            var apiBaseAddress = apiRouting.SocialNetworkApiUrl;
-
-            _restApi = new RestApi(new Uri(apiBaseAddress));
+            _apiBaseAddress = apiRouting.SocialNetworkApiUrl;
         }
 
         public Task<User> GetUser()
         {
-            return _restApi.GetUser();
+            return GetRestApi().GetUser();
         }
 
         public Task<Profile> GetProfile()
         {
-            return _restApi.GetProfile();
+            return GetRestApi().GetProfile();
+        }
+
+        public Task<Profile> GetProfileById(int id)
+        {
+            return GetRestApi().GetProfileById(id);
         }
 
         public Task<Profile> GetProfileOf(int userId)
         {
-            return _restApi.GetProfileByUserId(userId);
+            return GetRestApi().GetProfileByUserId(userId);
         }
 
         public Task<Profile> CreateProfile(Profile profile)
         {
-            return _restApi.CreateProfile(profile);
+            return GetRestApi().CreateProfile(profile);
         }
 
         public Task<Profile> UpdateProfile(Profile profile)
         {
-            return _restApi.UpdateProfile(profile);
+            return GetRestApi().UpdateProfile(profile);
+        }
+
+        private RestApi GetRestApi()
+        {
+            return new RestApi(new Uri(_apiBaseAddress));
         }
     }
 }
