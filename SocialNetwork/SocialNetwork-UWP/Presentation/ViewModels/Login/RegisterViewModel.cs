@@ -1,39 +1,54 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using SocialNetwork_UWP.Business.Managers.Interfaces;
 using SocialNetwork_UWP.Presentation.Models;
 using SocialNetwork_UWP.Presentation.ViewModels.Common;
+using SocialNetwork_UWP.Presentation.Helpers;
 
 namespace SocialNetwork_UWP.Presentation.ViewModels.Login
 {
     public class RegisterViewModel : ViewModelBase
     {
-        public RegisterViewModel()
+        private readonly IAuthenticationManager _authenticationManager;
+
+        public RegisterViewModel(IAuthenticationManager authenticationManager)
         {
-             RegisterCommand = new RelayCommand(Register);
+            _authenticationManager = authenticationManager;
+
+            RegisterCommand = new RelayCommand(Register);
         }
 
         public ICommand RegisterCommand { get; set; }
 
-        public string Email { get; set; }
+        public string Username { get; set; }
 
         public string Password { get; set; }
 
         public string ConfirmPassword { get; set; }
 
-        private void Register()
+        private async void Register()
         {
-            var registrationModel = new RegistrationModel
+            try
             {
-                Email = Email,
-                Password = Password,
-                ConfirmPassword = ConfirmPassword
-            };
+                if (!ValidateInputs())
+                    return;
 
-            // send model to server
+                await _authenticationManager.Register(Username, Password);
 
-            // if success then navigate to profile creating
+                await DialogService.ShowMessage("Registration successful!", "Registration");
+
+                NavigationService.NavigateTo(PageKeys.Login);
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
         }
 
+        private bool ValidateInputs()
+        {
+            return Username.Length > 5 && Password.Length > 5 && Password == ConfirmPassword;
+        }
     }
 }

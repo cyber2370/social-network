@@ -6,6 +6,7 @@ using Managers.Models;
 
 namespace SocialNetworkApi.Controllers
 {
+    [Authorize]
     [RoutePrefix("workplaces")]
     public class WorkplacesController : ApiController
     {

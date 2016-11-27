@@ -3,7 +3,9 @@ using System.Linq;
 using Windows.Storage;
 using Windows.System;
 using Newtonsoft.Json;
+using SocialNetwork_UWP.Data.Api.SocialNetworkApi.Auth.Entities;
 using SocialNetwork_UWP.Data.Local.Interfaces;
+using User = SocialNetwork_UWP.Data.Api.SocialNetworkApi.Social.Entities.User;
 
 namespace SocialNetwork_UWP.Data.Local.Implementations
 {
@@ -44,21 +46,7 @@ namespace SocialNetwork_UWP.Data.Local.Implementations
             }
         }
 
-        public AccountDetails AccountDetails
-        {
-            get
-            {
-                return TryGetValue<AccountDetails>(AccountDetailsKey);
-            }
-            set
-            {
-                AddOrUpdateValue(AccountDetails, value);
-            }
-        }
-
-        public bool IsLoggedIn => SessionInfo != null
-                                  && AccountDetails != null
-                                  && User != null;
+        public bool IsLoggedIn => SessionInfo != null;
 
         public void Clear()
         {

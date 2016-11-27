@@ -1,5 +1,6 @@
 ﻿using System;
-using SocialNetwork_UWP.Presentation.Views.Login;
+using SocialNetwork_UWP.Presentation.Views.Auth;
+using LoginPage = SocialNetwork_UWP.Presentation.Views.Auth.LoginPage;
 
 namespace SocialNetwork_UWP.Presentation.Models
 {

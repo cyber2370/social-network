@@ -31,6 +31,11 @@ namespace DbContext
         {
             base.OnModelCreating(modelBuilder);
 
+            // One AspNetUser to ZeroOrOne UserProfile
+            modelBuilder.Entity<AspNetUser>()
+                        .HasOptional(s => s.Profile) 
+                        .WithRequired(ad => ad.AspNetUser);
+
             modelBuilder
                 .Entity<FriendRequest>()
                 .HasRequired(p => p.Requester)

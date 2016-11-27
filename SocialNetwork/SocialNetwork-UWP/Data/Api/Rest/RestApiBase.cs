@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using Microsoft.Practices.ServiceLocation;
+using SocialNetwork_UWP.Data.Local.Implementations;
+using SocialNetwork_UWP.Data.Local.Interfaces;
 
 namespace SocialNetwork_UWP.Data.Api.Rest
 {
     public class RestApiBase
     {
+        private readonly IPreferencesService _preferencesService;
+
         private readonly IList<IRequestInterceptor> _requestInterceptors;
         private readonly Uri _baseAddress;
 
@@ -13,6 +18,8 @@ namespace SocialNetwork_UWP.Data.Api.Rest
         {
             _requestInterceptors = new List<IRequestInterceptor>();
             _baseAddress = baseAddress;
+
+            _preferencesService = ServiceLocator.Current.GetInstance<IPreferencesService>();
         }
 
         public Uri BaseAddress

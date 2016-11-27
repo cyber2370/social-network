@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
+using Windows.UI.Popups;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
@@ -25,5 +27,12 @@ namespace SocialNetwork_UWP.Presentation.ViewModels.Common
         protected IDialogService DialogService { get; }
 
         public ICommand GoBackCommand { get; }
+
+        protected async void HandleError(Exception ex)
+        {
+            var dialog = new MessageDialog(ex.Message);
+
+            await dialog.ShowAsync();
+        }
     }
 }

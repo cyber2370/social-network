@@ -1,15 +1,23 @@
 ﻿using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using SocialNetwork_UWP.Business.Factories.Implementations;
+using SocialNetwork_UWP.Business.Factories.Interfaces;
+using SocialNetwork_UWP.Business.Managers.Implementations;
+using SocialNetwork_UWP.Business.Managers.Interfaces;
+using SocialNetwork_UWP.Data.Api.SocialNetworkApi.Social.Entities;
+using SocialNetwork_UWP.Data.Local.Implementations;
+using SocialNetwork_UWP.Data.Local.Interfaces;
 using SocialNetwork_UWP.Presentation.Services.Implementations;
 using SocialNetwork_UWP.Presentation.Services.Interfaces;
 using SocialNetwork_UWP.Presentation.ViewModels.Login;
-using SocialNetwork_UWP.Presentation.Views.Login;
+using LoginPage = SocialNetwork_UWP.Presentation.Views.Auth.LoginPage;
 
 namespace SocialNetwork_UWP
 {
@@ -26,6 +34,8 @@ namespace SocialNetwork_UWP
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.UnhandledException += OnUnhandledException;
+
             RegisterDependencies();
         }
 
@@ -100,6 +110,13 @@ namespace SocialNetwork_UWP
             deferral.Complete();
         }
 
+        private async void OnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
+        {
+            var dialog = new MessageDialog(unhandledExceptionEventArgs.Message);
+
+            await dialog.ShowAsync();
+        }
+
         private void RegisterDependencies()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
@@ -109,12 +126,17 @@ namespace SocialNetwork_UWP
             SimpleIoc.Default.Register(() => NavigationServiceHepler.GetService);
 
             SimpleIoc.Default.Register<ICustomNavigationService, CustomNavigationService>();
+            SimpleIoc.Default.Register<IPreferencesService, PreferencesService>();
+            SimpleIoc.Default.Register<IAuthenticationManager, AuthenticationManager>();
+            SimpleIoc.Default.Register<IApiFactory, ApiFactory>();
+            SimpleIoc.Default.Register<SessionInfoHolder>();
 
             #endregion
 
             #region ViewModels
 
             SimpleIoc.Default.Register<LoginViewModel>();
+            SimpleIoc.Default.Register<RegisterViewModel>();
 
             #endregion
         }

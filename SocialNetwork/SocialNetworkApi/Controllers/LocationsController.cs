@@ -7,6 +7,7 @@ using Managers.Models;
 
 namespace SocialNetworkApi.Controllers
 {
+    [Authorize]
     [RoutePrefix("locations")]
     public class LocationsController : ApiController
     {

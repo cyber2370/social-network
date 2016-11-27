@@ -7,6 +7,7 @@ namespace SocialNetwork_UWP.Presentation.ViewModels.Common
     public class ViewModelLocator
     {
         public LoginViewModel Login => GetViewModel<LoginViewModel>();
+        public RegisterViewModel Register => GetViewModel<RegisterViewModel>();
 
 
         private T GetViewModel<T>()

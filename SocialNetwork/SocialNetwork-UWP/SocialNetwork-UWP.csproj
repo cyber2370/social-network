@@ -95,6 +95,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Business\Factories\Implementations\ApiFactory.cs" />
+    <Compile Include="Business\Factories\Interfaces\IApiFactory.cs" />
+    <Compile Include="Business\Managers\Implementations\AuthenticationManager.cs" />
+    <Compile Include="Business\Managers\Interfaces\IAuthenticationManager.cs" />
     <Compile Include="Data\Api\ApiRouting.cs" />
     <Compile Include="Data\Api\HttpException.cs" />
     <Compile Include="Data\Api\ApiException.cs" />
@@ -106,12 +110,16 @@
     <Compile Include="Data\Api\Rest\UrlRequestBuilder.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Auth\Entities\ChangePasswordModel.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Auth\Entities\SessionInfo.cs" />
-    <Compile Include="Data\Api\SocialNetworkApi\Auth\Entities\UserInfo.cs" />
+    <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\User.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Auth\Implementations\AuthApi.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Auth\Implementations\RestApi.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Auth\Interfaces\IAuthApi.cs" />
+    <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\Profile.cs" />
+    <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\SessionInfoHolder.cs" />
+    <Compile Include="Data\Api\SocialNetworkApi\Social\Implementations\SocialApi.cs" />
+    <Compile Include="Data\Api\SocialNetworkApi\Social\Implementations\RestApi.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Social\Interfaces\ISocialApi.cs" />
-    <Compile Include="Data\Local\Implementations\PreferencesManager.cs" />
+    <Compile Include="Data\Local\Implementations\PreferencesService.cs" />
     <Compile Include="Data\Local\Interfaces\IPreferencesService.cs" />
     <Compile Include="Presentation\Helpers\Extensions.cs" />
     <Compile Include="Presentation\Models\PageKeys.cs" />
@@ -123,10 +131,10 @@
     <Compile Include="Presentation\ViewModels\Common\ViewModelLocator.cs" />
     <Compile Include="Presentation\ViewModels\Login\LoginViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Login\RegisterViewModel.cs" />
-    <Compile Include="Presentation\Views\Login\LoginPage.xaml.cs">
+    <Compile Include="Presentation\Views\Auth\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\Login\RegisterPage.xaml.cs">
+    <Compile Include="Presentation\Views\Auth\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -159,15 +167,13 @@
       <Name>Syncfusion Controls for UWP XAML</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Business\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Presentation\Views\Login\LoginPage.xaml">
+    <Page Include="Presentation\Views\Auth\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\Login\RegisterPage.xaml">
+    <Page Include="Presentation\Views\Auth\RegisterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

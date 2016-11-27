@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Managers.Interfaces;
@@ -38,9 +35,9 @@ namespace Managers.Implementations
             {
                 bool isCurrentUserRequester = userId == f.RequesterId;
 
-                UserModel friend = Mapper.Map<UserProfile, UserModel>(isCurrentUserRequester ? f.Confirmer : f.Requester);
+                UserProfileModel friend = Mapper.Map<UserProfile, UserProfileModel>(isCurrentUserRequester ? f.Confirmer : f.Requester);
 
-                return Mapper.Map<UserModel, FriendModel>(friend);
+                return Mapper.Map<UserProfileModel, FriendModel>(friend);
             });
 
         }

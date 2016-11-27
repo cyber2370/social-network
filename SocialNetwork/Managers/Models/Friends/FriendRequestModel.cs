@@ -7,10 +7,10 @@ namespace Managers.Models.Friends
         public int Id { get; set; }
 
         public int SenderId { get; set; }
-        public UserModel Sender { get; set; }
+        public UserProfileModel Sender { get; set; }
 
         public int AddresseeId { get; set; }
-        public UserModel Addressee { get; set; }
+        public UserProfileModel Addressee { get; set; }
 
         public DateTime RequestDateTime { get; set; }
 

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using SocialNetwork_UWP.Data.Api.Rest;
 using SocialNetwork_UWP.Data.Api.SocialNetworkApi.Auth.Entities;
+using SocialNetwork_UWP.Data.Api.SocialNetworkApi.Social.Entities;
 
 namespace SocialNetwork_UWP.Data.Api.SocialNetworkApi.Auth.Implementations
 {
@@ -10,12 +11,6 @@ namespace SocialNetwork_UWP.Data.Api.SocialNetworkApi.Auth.Implementations
         public RestApi(Uri baseAddress) : base(baseAddress)
         {
 
-        }
-
-        public Task<UserInfo> GetUserInfo()
-        {
-            return Url("account/userInfo")
-                .GetAsync<UserInfo>();
         }
 
         public Task<SessionInfo> Login(string grantType, string username, string password)

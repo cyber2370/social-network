@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using SocialNetwork_UWP.Data.Api.SocialNetworkApi.Auth.Entities;
 using SocialNetwork_UWP.Data.Api.SocialNetworkApi.Auth.Interfaces;
+using SocialNetwork_UWP.Data.Api.SocialNetworkApi.Social.Entities;
 
 namespace SocialNetwork_UWP.Data.Api.SocialNetworkApi.Auth.Implementations
 {
@@ -15,11 +16,6 @@ namespace SocialNetwork_UWP.Data.Api.SocialNetworkApi.Auth.Implementations
             var apiServerAddress = apiRouting.SocialNetworkApiUrl;
 
             _restApi = new RestApi(new Uri(apiServerAddress));
-        }
-
-        public Task<UserInfo> GetUserInfo()
-        {
-            return _restApi.GetUserInfo();
         }
 
         public Task<SessionInfo> Login(string username, string password)

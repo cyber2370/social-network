@@ -66,11 +66,12 @@ namespace Managers
             // Add custom user claims here
             return userIdentity;
         }
-
-        [DebuggerStepThrough]
+        
         public static int GetUserIdIntPk(this IIdentity user)
         {
-            return Convert.ToInt32(user.GetUserId());
+            var userId = user.GetUserId();
+
+            return Convert.ToInt32(userId);
         }
     }
 }

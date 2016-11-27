@@ -3,8 +3,7 @@ using DbContext.Entities.AspNet;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using Repositories.Implementations;
-
+using Repositories.Implementations.AspNet;
 namespace Managers.Implementations
 {
     public class AspNetUserManager : UserManager<AspNetUser, int>
