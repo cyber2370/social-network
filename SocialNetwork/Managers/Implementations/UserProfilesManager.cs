@@ -48,12 +48,9 @@ namespace Managers.Implementations
             return Mapper.Map<UserProfile, UserProfileModel>(user);
         }
 
-        public async Task<UserProfileModel> CreateProfile(int userId, UserProfileModel profileModel)
+        public async Task<UserProfileModel> CreateProfile(UserProfileModel profileModel)
         {
             UserProfile profile = Mapper.Map<UserProfileModel, UserProfile>(profileModel);
-
-            var user = await _aspNetUserManager.FindByIdAsync(userId);
-            profile.AspNetUser = user;
 
             return Mapper.Map<UserProfile, UserProfileModel>(await _userProfilesRepository.AddItemAsync(profile));
         }

@@ -1,67 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Net.Http;
-using System.Security.Claims;
-using System.Security.Cryptography;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
 using AutoMapper;
 using DbContext.Entities.AspNet;
 using Managers.Implementations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OAuth;
 using Managers;
-using Managers.Models.AspNet;
-using Microsoft.AspNet.Identity.Owin;
-using Ninject.Infrastructure.Language;
 using SocialNetworkApi.Models;
-using SocialNetworkApi.Providers;
-using SocialNetworkApi.Results;
 
 namespace SocialNetworkApi.Controllers
 {
     [Authorize]
     [RoutePrefix("account")]
-    public class AccountController : ApiController
+    public class AccountController : ApiControllerBase
     {
-        private const string LocalLoginProvider = "Local";
-        private AspNetUserManager _userManager;
+        private readonly AspNetUserManager _aspNetUserManager;
 
-        public AccountController(AspNetUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+        public AccountController(AspNetUserManager aspNetUserManager)
         {
-            _userManager = UserManager = userManager;
-            AccessTokenFormat = accessTokenFormat;
+            _aspNetUserManager = aspNetUserManager;
         }
-
-        public AspNetUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? Request.GetOwinContext().GetUserManager<AspNetUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-
-        public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
         // GET api/Account/User
         [Authorize]
         [Route("User")]
         public async Task<UserModel> GetUser()
         {
-            ClaimsIdentity identity = (ClaimsIdentity)User.Identity;
-            string username = identity.Claims.First().Value;
-
-            return Mapper.Map<AspNetUser, UserModel>(await UserManager.FindByNameAsync(username));
+            return Mapper.Map<AspNetUser, UserModel>(await GetCurrentUser(_aspNetUserManager));
         }
 
         // PUT api/Account/ChangePassword
@@ -74,7 +40,7 @@ namespace SocialNetworkApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserIdIntPk(), model.OldPassword,
+            IdentityResult result = await _aspNetUserManager.ChangePasswordAsync(User.Identity.GetUserIdIntPk(), model.OldPassword,
                 model.NewPassword);
 
             if (!result.Succeeded)
@@ -97,7 +63,7 @@ namespace SocialNetworkApi.Controllers
 
             var user = new AspNetUser { UserName = model.Email, Email = model.Email };
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+            IdentityResult result = await _aspNetUserManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
             {
@@ -111,7 +77,7 @@ namespace SocialNetworkApi.Controllers
         {
             if (disposing)
             {
-                UserManager.Dispose();
+                _aspNetUserManager.Dispose();
             }
 
             base.Dispose(disposing);

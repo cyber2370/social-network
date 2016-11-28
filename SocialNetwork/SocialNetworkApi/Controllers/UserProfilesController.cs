@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Routing;
+using DbContext.Entities;
 using Managers;
+using Managers.Implementations;
 using Managers.Interfaces;
 using Managers.Models;
 using Managers.Models.Friends;
@@ -12,33 +16,41 @@ namespace SocialNetworkApi.Controllers
 {
     [Authorize]
     [RoutePrefix("userProfiles")]
-    public class UserProfilesController : ApiController
+    public class UserProfilesController : ApiControllerBase
     {
         private readonly IUserProfilesManager _userProfilesManager;
         private readonly IFriendRequestsManager _friendRequestsManager;
         private readonly IMessagesManager _messagesManager;
         private readonly IUsersWorkplacesManager _usersWorkplacesManager;
+        private readonly AspNetUserManager _aspNetUserManager;
 
         public UserProfilesController(
             IUserProfilesManager usersManager,
             IFriendRequestsManager friendRequestsManager,
             IMessagesManager messagesManager,
-            IUsersWorkplacesManager usersWorkplacesManager)
+            IUsersWorkplacesManager usersWorkplacesManager,
+            AspNetUserManager aspNetUserManager)
         {
             _userProfilesManager = usersManager;
             _friendRequestsManager = friendRequestsManager;
             _messagesManager = messagesManager;
             _usersWorkplacesManager = usersWorkplacesManager;
+            _aspNetUserManager = aspNetUserManager;
         }
 
         #region UsersOperations
 
         [HttpGet]
-        public async Task<UserProfileModel> GetUserProfile()
+        public async Task<UserProfileModel> GetProfile()
         {
-            int userId = GetCurrentUserId();
+            var user = await GetCurrentUser(_aspNetUserManager);
 
-            return await _userProfilesManager.GetUserProfile(userId);
+            if (user.ProfileId == 0)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            return await GetProfileById(user.ProfileId);
         }
         
         [HttpGet]
@@ -57,11 +69,14 @@ namespace SocialNetworkApi.Controllers
         [HttpPost]
         public async Task<UserProfileModel> CreateProfile([FromBody]UserProfileModel model)
         {
-            int userId = GetCurrentUserId();
+            var user = await GetCurrentUser(_aspNetUserManager);
 
             model.RegistrationDate = DateTime.Now;
+            model.UserId = user.Id;
+            model.IncomingFriendRequests = new List<FriendRequest>();
+            model.OutgoingFriendRequests = new List<FriendRequest>();
 
-            return await _userProfilesManager.CreateProfile(userId, model);
+            return await _userProfilesManager.CreateProfile(model);
         }
         
         [HttpPut]
@@ -158,10 +173,5 @@ namespace SocialNetworkApi.Controllers
         }
 
         #endregion
-
-        private int GetCurrentUserId()
-        {
-            return RequestContext.Principal.Identity.GetUserIdIntPk();
-        }
     }
 }

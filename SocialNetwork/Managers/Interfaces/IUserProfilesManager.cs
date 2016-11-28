@@ -14,7 +14,7 @@ namespace Managers.Interfaces
 
         Task<UserProfileModel> GetUserProfileByEmail(string email);
 
-        Task<UserProfileModel> CreateProfile(int aspNetUserId, UserProfileModel profile);
+        Task<UserProfileModel> CreateProfile(UserProfileModel profile);
 
         Task<UserProfileModel> UpdateProfile(UserProfileModel user);
 

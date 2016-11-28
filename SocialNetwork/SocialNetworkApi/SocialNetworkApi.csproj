@@ -239,6 +239,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AutoMapperWebConfiguration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\UserProfilesController.cs" />

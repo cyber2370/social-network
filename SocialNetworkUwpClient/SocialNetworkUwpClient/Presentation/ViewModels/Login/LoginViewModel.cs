@@ -58,7 +58,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Login
                 await DialogService.ShowMessage("Authorization successful!", "Authorization");
 
                 var user = _preferencesService.User;
-                if (user.ProfileId == 0)
+                 if (user.ProfileId == 0)
                 {
                     NavigationService.NavigateTo(PageKeys.ProfileCreating);
                 }
