@@ -18,32 +18,32 @@ namespace Managers.Implementations
             _locationsRepository = locationsRepository;
         }
 
-        public async Task<IEnumerable<LocationModel>> GetAllLocations()
+        public async Task<IEnumerable<Location>> GetAllLocations()
         {
             var locations = await _locationsRepository.GetItemsAsync();
 
-            return locations.Select(Mapper.Map<Location, LocationModel>);
+            return locations.Select(Mapper.Map<Location, Location>);
         }
 
-        public async Task<LocationModel> GetLocationById(int id)
+        public async Task<Location> GetLocationById(int id)
         {
             Location location = await _locationsRepository.GetItemAsync(id);
 
-            return Mapper.Map<Location, LocationModel>(location);
+            return Mapper.Map<Location, Location>(location);
         }
 
-        public async Task<LocationModel> AddLocation(LocationModel location)
+        public async Task<Location> AddLocation(Location location)
         {
-            Location dbLocation = Mapper.Map<LocationModel, Location>(location);
+            Location dbLocation = Mapper.Map<Location, Location>(location);
 
-            return Mapper.Map<Location, LocationModel>(await _locationsRepository.AddItemAsync(dbLocation));
+            return Mapper.Map<Location, Location>(await _locationsRepository.AddItemAsync(dbLocation));
         }
 
-        public async Task<LocationModel> UpdateLocation(LocationModel location)
+        public async Task<Location> UpdateLocation(Location location)
         {
-            Location dbLocation = Mapper.Map<LocationModel, Location>(location);
+            Location dbLocation = Mapper.Map<Location, Location>(location);
 
-            return Mapper.Map<Location, LocationModel>(await _locationsRepository.UpdateItemAsync(dbLocation));
+            return Mapper.Map<Location, Location>(await _locationsRepository.UpdateItemAsync(dbLocation));
         }
 
         public async Task<bool> DeleteLocation(int id)

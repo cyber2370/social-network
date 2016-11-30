@@ -30,7 +30,6 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
                 QueryItems.Clear();
 
                 QueryItems.Add(new KeyValuePair<string, string>("Accept", "application/json"));
-                //QueryItems.Add(new KeyValuePair<string, string>("Content-Type", "application/json"));
 
                 var sessionInfo = _sessionInfoHolder.SessionInfo;
                 if (sessionInfo != null)
@@ -66,39 +65,24 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
                 .GetAsync<Profile>();
         }
 
+        public Task<bool> CheckIfProfileExists()
+        {
+            return Url($"userProfiles/users/checkProfileExists")
+                .GetAsync<bool>();
+        }
+
         public Task<Profile> CreateProfile(Profile profile)
         {
             return Url("userProfiles")
                 .FormUrlEncoded()
-                .Param("name", profile.Name)
-                .Param("surname", profile.Surname)
-                .Param("sex", profile.Sex)
-                .Param("avatarUri", profile.AvatarUri?.ToString() ?? "")
-                .Param("birthDate", JsonConvert.SerializeObject(profile.BirthDate))
-                .Param("registrationDate", JsonConvert.SerializeObject(profile.RegistrationDate))
-                .Param("additionalInformation", profile.AdditionalInformation)
-                .Param("status", profile.Status)
-                .Param("statusUpdated", JsonConvert.SerializeObject(profile.StatusUpdated))
-                .Param("relationshipStatus", profile.RelationshipStatus)
-                .PostAsync<Profile>();
+                .PostJsonAsync<Profile>(profile);
         }
 
         public Task<Profile> UpdateProfile(Profile profile)
         {
             return Url("userProfiles")
                 .FormUrlEncoded()
-                .Param("id", profile.Id.ToString())
-                .Param("name", profile.Name)
-                .Param("surname", profile.Surname)
-                .Param("sex", profile.Sex)
-                .Param("avatarUri", profile.AvatarUri.ToString())
-                .Param("birthDate", JsonConvert.SerializeObject(profile.BirthDate))
-                .Param("registrationDate", JsonConvert.SerializeObject(profile.RegistrationDate))
-                .Param("additionalInformation", profile.AdditionalInformation)
-                .Param("status", profile.Status)
-                .Param("statusUpdated", JsonConvert.SerializeObject(profile.StatusUpdated))
-                .Param("relationshipStatus", profile.RelationshipStatus)
-                .PostAsync<Profile>();
+                .PutJsonAsync<Profile>(profile);
         }
 
     }

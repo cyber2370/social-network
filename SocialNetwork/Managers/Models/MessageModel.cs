@@ -1,4 +1,5 @@
 ﻿using System;
+using DbContext.Entities;
 
 namespace Managers.Models
 {
@@ -7,10 +8,10 @@ namespace Managers.Models
         public int Id { get; set; }
 
         public string SenderId { get; set; }
-        public UserProfileModel Sender { get; set; }
+        public UserProfile Sender { get; set; }
 
         public string AddresseeId { get; set; }
-        public UserProfileModel Addresee { get; set; }
+        public UserProfile Addresee { get; set; }
 
         public string Text { get; set; }
 

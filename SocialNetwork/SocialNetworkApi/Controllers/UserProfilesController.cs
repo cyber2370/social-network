@@ -4,9 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Routing;
 using DbContext.Entities;
-using Managers;
 using Managers.Implementations;
 using Managers.Interfaces;
 using Managers.Models;
@@ -22,71 +20,88 @@ namespace SocialNetworkApi.Controllers
         private readonly IFriendRequestsManager _friendRequestsManager;
         private readonly IMessagesManager _messagesManager;
         private readonly IUsersWorkplacesManager _usersWorkplacesManager;
-        private readonly AspNetUserManager _aspNetUserManager;
+        private readonly ApplicationUserManager _applicationUserManager;
 
         public UserProfilesController(
             IUserProfilesManager usersManager,
             IFriendRequestsManager friendRequestsManager,
             IMessagesManager messagesManager,
             IUsersWorkplacesManager usersWorkplacesManager,
-            AspNetUserManager aspNetUserManager)
+            ApplicationUserManager aspNetUserManager)
         {
             _userProfilesManager = usersManager;
             _friendRequestsManager = friendRequestsManager;
             _messagesManager = messagesManager;
             _usersWorkplacesManager = usersWorkplacesManager;
-            _aspNetUserManager = aspNetUserManager;
+            _applicationUserManager = aspNetUserManager;
         }
 
         #region UsersOperations
 
         [HttpGet]
-        public async Task<UserProfileModel> GetProfile()
+        public async Task<UserProfile> GetProfile()
         {
-            var user = await GetCurrentUser(_aspNetUserManager);
+            var user = await GetCurrentUser(_applicationUserManager);
 
-            if (user.ProfileId == 0)
+            if (user.Profile == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
-            return await GetProfileById(user.ProfileId);
+            return await _userProfilesManager.GetUserProfile(user.Profile.UserId);
         }
         
         [HttpGet]
-        public async Task<UserProfileModel> GetProfileById(int id)
+        public async Task<UserProfile> GetProfileById(string id)
         {
-            return await _userProfilesManager.GetProfileById(id);
+            return await _userProfilesManager.GetUserProfile(id);
         }
 
         [HttpGet]
         [Route("users/{userId}")]
-        public async Task<UserProfileModel> GetUserProfile(int userId)
+        public async Task<UserProfile> GetUserProfile(string userId)
         {
             return await _userProfilesManager.GetUserProfile(userId);
         }
 
-        [HttpPost]
-        public async Task<UserProfileModel> CreateProfile([FromBody]UserProfileModel model)
+        [HttpGet]
+        [Route("users/checkProfileExists")]
+        public async Task<bool> CheckIfProfileExists()
         {
-            var user = await GetCurrentUser(_aspNetUserManager);
+            var currentUser = await GetCurrentUser(_applicationUserManager);
 
-            model.RegistrationDate = DateTime.Now;
-            model.UserId = user.Id;
-            model.IncomingFriendRequests = new List<FriendRequest>();
-            model.OutgoingFriendRequests = new List<FriendRequest>();
+            return await _userProfilesManager.CheckIfItemExists(currentUser.Id);
+        }
 
-            return await _userProfilesManager.CreateProfile(model);
+        [HttpPost]
+        public async Task<UserProfile> CreateProfile([FromBody]UserProfile model)
+        {
+            try
+            {
+                var user = await GetCurrentUser(_applicationUserManager);
+
+                model.RegistrationDate = DateTime.Now;
+                model.StatusUpdated = DateTime.Now;
+                model.UserId = user.Id;
+                model.IncomingFriendRequests = new List<FriendRequest>();
+                model.OutgoingFriendRequests = new List<FriendRequest>();
+
+                return await _userProfilesManager.CreateProfile(model);
+            }
+            catch (Exception ex)
+            {
+                throw new HttpRequestException(ex.Message);
+            }
         }
         
         [HttpPut]
-        public async Task<UserProfileModel> UpdateProfile([FromBody]UserProfileModel model)
+        public async Task<UserProfile> UpdateProfile([FromBody]UserProfile model)
         {
             return await _userProfilesManager.UpdateProfile(model);
         }
 
         [HttpDelete]
-        public async Task<bool> DeleteProfile(int id)
+        public async Task<bool> DeleteProfile(string id)
         {
             return await _userProfilesManager.DeleteProfile(id);
         }
@@ -156,7 +171,7 @@ namespace SocialNetworkApi.Controllers
 
         [HttpGet]
         [Route("{userId}/workplaces/")]
-        public async Task<IEnumerable<UserWorkplaceModel>> GetUserWorkplaces()
+        public async Task<IEnumerable<UserWorkplace>> GetUserWorkplaces()
         {
             int userId = 1;
 

@@ -12,57 +12,47 @@ namespace Managers.Implementations
     internal class UserProfilesManager : ManagerBase, IUserProfilesManager
     {
         private readonly IUserProfilesRepository _userProfilesRepository;
-        private readonly AspNetUserManager _aspNetUserManager;
+        private readonly ApplicationUserManager _applicationUserManager;
 
         public UserProfilesManager(
             IUserProfilesRepository usersRepository,
-            AspNetUserManager aspNetUserManager)
+            ApplicationUserManager applicationUserManager)
         {
             _userProfilesRepository = usersRepository;
-            _aspNetUserManager = aspNetUserManager;
+            _applicationUserManager = applicationUserManager;
         }
 
-        public async Task<IEnumerable<UserProfileModel>> GetAllUsers()
+        public async Task<IEnumerable<UserProfile>> GetAllUsers()
         {
             return (await _userProfilesRepository.GetItemsAsync())
-                .Select(Mapper.Map<UserProfile, UserProfileModel>);
+                .Select(Mapper.Map<UserProfile, UserProfile>);
         }
-        public async Task<UserProfileModel> GetUserProfile(int userId)
+        public async Task<UserProfile> GetUserProfile(string userId)
         {
-            var user = await _aspNetUserManager.FindByIdAsync(userId);
-
-            return Mapper.Map<UserProfile, UserProfileModel>(user.Profile);
+            return (await _applicationUserManager.FindByIdAsync(userId)).Profile;
         }
 
-        public async Task<UserProfileModel> GetProfileById(int id)
+        public async Task<UserProfile> GetUserProfileByEmail(string email)
         {
-            var user = await _userProfilesRepository.GetItemAsync(id);
-
-            return Mapper.Map<UserProfile, UserProfileModel>(user);
+            return await _userProfilesRepository.GetItemAsync(x => x.Where(u => u.User.Email == email));
         }
 
-        public async Task<UserProfileModel> GetUserProfileByEmail(string email)
+        public Task<bool> CheckIfItemExists(string id)
         {
-            UserProfile user = await _userProfilesRepository.GetItemAsync(x => x.Where(u => u.AspNetUser.Email == email));
-
-            return Mapper.Map<UserProfile, UserProfileModel>(user);
+            return _userProfilesRepository.CheckIsItemExists(id);
         }
 
-        public async Task<UserProfileModel> CreateProfile(UserProfileModel profileModel)
+        public async Task<UserProfile> CreateProfile(UserProfile profileModel)
         {
-            UserProfile profile = Mapper.Map<UserProfileModel, UserProfile>(profileModel);
-
-            return Mapper.Map<UserProfile, UserProfileModel>(await _userProfilesRepository.AddItemAsync(profile));
+            return await _userProfilesRepository.AddItemAsync(profileModel);
         }
 
-        public async Task<UserProfileModel> UpdateProfile(UserProfileModel profileModel)
+        public async Task<UserProfile> UpdateProfile(UserProfile profileModel)
         {
-            UserProfile profile = Mapper.Map<UserProfileModel, UserProfile>(profileModel);
-
-            return Mapper.Map<UserProfile, UserProfileModel>(await _userProfilesRepository.UpdateItemAsync(profile));
+            return await _userProfilesRepository.UpdateItemAsync(profileModel);
         }
 
-        public async Task<bool> DeleteProfile(int id)
+        public async Task<bool> DeleteProfile(string id)
         {
             try
             {

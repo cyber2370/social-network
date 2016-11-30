@@ -2,7 +2,7 @@
 
 namespace Repositories.Interfaces
 {
-    public interface IUserProfilesRepository : ICrudRepositoryBase<UserProfile, int>
+    public interface IUserProfilesRepository : ICrudRepositoryBase<UserProfile, string>
     {
     }
 }

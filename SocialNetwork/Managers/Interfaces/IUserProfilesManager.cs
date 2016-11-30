@@ -1,23 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using DbContext.Entities;
 using Managers.Models;
 
 namespace Managers.Interfaces
 {
     public interface IUserProfilesManager
     {
-        Task<IEnumerable<UserProfileModel>> GetAllUsers();
+        Task<IEnumerable<UserProfile>> GetAllUsers();
 
-        Task<UserProfileModel> GetUserProfile(int userId);
+        Task<UserProfile> GetUserProfile(string userId);
 
-        Task<UserProfileModel> GetProfileById(int id);
+        Task<UserProfile> GetUserProfileByEmail(string email);
 
-        Task<UserProfileModel> GetUserProfileByEmail(string email);
+        Task<bool> CheckIfItemExists(string id);
 
-        Task<UserProfileModel> CreateProfile(UserProfileModel profile);
+        Task<UserProfile> CreateProfile(UserProfile profile);
 
-        Task<UserProfileModel> UpdateProfile(UserProfileModel user);
+        Task<UserProfile> UpdateProfile(UserProfile user);
 
-        Task<bool> DeleteProfile(int id);
+        Task<bool> DeleteProfile(string id);
     }
 }

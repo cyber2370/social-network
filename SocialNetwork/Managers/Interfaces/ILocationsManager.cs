@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using DbContext.Entities;
 using Managers.Models;
 
 namespace Managers.Interfaces
 {
     public interface ILocationsManager
     {
-        Task<IEnumerable<LocationModel>> GetAllLocations();
+        Task<IEnumerable<Location>> GetAllLocations();
 
-        Task<LocationModel> GetLocationById(int id);
+        Task<Location> GetLocationById(int id);
 
-        Task<LocationModel> AddLocation(LocationModel location);
+        Task<Location> AddLocation(Location location);
 
-        Task<LocationModel> UpdateLocation(LocationModel location);
+        Task<Location> UpdateLocation(Location location);
 
         Task<bool> DeleteLocation(int id);
     }

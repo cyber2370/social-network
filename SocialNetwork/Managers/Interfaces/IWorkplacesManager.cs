@@ -7,13 +7,13 @@ namespace Managers.Interfaces
 {
     public interface IWorkplacesManager
     {
-        Task<IEnumerable<WorkplaceModel>> GetAllWorkplaces();
+        Task<IEnumerable<Workplace>> GetAllWorkplaces();
 
-        Task<WorkplaceModel> GetWorkplaceById(int id);
+        Task<Workplace> GetWorkplaceById(int id);
 
-        Task<WorkplaceModel> AddWorkplace(WorkplaceModel workplace);
+        Task<Workplace> AddWorkplace(Workplace workplace);
 
-        Task<WorkplaceModel> UpdateWorkplace(WorkplaceModel workplace);
+        Task<Workplace> UpdateWorkplace(Workplace workplace);
 
         Task<bool> DeleteWorkplace(int id);
     }

@@ -30,6 +30,11 @@ namespace SocialNetworkUwpClient.Business.Managers.Implementations
             return _socialApi.GetProfileOf(id);
         }
 
+        public Task<bool> CheckIfProfileExists()
+        {
+            return _socialApi.CheckIfProfileExists();
+        }
+
         public Task<Profile> CreateProfile(Profile profile)
         {
             return _socialApi.CreateProfile(profile);

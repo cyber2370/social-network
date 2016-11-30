@@ -28,9 +28,9 @@ namespace SocialNetworkApi.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var userManager = context.OwinContext.GetUserManager<AspNetUserManager>();
+            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
-            AspNetUser user = await userManager.FindAsync(context.UserName, context.Password);
+            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
 
             if (user == null)
             {

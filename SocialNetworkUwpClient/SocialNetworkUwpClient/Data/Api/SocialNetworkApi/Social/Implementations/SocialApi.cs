@@ -35,6 +35,11 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
             return GetRestApi().GetProfileByUserId(userId);
         }
 
+        public Task<bool> CheckIfProfileExists()
+        {
+            return GetRestApi().CheckIfProfileExists();
+        }
+
         public Task<Profile> CreateProfile(Profile profile)
         {
             return GetRestApi().CreateProfile(profile);

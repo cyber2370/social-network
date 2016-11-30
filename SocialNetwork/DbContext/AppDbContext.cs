@@ -5,8 +5,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
     
 namespace DbContext
 {
-    public class AppDbContext : IdentityDbContext<AspNetUser, AspNetRole, int,
-        AspNetUserLogin, AspNetUserRole, AspNetUserClaim>
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         private const string ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog = SocialNetworkDb; Integrated Security = True; Connect Timeout = 30; Encrypt=False; TrustServerCertificate=True; ApplicationIntent=ReadWrite; MultiSubnetFailover=False";
 
@@ -31,10 +30,11 @@ namespace DbContext
         {
             base.OnModelCreating(modelBuilder);
 
-            // One AspNetUser to ZeroOrOne UserProfile
-            modelBuilder.Entity<AspNetUser>()
-                        .HasOptional(s => s.Profile) 
-                        .WithRequired(ad => ad.AspNetUser);
+            modelBuilder
+                .Entity<UserProfile>()
+                .HasKey(x => x.UserId)
+                .HasRequired(x => x.User)
+                .WithRequiredDependent(x => x.Profile);
 
             modelBuilder
                 .Entity<FriendRequest>()
@@ -47,10 +47,6 @@ namespace DbContext
                 .HasRequired(p => p.Confirmer)
                 .WithMany(x => x.IncomingFriendRequests)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder
-                .Entity<AspNetUserLogin>()
-                .HasKey(x => new {x.UserId, x.LoginProvider, x.ProviderKey});
         }
 
         public static AppDbContext Create()

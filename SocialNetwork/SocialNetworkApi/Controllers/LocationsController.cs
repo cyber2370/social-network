@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using DbContext.Entities;
 using Managers.Interfaces;
 using Managers.Models;
 
@@ -20,19 +21,19 @@ namespace SocialNetworkApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<LocationModel>> GetLocations()
+        public async Task<IEnumerable<Location>> GetLocations()
         {
             return await _locationsManager.GetAllLocations();
         }
         
         [HttpGet]
-        public async Task<LocationModel> GetLocationById(int id)
+        public async Task<Location> GetLocationById(int id)
         {
             return await _locationsManager.GetLocationById(id);
         }
         
         [HttpPost]
-        public async Task<LocationModel> AddLocation([FromBody]LocationModel model)
+        public async Task<Location> AddLocation([FromBody]Location model)
         {
             if (!ModelState.IsValid)
             {
@@ -43,7 +44,7 @@ namespace SocialNetworkApi.Controllers
         }
         
         [HttpPut]
-        public async Task<LocationModel> UpdateLocation(int id, [FromBody]LocationModel model)
+        public async Task<Location> UpdateLocation(int id, [FromBody]Location model)
         {
             if (!ModelState.IsValid)
             {

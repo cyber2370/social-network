@@ -11,8 +11,8 @@ namespace Managers
 {
     public static class IdentityExtensions
     {
-        public static async Task<AspNetUser> FindByNameOrEmailAsync
-            (this AspNetUserManager userManager, string usernameOrEmail, string password)
+        public static async Task<ApplicationUser> FindByNameOrEmailAsync
+            (this ApplicationUserManager userManager, string usernameOrEmail, string password)
         {
             var username = usernameOrEmail;
             if (usernameOrEmail.Contains("@"))
@@ -26,8 +26,8 @@ namespace Managers
             return await userManager.FindAsync(username, password);
         }
 
-        public static AspNetUser FindByNameOrEmail
-           (this AspNetUserManager userManager, string usernameOrEmail, string password)
+        public static ApplicationUser FindByNameOrEmail
+           (this ApplicationUserManager userManager, string usernameOrEmail, string password)
         {
             var username = usernameOrEmail;
             if (usernameOrEmail.Contains("@"))
@@ -41,7 +41,7 @@ namespace Managers
             return userManager.Find(username, password);
         }
 
-        public static async Task<ClaimsIdentity> GenerateUserIdentityAsync(this AspNetUser user, AspNetUserManager manager)
+        public static async Task<ClaimsIdentity> GenerateUserIdentityAsync(this ApplicationUser user, ApplicationUserManager manager)
         {
             var userIdentity = await manager.CreateIdentityAsync(user,
                                DefaultAuthenticationTypes.ApplicationCookie);
@@ -50,7 +50,7 @@ namespace Managers
             return userIdentity;
         }
 
-        public static async Task<ClaimsIdentity> GenerateUserIdentityAsync(this AspNetUser user, AspNetUserManager manager, string authenticationType)
+        public static async Task<ClaimsIdentity> GenerateUserIdentityAsync(this ApplicationUser user, ApplicationUserManager manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(user, authenticationType);
@@ -58,7 +58,7 @@ namespace Managers
             return userIdentity;
         }
 
-        public static ClaimsIdentity GenerateUserIdentity(this AspNetUser user, AspNetUserManager manager)
+        public static ClaimsIdentity GenerateUserIdentity(this ApplicationUser user, ApplicationUserManager manager)
         {
             var userIdentity = manager.CreateIdentity(user,
                                DefaultAuthenticationTypes.ApplicationCookie);

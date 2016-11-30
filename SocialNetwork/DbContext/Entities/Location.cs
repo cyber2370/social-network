@@ -1,4 +1,6 @@
-﻿namespace DbContext.Entities
+﻿using System.Collections.Generic;
+
+namespace DbContext.Entities
 {
     public class Location
     {

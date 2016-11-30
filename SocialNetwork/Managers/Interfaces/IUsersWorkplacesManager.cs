@@ -1,22 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Managers.Models;
+using DbContext.Entities;
 
 namespace Managers.Interfaces
 {
     public interface IUsersWorkplacesManager
     {
-        Task<IEnumerable<UserWorkplaceModel>> GetAllUsersWorkplaces();
+        Task<IEnumerable<UserWorkplace>> GetAllUsersWorkplaces();
 
-        Task<IEnumerable<UserWorkplaceModel>> GetUsersWorkplacesByWorkplaceId(int workplaceId);
+        Task<IEnumerable<UserWorkplace>> GetUsersWorkplacesByWorkplaceId(int workplaceId);
 
-        Task<IEnumerable<UserWorkplaceModel>> GetUsersWorkplacesByUserId(int userId);
+        Task<IEnumerable<UserWorkplace>> GetUsersWorkplacesByUserId(int userId);
 
-        Task<UserWorkplaceModel> GetUserWorkplaceById(int userId, int workplaceId);
+        Task<UserWorkplace> GetUserWorkplaceById(int userId, int workplaceId);
 
-        Task<UserWorkplaceModel> AddUserWorkplace(UserWorkplaceModel userWorkplace);
+        Task<UserWorkplace> AddUserWorkplace(UserWorkplace userWorkplace);
 
-        Task<UserWorkplaceModel> UpdateUserWorkplace(UserWorkplaceModel userWorkplace);
+        Task<UserWorkplace> UpdateUserWorkplace(UserWorkplace userWorkplace);
 
         Task<bool> DeleteUserWorkplace(int userId, int workplaceId);
     }

@@ -23,7 +23,7 @@ namespace SocialNetworkApi.Providers
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
-            using (var manager = context.OwinContext.GetUserManager<AspNetUserManager>())
+            using (var manager = context.OwinContext.GetUserManager<ApplicationUserManager>())
             {
                 var user = await manager.FindAsync(context.UserName, context.Password);
 

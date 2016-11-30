@@ -17,7 +17,7 @@ namespace SocialNetworkApi.Controllers
     public class ApiControllerBase : ApiController
     {
 
-        protected async Task<AspNetUser> GetCurrentUser(AspNetUserManager userManager)
+        protected async Task<ApplicationUser> GetCurrentUser(ApplicationUserManager userManager)
         {
             ClaimsIdentity identity = (ClaimsIdentity)User.Identity;
             string username = identity.Claims.First().Value;

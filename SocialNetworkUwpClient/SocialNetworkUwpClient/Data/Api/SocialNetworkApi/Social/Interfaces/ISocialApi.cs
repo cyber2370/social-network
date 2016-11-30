@@ -13,6 +13,8 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Interfaces
 
         Task<Profile> GetProfileOf(int userId);
 
+        Task<bool> CheckIfProfileExists();
+
         Task<Profile> CreateProfile(Profile profile);
 
         Task<Profile> UpdateProfile(Profile profile);

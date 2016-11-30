@@ -1,4 +1,6 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.CodeDom;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
@@ -15,9 +17,9 @@ namespace SocialNetworkApi.Controllers
     [RoutePrefix("account")]
     public class AccountController : ApiControllerBase
     {
-        private readonly AspNetUserManager _aspNetUserManager;
+        private readonly ApplicationUserManager _aspNetUserManager;
 
-        public AccountController(AspNetUserManager aspNetUserManager)
+        public AccountController(ApplicationUserManager aspNetUserManager)
         {
             _aspNetUserManager = aspNetUserManager;
         }
@@ -27,7 +29,7 @@ namespace SocialNetworkApi.Controllers
         [Route("User")]
         public async Task<UserModel> GetUser()
         {
-            return Mapper.Map<AspNetUser, UserModel>(await GetCurrentUser(_aspNetUserManager));
+            return Mapper.Map<ApplicationUser, UserModel>(await GetCurrentUser(_aspNetUserManager));
         }
 
         // PUT api/Account/ChangePassword
@@ -40,7 +42,7 @@ namespace SocialNetworkApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await _aspNetUserManager.ChangePasswordAsync(User.Identity.GetUserIdIntPk(), model.OldPassword,
+            IdentityResult result = await _aspNetUserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
 
             if (!result.Succeeded)
@@ -56,21 +58,29 @@ namespace SocialNetworkApi.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register([FromBody]RegisterBindingModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var user = new ApplicationUser {UserName = model.Email, Email = model.Email};
+
+                IdentityResult result = await _aspNetUserManager.CreateAsync(user, model.Password);
+
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+
+                return Ok();
             }
-
-            var user = new AspNetUser { UserName = model.Email, Email = model.Email };
-
-            IdentityResult result = await _aspNetUserManager.CreateAsync(user, model.Password);
-
-            if (!result.Succeeded)
+            catch (Exception ex)
             {
-                return GetErrorResult(result);
-            }
 
-            return Ok();
+                return BadRequest();
+            }
         }
 
         protected override void Dispose(bool disposing)

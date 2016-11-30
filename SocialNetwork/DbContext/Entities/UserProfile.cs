@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using DbContext.Entities.AspNet;
 
 namespace DbContext.Entities
 {
     public class UserProfile
     {
-        public int Id { get; set; }
+        [Key, ForeignKey("User")]
+        public string UserId { get; set; }
 
         public string Email { get; set; }
 
@@ -31,11 +33,8 @@ namespace DbContext.Entities
 
         public string RelationshipStatus { get; set; }
 
-        public int HomelandId { get; set; }
-        public Location Homeland { get; set; }
 
-        public AspNetUser AspNetUser { get; set; }
-        public int AspNetUserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public IList<FriendRequest> IncomingFriendRequests { get; set; }
         public IList<FriendRequest> OutgoingFriendRequests { get; set; }

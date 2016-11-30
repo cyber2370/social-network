@@ -21,10 +21,16 @@ namespace SocialNetworkUwpClient.Data.Api.Rest
             return this;
         }
 
-        public Task<T> PutAsync<T>()
+        public Task<T> PutAsync<T>(T data)
         {
             Request request = _requestBuilder.CreateRequest();
             return request.Put<T>(_params);
+        }
+
+        public Task<T> PutJsonAsync<T>(T data)
+        {
+            Request request = _requestBuilder.CreateRequest();
+            return request.PutJson(data);
         }
 
         public Task PutAsync()
@@ -37,6 +43,12 @@ namespace SocialNetworkUwpClient.Data.Api.Rest
         {
             Request request = _requestBuilder.CreateRequest();
             return request.PostFormUrlEncoded<T>(_params);
+        }
+
+        public Task<T> PostJsonAsync<T>(T data)
+        {
+            Request request = _requestBuilder.CreateRequest();
+            return request.PostJson<T>(data);
         }
 
         public Task PostAsync()

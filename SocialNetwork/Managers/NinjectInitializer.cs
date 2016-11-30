@@ -10,7 +10,7 @@ namespace Managers
         {
             Repositories.NinjectInitializer.Register(kernel);
 
-            kernel.Bind<AspNetUserManager>().ToSelf();
+            kernel.Bind<ApplicationUserManager>().ToSelf();
             kernel.Bind<IUserProfilesManager>().To<UserProfilesManager>();
             kernel.Bind<IWorkplacesManager>().To<WorkplacesManager>();
             kernel.Bind<IMessagesManager>().To<MessagesManager>();

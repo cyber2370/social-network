@@ -12,7 +12,6 @@ namespace Repositories
             DbContext.NinjectInitializer.Register(kernel);
 
             kernel.Bind<AspNetUsersRepository>().ToSelf();
-            kernel.Bind<AspNetRolesRepository>().ToSelf();
 
             kernel.Bind<IUserProfilesRepository>().To<UserProfilesRepository>();
             kernel.Bind<IWorkplacesRepository>().To<WorkplacesRepository>();

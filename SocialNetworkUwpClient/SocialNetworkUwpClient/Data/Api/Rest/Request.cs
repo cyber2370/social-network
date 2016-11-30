@@ -57,6 +57,19 @@ namespace SocialNetworkUwpClient.Data.Api.Rest
             }
         }
 
+        internal async Task<T> PutJson<T>(T data)
+        {
+            using (var httpClient = CreateHttpClient())
+            {
+                _restApiBase.CallInterceptors(httpClient);
+
+                var response = CheckResponse(await httpClient.PutAsync(_url, new StringContent(JsonConvert.SerializeObject(data).ToString(),
+                    Encoding.UTF8, "application/json")));
+
+                return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
+            }
+        }
+
         internal async Task Put(IList<KeyValuePair<string, string>> @params)
         {
             using (var httpClient = CreateHttpClient())
@@ -86,6 +99,19 @@ namespace SocialNetworkUwpClient.Data.Api.Rest
                 _restApiBase.CallInterceptors(httpClient);
 
                 CheckResponse(await httpClient.PostAsync(_url, new FormUrlEncodedContent(@params)));
+            }
+        }
+
+        internal async Task<T> PostJson<T>(T data)
+        {
+            using (var httpClient = CreateHttpClient())
+            {
+                _restApiBase.CallInterceptors(httpClient);
+
+                var response = CheckResponse(await httpClient.PostAsync(_url, new StringContent(JsonConvert.SerializeObject(data).ToString(),
+                    Encoding.UTF8, "application/json")));
+
+                return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
             }
         }
 

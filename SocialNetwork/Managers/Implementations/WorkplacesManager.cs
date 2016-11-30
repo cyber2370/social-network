@@ -20,31 +20,25 @@ namespace Managers.Implementations
             _workplacesRepository = workplacesRepository;
         }
 
-        public async Task<IEnumerable<WorkplaceModel>> GetAllWorkplaces()
+        public async Task<IEnumerable<Workplace>> GetAllWorkplaces()
         {
-            return (await _workplacesRepository.GetItemsAsync())
-                .Select(Mapper.Map<Workplace, WorkplaceModel>);
+            return await _workplacesRepository.GetItemsAsync();
         }
 
-        public async Task<WorkplaceModel> GetWorkplaceById(int id)
+        public async Task<Workplace> GetWorkplaceById(int id)
         {
-            Workplace workplace = await _workplacesRepository.GetItemAsync(id);
-
-            return Mapper.Map<Workplace, WorkplaceModel>(workplace);
+            return await _workplacesRepository.GetItemAsync(id);
         }
 
-        public async Task<WorkplaceModel> AddWorkplace(WorkplaceModel workplace)
+        public async Task<Workplace> AddWorkplace(Workplace workplace)
         {
-            Workplace dbWorkplace = Mapper.Map<WorkplaceModel, Workplace>(workplace);
 
-            return Mapper.Map<Workplace, WorkplaceModel>(await _workplacesRepository.AddItemAsync(dbWorkplace));
+            return await _workplacesRepository.AddItemAsync(workplace);
         }
 
-        public async Task<WorkplaceModel> UpdateWorkplace(WorkplaceModel workplace)
+        public async Task<Workplace> UpdateWorkplace(Workplace workplace)
         {
-            Workplace dbWorkplace = Mapper.Map<WorkplaceModel, Workplace>(workplace);
-
-            return Mapper.Map<Workplace, WorkplaceModel>(await _workplacesRepository.UpdateItemAsync(dbWorkplace));
+            return await _workplacesRepository.UpdateItemAsync(workplace);
         }
 
         public async Task<bool> DeleteWorkplace(int id)

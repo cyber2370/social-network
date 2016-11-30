@@ -43,7 +43,14 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
                 AdditionalInformation = AdditionalInformation
             };
 
-            profile = await _profilesManager.CreateProfile(profile);
+            try
+            {
+                profile = await _profilesManager.CreateProfile(profile);
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
         }
     }
 }

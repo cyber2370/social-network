@@ -4,7 +4,7 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities
 {
     public class Profile
     {
-        public int Id { get; set; }
+        public string UserId { get; set; }
 
         public string Name { get; set; }
 
@@ -25,8 +25,6 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities
         public DateTime StatusUpdated { get; set; }
 
         public string RelationshipStatus { get; set; }
-
-        public int UserId { get; set; }
         public User User { get; set; }
     }
 }

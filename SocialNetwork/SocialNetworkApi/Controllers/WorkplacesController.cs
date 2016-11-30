@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
+using DbContext.Entities;
 using Managers.Interfaces;
 using Managers.Models;
 
@@ -22,20 +23,20 @@ namespace SocialNetworkApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<WorkplaceModel>> GetAllWorkplaces()
+        public async Task<IEnumerable<Workplace>> GetAllWorkplaces()
         {
             return await _workplacesManager.GetAllWorkplaces();
         }
 
         [HttpGet]
-        public async Task<WorkplaceModel> GetWorkplace(int id)
+        public async Task<Workplace> GetWorkplace(int id)
         {
             return await _workplacesManager.GetWorkplaceById(id);
         }
 
         [HttpGet]
         [Route("{workplaceId}/users/")]
-        public async Task<IEnumerable<UserWorkplaceModel>> GetWorkplaceUsers(int workplaceId)
+        public async Task<IEnumerable<UserWorkplace>> GetWorkplaceUsers(int workplaceId)
         {
             return await _usersWorkplacesManager.GetUsersWorkplacesByWorkplaceId(workplaceId);
         }

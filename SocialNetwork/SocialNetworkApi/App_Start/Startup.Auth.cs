@@ -23,7 +23,7 @@ namespace SocialNetworkApi
         {
             // Configure the db context and user manager to use a single instance per request
             app.CreatePerOwinContext(AppDbContext.Create);
-            app.CreatePerOwinContext<AspNetUserManager>(AspNetUserManager.Create);
+            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             
             OAuthOptions = new OAuthAuthorizationServerOptions
             {

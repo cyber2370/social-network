@@ -1,10 +1,5 @@
-﻿using System;
-using AutoMapper;
-using DbContext.Entities;
+﻿using AutoMapper;
 using DbContext.Entities.AspNet;
-using Managers.Models;
-using Managers.Models.AspNet;
-using Managers.Models.Friends;
 using SocialNetworkApi.Models;
 
 namespace SocialNetworkApi
@@ -17,7 +12,7 @@ namespace SocialNetworkApi
             {
                 Managers.AutoMapperWebConfiguration.Configure(cfg);
 
-                cfg.CreateMap<AspNetUser, UserModel>()
+                cfg.CreateMap<ApplicationUser, UserModel>()
                     .ReverseMap();
             });
 

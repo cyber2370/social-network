@@ -20,54 +20,54 @@ namespace Managers.Implementations
             _usersWorkplacesRepository = usersWorkplacesRepository;
         }
 
-        public async Task<IEnumerable<UserWorkplaceModel>> GetAllUsersWorkplaces()
+        public async Task<IEnumerable<UserWorkplace>> GetAllUsersWorkplaces()
         {
             var usersWorkplaces = await _usersWorkplacesRepository.GetItemsAsync();
 
-            return usersWorkplaces.Select(Mapper.Map<UserWorkplace, UserWorkplaceModel>);
+            return usersWorkplaces.Select(Mapper.Map<UserWorkplace, UserWorkplace>);
         }
 
-        public async Task<IEnumerable<UserWorkplaceModel>> GetUsersWorkplacesByWorkplaceId(int workplaceId)
+        public async Task<IEnumerable<UserWorkplace>> GetUsersWorkplacesByWorkplaceId(int workplaceId)
         {
             var usersWorkplaces = await _usersWorkplacesRepository.GetItemsAsync(x => x.Where(uw => uw.WorkplaceId == workplaceId));
 
-            return usersWorkplaces.Select(Mapper.Map<UserWorkplace, UserWorkplaceModel>);
+            return usersWorkplaces.Select(Mapper.Map<UserWorkplace, UserWorkplace>);
         }
 
-        public async Task<IEnumerable<UserWorkplaceModel>> GetUsersWorkplacesByUserId(int userId)
+        public async Task<IEnumerable<UserWorkplace>> GetUsersWorkplacesByUserId(int userId)
         {
             var usersWorkplaces = await _usersWorkplacesRepository.GetItemsAsync(x => x.Where(uw => uw.UserId == userId));
 
-            return usersWorkplaces.Select(Mapper.Map<UserWorkplace, UserWorkplaceModel>);
+            return usersWorkplaces.Select(Mapper.Map<UserWorkplace, UserWorkplace>);
         }
 
-        public async Task<UserWorkplaceModel> GetUserWorkplaceById(int userId, int workplaceId)
+        public async Task<UserWorkplace> GetUserWorkplaceById(int userId, int workplaceId)
         {
             var userWorkplace = await _usersWorkplacesRepository.GetItemAsync
                 (x => x.Where(uw => uw.UserId == userId && uw.WorkplaceId == workplaceId));
 
-            return Mapper.Map<UserWorkplace, UserWorkplaceModel>(userWorkplace);
+            return Mapper.Map<UserWorkplace, UserWorkplace>(userWorkplace);
         }
 
-        public async Task<UserWorkplaceModel> AddUserWorkplace(UserWorkplaceModel userWorkplace)
+        public async Task<UserWorkplace> AddUserWorkplace(UserWorkplace userWorkplace)
         {
-            UserWorkplace dbUserWorkplace = Mapper.Map<UserWorkplaceModel, UserWorkplace>(userWorkplace);
+            UserWorkplace dbUserWorkplace = Mapper.Map<UserWorkplace, UserWorkplace>(userWorkplace);
 
-            return Mapper.Map<UserWorkplace, UserWorkplaceModel>(await _usersWorkplacesRepository.AddItemAsync(dbUserWorkplace));
+            return Mapper.Map<UserWorkplace, UserWorkplace>(await _usersWorkplacesRepository.AddItemAsync(dbUserWorkplace));
         }
 
-        public async Task<UserWorkplaceModel> UpdateUserWorkplace(UserWorkplaceModel userWorkplace)
+        public async Task<UserWorkplace> UpdateUserWorkplace(UserWorkplace userWorkplace)
         {
-            UserWorkplace dbUserWorkplace = Mapper.Map<UserWorkplaceModel, UserWorkplace>(userWorkplace);
+            UserWorkplace dbUserWorkplace = Mapper.Map<UserWorkplace, UserWorkplace>(userWorkplace);
 
-            return Mapper.Map<UserWorkplace, UserWorkplaceModel>(await _usersWorkplacesRepository.UpdateItemAsync(dbUserWorkplace));
+            return Mapper.Map<UserWorkplace, UserWorkplace>(await _usersWorkplacesRepository.UpdateItemAsync(dbUserWorkplace));
         }
 
         public async Task<bool> DeleteUserWorkplace(int userId, int workplaceId)
         {
             try
             {
-                var userToDelete = Mapper.Map<UserWorkplaceModel, UserWorkplace>(await GetUserWorkplaceById(userId, workplaceId));
+                var userToDelete = Mapper.Map<UserWorkplace, UserWorkplace>(await GetUserWorkplaceById(userId, workplaceId));
 
                 await _usersWorkplacesRepository.RemoveItemAsync(userToDelete);
 

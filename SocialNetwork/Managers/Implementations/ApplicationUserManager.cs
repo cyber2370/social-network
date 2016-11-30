@@ -6,20 +6,20 @@ using Microsoft.Owin;
 using Repositories.Implementations.AspNet;
 namespace Managers.Implementations
 {
-    public class AspNetUserManager : UserManager<AspNetUser, int>
+    public class ApplicationUserManager : UserManager<ApplicationUser>
     {
-        public AspNetUserManager(AspNetUsersRepository store)
+        public ApplicationUserManager(AspNetUsersRepository store)
             : base(store)
         {
         }
 
-        public static AspNetUserManager CreateStatic(AppDbContext context)
+        public static ApplicationUserManager CreateStatic(AppDbContext context)
         {
             //TODO: get new instance of AspNetUserRepository using DI
-            AspNetUserManager manager = new AspNetUserManager(new AspNetUsersRepository(context));
+            ApplicationUserManager manager = new ApplicationUserManager(new AspNetUsersRepository(context));
 
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<AspNetUser, int>(manager)
+            manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true,
@@ -33,13 +33,13 @@ namespace Managers.Implementations
             return manager;
         }
 
-        public static AspNetUserManager Create(IdentityFactoryOptions<AspNetUserManager> options,
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
             IOwinContext context)
         {
             //TODO: get new instance of AspNetUserRepository using DI
-            AspNetUserManager manager = new AspNetUserManager(new AspNetUsersRepository(context.Get<AppDbContext>()));
+            ApplicationUserManager manager = new ApplicationUserManager(new AspNetUsersRepository(context.Get<AppDbContext>()));
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<AspNetUser, int>(manager)
+            manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true,
@@ -53,7 +53,7 @@ namespace Managers.Implementations
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = new DataProtectorTokenProvider<AspNetUser, int>
+                manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>
                                             (dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
