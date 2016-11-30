@@ -1,4 +1,5 @@
 ﻿using System;
+using SocialNetworkUwpClient.Presentation.Models;
 
 namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities
 {
@@ -10,7 +11,7 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities
 
         public string Surname { get; set; }
 
-        public string Sex { get; set; }
+        public Sexes Sex { get; set; }
 
         public Uri AvatarUri { get; set; }
 
@@ -24,7 +25,7 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities
 
         public DateTime StatusUpdated { get; set; }
 
-        public string RelationshipStatus { get; set; }
+        public RelationTypes RelationshipStatus { get; set; }
         public User User { get; set; }
     }
 }

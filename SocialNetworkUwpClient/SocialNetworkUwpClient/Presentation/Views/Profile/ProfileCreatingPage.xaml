@@ -28,7 +28,7 @@
             HorizontalAlignment="Center"
             FontSize="26"
             FontWeight="Bold"
-            Text="Creating Profile" />
+            Text="{Binding PageText}" />
 
         <ScrollViewer
             Grid.Row="1"
@@ -39,32 +39,36 @@
                     x:Name="NameTextBox"
                     FontSize="22"
                     Header="Name"
-                    Text="{Binding Name, Mode=TwoWay}" />
+                    Text="{Binding Profile.Name, Mode=TwoWay}" />
                 <TextBox
                     x:Name="SurnameTextBox"
                     FontSize="22"
                     Header="Surname"
-                    Text="{Binding Surname, Mode=TwoWay}" />
+                    Text="{Binding Profile.Surname, Mode=TwoWay}" />
                 <DatePicker
                     x:Name="BirthdayDatePicker"
-                    Date="{Binding BirthDate, Mode=TwoWay}"
+                    Date="{Binding BirthDateOffset, Mode=TwoWay}"
                     FontSize="22"
                     Header="Birthday" />
-                <TextBox
+                <ComboBox
                     x:Name="RelationshipStatus"
                     FontSize="22"
                     Header="Relationship Status"
-                    Text="{Binding RelationshipStatus, Mode=TwoWay}" />
-                <TextBox
+                    HorizontalAlignment="Stretch"
+                    ItemsSource="{Binding RelationTypeList}"
+                    SelectedItem="{Binding Profile.RelationshipStatus, Mode=TwoWay}" />
+                <ComboBox
                     x:Name="Sex"
                     FontSize="22"
                     Header="Sex"
-                    Text="{Binding Sex, Mode=TwoWay}" />
+                    HorizontalAlignment="Stretch"
+                    ItemsSource="{Binding SexList}"
+                    SelectedItem="{Binding Profile.Sex, Mode=TwoWay}" />
                 <TextBox
                     x:Name="AdditionalInfo"
                     FontSize="22"
                     Header="Additional Information"
-                    Text="{Binding AdditionalInformation, Mode=TwoWay}" />
+                    Text="{Binding Profile.AdditionalInformation, Mode=TwoWay}" />
             </StackPanel>
         </ScrollViewer>
 
@@ -78,6 +82,6 @@
             HorizontalAlignment="Stretch"
             Background="BurlyWood"
             Command="{Binding SaveChangesCommand}"
-            Content="Create Profile" />
+            Content="Save Profile" />
     </Grid>
 </Page>

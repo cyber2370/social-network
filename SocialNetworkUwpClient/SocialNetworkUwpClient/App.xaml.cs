@@ -19,6 +19,7 @@ using SocialNetworkUwpClient.Presentation.Services.Interfaces;
 using SocialNetworkUwpClient.Presentation.ViewModels.Common;
 using SocialNetworkUwpClient.Presentation.ViewModels.Login;
 using SocialNetworkUwpClient.Presentation.ViewModels.Profile;
+using SocialNetworkUwpClient.Presentation.Views;
 using SocialNetworkUwpClient.Presentation.Views.Auth;
 
 namespace SocialNetworkUwpClient
@@ -28,6 +29,8 @@ namespace SocialNetworkUwpClient
     /// </summary>
     sealed partial class App : Application
     {
+        private readonly IPreferencesService _preferencesService;
+
         /// <summary>
         /// Инициализирует одноэлементный объект приложения.  Это первая выполняемая строка разрабатываемого
         /// кода; поэтому она является логическим эквивалентом main() или WinMain().
@@ -39,6 +42,8 @@ namespace SocialNetworkUwpClient
             this.UnhandledException += OnUnhandledException;
 
             RegisterDependencies();
+
+            _preferencesService = ServiceLocator.Current.GetInstance<IPreferencesService>();
         }
 
         /// <summary>
@@ -81,7 +86,10 @@ namespace SocialNetworkUwpClient
                     // Если стек навигации не восстанавливается для перехода к первой странице,
                     // настройка новой страницы путем передачи необходимой информации в качестве параметра
                     // параметр
-                    rootFrame.Navigate(typeof(LoginPage), e.Arguments);
+                    Type pageType = _preferencesService.IsLoggedIn
+                        ? typeof(ShellPage)
+                        : typeof(LoginPage);
+                    rootFrame.Navigate(pageType, e.Arguments);
                 }
                 // Обеспечение активности текущего окна
                 Window.Current.Activate();

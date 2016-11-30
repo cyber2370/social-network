@@ -44,12 +44,18 @@ namespace SocialNetworkApi.Controllers
         {
             var user = await GetCurrentUser(_applicationUserManager);
 
-            if (user.Profile == null)
+            var profile = await _userProfilesManager.GetUserProfile(user.Id);
+            if (profile?.User?.Profile != null)
+            {
+                profile.User.Profile = null;
+            }
+
+            if (profile == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
-            return await _userProfilesManager.GetUserProfile(user.Profile.UserId);
+            return profile;
         }
         
         [HttpGet]
@@ -98,7 +104,32 @@ namespace SocialNetworkApi.Controllers
         [HttpPut]
         public async Task<UserProfile> UpdateProfile([FromBody]UserProfile model)
         {
-            return await _userProfilesManager.UpdateProfile(model);
+            try
+            {
+                if (model.UserId == String.Empty)
+                {
+                    return null;
+                }
+
+                var profile = await _userProfilesManager.GetUserProfile(model.UserId);
+
+                profile.Name = model.Name;
+                profile.Surname = model.Surname;
+                profile.BirthDate = model.BirthDate;
+                profile.AdditionalInformation = model.AdditionalInformation;
+                profile.AvatarUri = model.AvatarUri;
+                profile.RelationshipStatus = model.RelationshipStatus;
+                profile.Sex = model.Sex;
+
+                profile = await _userProfilesManager.UpdateProfile(profile);
+                profile.User.Profile = null;
+
+                return profile;
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
         }
 
         [HttpDelete]

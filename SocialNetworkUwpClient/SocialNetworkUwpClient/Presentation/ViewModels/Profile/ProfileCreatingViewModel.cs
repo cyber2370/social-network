@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SocialNetworkUwpClient.Business.Managers.Interfaces;
@@ -9,6 +11,7 @@ using SocialNetworkUwpClient.Presentation.ViewModels.Common;
 using ProfileModel = SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities.Profile;
 using Microsoft.Practices.ServiceLocation;
 using SocialNetworkUwpClient.Presentation.Services.Interfaces;
+using Syncfusion.UI.Xaml.PivotGrid;
 
 namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
 {
@@ -18,6 +21,8 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
         private readonly IPreferencesService _preferencesService;
         
         private readonly ProfileModel _editingProfile;
+
+        private DateTimeOffset _birthDateOffset;
 
         public ProfileCreatingViewModel(
             IProfilesManager profilesManager,
@@ -29,35 +34,40 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
             var customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("ProfileInternal");
             var profile = customNavigationService.CurrentPageParams as ProfileModel;
             
-            _editingProfile = profile;
+            Profile = profile ?? new ProfileModel();
+            BirthDateOffset = Profile.BirthDate;
+
+            PageText = profile == null ? "Creating Profile" : "Editing Profile";
 
             SaveChangesCommand = profile != null
                 ? new RelayCommand(UpdateProfile) 
                 : new RelayCommand(CreateProfile);
-            InitInputs();
+
+            InitData();
         }
 
         public ICommand SaveChangesCommand { get; set; }
 
-        public string Name { get; set; }
+        public string PageText { get; set; }
 
-        public string Surname { get; set; }
+        public ProfileModel Profile { get; set; }
 
-        public DateTimeOffset BirthDate { get; set; }
+        public IList<RelationTypes> RelationTypeList { get; private set; }
+        public IList<Sexes> SexList { get; private set; }
 
-        public string RelationshipStatus { get; set; }
-
-        public string Sex { get; set; }
-
-        public string AdditionalInformation { get; set; }
+        public DateTimeOffset BirthDateOffset
+        {
+            get { return _birthDateOffset; }
+            set { Set(() => BirthDateOffset, ref _birthDateOffset, value); } 
+        }
 
         private async void CreateProfile()
         {
-            var profile = GetProfileFromPage();
+            Profile.BirthDate = BirthDateOffset.DateTime;
 
             try
             {
-                _preferencesService.Profile = await _profilesManager.CreateProfile(profile);
+                _preferencesService.Profile = await _profilesManager.CreateProfile(Profile);
 
                 NavigationService.NavigateTo(
                     _preferencesService.Profile != null ? PageKeys.Shell : PageKeys.Login);
@@ -70,20 +80,14 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
 
         private async void UpdateProfile()
         {
-            var profile = GetProfileFromPage();
-
-            _editingProfile.Name = profile.Name;
-            _editingProfile.Surname = profile.Surname;
-            _editingProfile.BirthDate = profile.BirthDate;
-            _editingProfile.RelationshipStatus = profile.RelationshipStatus;
-            _editingProfile.Sex = profile.Sex;
-            _editingProfile.AdditionalInformation = profile.AdditionalInformation;
+            Profile.BirthDate = BirthDateOffset.DateTime;
 
             try
             {
-                _preferencesService.Profile = await _profilesManager.CreateProfile(profile);
+                _preferencesService.Profile = await _profilesManager.UpdateProfile(Profile);
 
-                NavigationService.NavigateTo(PageKeys.Login);
+                var csl = ServiceLocator.Current.GetInstance<ICustomNavigationService>("ProfileInternal");
+                csl.NavigateTo(PageKeys.ProfileMain);
             }
             catch (Exception ex)
             {
@@ -91,27 +95,10 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
             }
         }
 
-        private void InitInputs()
+        private void InitData()
         {
-            Name = _editingProfile?.Name;
-            Surname = _editingProfile?.Surname;
-            BirthDate = _editingProfile?.BirthDate ?? DateTime.Now;
-            RelationshipStatus = _editingProfile?.RelationshipStatus;
-            Sex = _editingProfile?.Sex;
-            AdditionalInformation = _editingProfile?.AdditionalInformation;
-        }
-
-        private ProfileModel GetProfileFromPage()
-        {
-            return new ProfileModel
-            {
-                Name = Name,
-                Surname = Surname,
-                BirthDate = BirthDate.DateTime,
-                RelationshipStatus = RelationshipStatus,
-                Sex = Sex,
-                AdditionalInformation = AdditionalInformation
-            };
+            SexList = Enum.GetValues(typeof(Sexes)).Cast<Sexes>().ToList();
+            RelationTypeList = Enum.GetValues(typeof(RelationTypes)).Cast<RelationTypes>().ToList();
         }
     }
 }

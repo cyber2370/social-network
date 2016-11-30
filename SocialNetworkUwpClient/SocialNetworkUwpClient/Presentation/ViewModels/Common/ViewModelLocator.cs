@@ -13,7 +13,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Common
         public RegisterViewModel Register => GetViewModel<RegisterViewModel>();
 
         public ProfileShellViewModel ProfileShell => GetViewModel<ProfileShellViewModel>();
-        public ProfileCreatingViewModel ProfileMain => GetViewModel<ProfileCreatingViewModel>();
+        public ProfileMainViewModel ProfileMain => GetViewModel<ProfileMainViewModel>();
         public ProfileCreatingViewModel ProfileCreating => GetViewModel<ProfileCreatingViewModel>();
 
 

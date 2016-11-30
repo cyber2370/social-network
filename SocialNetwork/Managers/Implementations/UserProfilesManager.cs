@@ -22,19 +22,18 @@ namespace Managers.Implementations
             _applicationUserManager = applicationUserManager;
         }
 
-        public async Task<IEnumerable<UserProfile>> GetAllUsers()
+        public Task<IEnumerable<UserProfile>> GetAllUsers()
         {
-            return (await _userProfilesRepository.GetItemsAsync())
-                .Select(Mapper.Map<UserProfile, UserProfile>);
+            return _userProfilesRepository.GetItemsAsync();
         }
-        public async Task<UserProfile> GetUserProfile(string userId)
+        public Task<UserProfile> GetUserProfile(string userId)
         {
-            return (await _applicationUserManager.FindByIdAsync(userId)).Profile;
+            return _userProfilesRepository.GetItemAsync(userId);
         }
 
-        public async Task<UserProfile> GetUserProfileByEmail(string email)
+        public Task<UserProfile> GetUserProfileByEmail(string email)
         {
-            return await _userProfilesRepository.GetItemAsync(x => x.Where(u => u.User.Email == email));
+            return _userProfilesRepository.GetItemAsync(x => x.Where(u => u.User.Email == email));
         }
 
         public Task<bool> CheckIfItemExists(string id)
@@ -42,14 +41,14 @@ namespace Managers.Implementations
             return _userProfilesRepository.CheckIsItemExists(id);
         }
 
-        public async Task<UserProfile> CreateProfile(UserProfile profileModel)
+        public Task<UserProfile> CreateProfile(UserProfile profileModel)
         {
-            return await _userProfilesRepository.AddItemAsync(profileModel);
+            return _userProfilesRepository.AddItemAsync(profileModel);
         }
 
-        public async Task<UserProfile> UpdateProfile(UserProfile profileModel)
+        public Task<UserProfile> UpdateProfile(UserProfile profileModel)
         {
-            return await _userProfilesRepository.UpdateItemAsync(profileModel);
+            return _userProfilesRepository.UpdateItemAsync(profileModel);
         }
 
         public async Task<bool> DeleteProfile(string id)

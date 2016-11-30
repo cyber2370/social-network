@@ -8,5 +8,120 @@
     DataContext="{Binding ProfileMain, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+    <Grid Background="Beige">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+
+        <RelativePanel
+            Grid.Column="0"
+            Margin="10"
+            Padding="10"
+            Background="White">
+            <TextBlock
+                x:Name="NameTextBlock"
+                FontSize="26"
+                FontWeight="ExtraBold"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.AlignTopWithPanel="True">
+                <Run Text="{Binding Profile.Name}" />
+                <Run />
+                <Run Text="{Binding Profile.Surname}" />
+            </TextBlock>
+            <Border
+                x:Name="AvatarImage"
+                Margin="20"
+                BorderBrush="Black"
+                BorderThickness="2"
+                CornerRadius="5"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.Below="NameTextBlock">
+
+                <Image Source="ms-appx:///Assets/Profile/UnknownProfileAvatar.png" Stretch="Uniform" />
+
+            </Border>
+
+            <TextBlock
+                x:Name="StatusTextBlock"
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.Below="AvatarImage"
+                Text="{Binding Profile.Status}" />
+            <TextBlock
+                x:Name="StatusUpdatedDateTextBlock"
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.Below="StatusTextBlock"
+                Text="{Binding Profile.StatusUpdated.Date}" />
+
+
+            <Button
+                x:Name="SettingsButton"
+                Height="80"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="Chocolate"
+                Content="Edit Profile"
+                FontSize="20"
+                Command="{Binding EditCommand}"
+                FontStyle="Italic"
+                RelativePanel.AlignBottomWithPanel="True"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True" />
+        </RelativePanel>
+
+        <ScrollViewer
+            Grid.Column="1"
+            HorizontalScrollBarVisibility="Visible"
+            HorizontalScrollMode="Auto">
+
+            <RelativePanel Margin="10">
+                <StackPanel
+                    x:Name="FirstPanel"
+                    Width="300"
+                    Margin="10"
+                    Background="White"
+                    RelativePanel.AlignBottomWithPanel="True"
+                    RelativePanel.AlignTopWithPanel="True">
+                    <TextBlock
+                        Padding="20"
+                        FontSize="26"
+                        FontWeight="Bold"
+                        Text="Main Info" />
+                    <TextBlock Margin="20,0" Text="Birthday" />
+                    <TextBlock Margin="20,0" Text="{Binding Profile.BirthDate.Date}" />
+                    <TextBlock Margin="20,20,20,0" Text="Registration Date" />
+                    <TextBlock Margin="20,0" Text="{Binding Path=Profile.RegistrationDate}" />
+                    <TextBlock Margin="20,20,20,0" Text="Relationship Status" />
+                    <TextBlock Margin="20,0" Text="{Binding Profile.RelationshipStatus}" />
+                    <TextBlock Margin="20,20,20,0" Text="Sex" />
+                    <TextBlock Margin="20,0" Text="{Binding Profile.Sex}" />
+                </StackPanel>
+                <StackPanel
+                    x:Name="ThirdPanel"
+                    Width="400"
+                    Margin="10"
+                    Background="White"
+                    RelativePanel.AlignBottomWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.AlignTopWithPanel="True"
+                    RelativePanel.RightOf="FirstPanel">
+                    <TextBlock
+                        Padding="20"
+                        FontSize="26"
+                        FontWeight="Bold"
+                        Text="Additional Information" />
+
+                    <TextBlock Margin="20,10,20,0" Text="AdditionalInformation" />
+                    <TextBlock
+                        Margin="20,0"
+                        Text="{Binding Profile.AdditionalInformation}"
+                        TextWrapping="WrapWholeWords" />
+                </StackPanel>
+            </RelativePanel>
+
+        </ScrollViewer>
+    </Grid>
 </Page>
