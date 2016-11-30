@@ -11,10 +11,14 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Login
     public class RegisterViewModel : ViewModelBase
     {
         private readonly IAuthenticationManager _authenticationManager;
+        private readonly IProfilesManager _profilesManager;
 
-        public RegisterViewModel(IAuthenticationManager authenticationManager)
+        public RegisterViewModel(
+            IAuthenticationManager authenticationManager,
+            IProfilesManager profilesManager)
         {
             _authenticationManager = authenticationManager;
+            _profilesManager = profilesManager;
 
             RegisterCommand = new RelayCommand(Register);
         }
@@ -38,7 +42,10 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Login
 
                 await DialogService.ShowMessage("Registration successful!", "Registration");
 
-                NavigationService.NavigateTo(PageKeys.Login);
+                await _authenticationManager.Authorize(Username, Password);
+
+                bool isProfileCreated = await _profilesManager.CheckIfProfileExists();
+                NavigationService.NavigateTo(isProfileCreated ? PageKeys.Shell : PageKeys.ProfileCreating);
             }
             catch (Exception ex)
             {

@@ -16,19 +16,13 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Login
     {
         private readonly IAuthenticationManager _authenticationManager;
         private readonly IProfilesManager _profilesManager;
-        private readonly IPreferencesService _preferencesService;
-        private readonly SessionInfoHolder _sessionInfoHolder;
 
         public LoginViewModel(
             IAuthenticationManager authenticationManager,
-            IProfilesManager profilesManager,
-            IPreferencesService preferencesService,
-            SessionInfoHolder sessionInfoHolder)
+            IProfilesManager profilesManager)
         {
             _authenticationManager = authenticationManager;
             _profilesManager = profilesManager;
-            _preferencesService = preferencesService;
-            _sessionInfoHolder = sessionInfoHolder;
 
             LoginCommand = new RelayCommand(Login);
             NavigateToSignUpCommand = new RelayCommand(NavigateToSignUp);
@@ -61,15 +55,8 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Login
 
                 await DialogService.ShowMessage("Authorization successful!", "Authorization");
 
-                if (!await _profilesManager.CheckIfProfileExists())
-                {
-                    NavigationService.NavigateTo(PageKeys.ProfileCreating);
-                }
-                else
-                {
-                    //TODO: Navigate to user profile page 
-                    HandleError(new Exception("Profile exists!"));
-                }
+                bool isProfileCreated = await _profilesManager.CheckIfProfileExists();
+                NavigationService.NavigateTo(isProfileCreated ? PageKeys.Shell : PageKeys.ProfileCreating);
             }
             catch (Exception ex)
             {

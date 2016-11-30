@@ -9,6 +9,8 @@ namespace SocialNetworkUwpClient.Data.Local.Interfaces
 
         User User { get; set; }
 
+        Profile Profile { get; set; }
+
         bool IsLoggedIn { get; }
 
         void Clear();

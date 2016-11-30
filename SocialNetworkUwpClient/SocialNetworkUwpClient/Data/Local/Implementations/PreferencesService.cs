@@ -3,6 +3,7 @@ using System.Linq;
 using Windows.Storage;
 using Newtonsoft.Json;
 using SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Auth.Entities;
+using SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities;
 using SocialNetworkUwpClient.Data.Local.Interfaces;
 using User = SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities.User;
 
@@ -14,6 +15,7 @@ namespace SocialNetworkUwpClient.Data.Local.Implementations
 
         private const string SessionInfoKey = "sessionInfo";
         private const string AccountDetailsKey = "accountDetails";
+        private const string ProfileKey = "profile";
         private const string UserKey = "user";
 
         public PreferencesService()
@@ -42,6 +44,18 @@ namespace SocialNetworkUwpClient.Data.Local.Implementations
             set
             {
                 AddOrUpdateValue(UserKey, value);
+            }
+        }
+
+        public Profile Profile
+        {
+            get
+            {
+                return TryGetValue<Profile>(ProfileKey);
+            }
+            set
+            {
+                AddOrUpdateValue(ProfileKey, value);
             }
         }
 

@@ -77,7 +77,7 @@
             Margin="70,0"
             HorizontalAlignment="Stretch"
             Background="BurlyWood"
-            Command="{Binding CreateProfileCommand}"
+            Command="{Binding SaveChangesCommand}"
             Content="Create Profile" />
     </Grid>
 </Page>

@@ -15,14 +15,14 @@ using Windows.UI.Xaml.Navigation;
 
 // Шаблон элемента пустой страницы задокументирован по адресу http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace SocialNetworkUwpClient.Presentation.Views.Profile
+namespace SocialNetworkUwpClient.Presentation.Views
 {
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
     /// </summary>
-    public sealed partial class CurrentProfilePage : Page
+    public sealed partial class ShellPage : Page
     {
-        public CurrentProfilePage()
+        public ShellPage()
         {
             this.InitializeComponent();
         }

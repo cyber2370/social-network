@@ -121,26 +121,36 @@
     <Compile Include="Data\Local\Interfaces\IPreferencesService.cs" />
     <Compile Include="Presentation\Helpers\Extensions.cs" />
     <Compile Include="Presentation\Models\PageKeys.cs" />
-    <Compile Include="Presentation\Models\RegistrationModel.cs" />
+    <Compile Include="Presentation\Models\RegistrationForm.cs" />
+    <Compile Include="Presentation\Models\SegoeIcons.cs" />
     <Compile Include="Presentation\Services\Implementations\CustomNavigationService.cs" />
     <Compile Include="Presentation\Services\Implementations\NavigationServiceHelper.cs" />
     <Compile Include="Presentation\Services\Interfaces\ICustomNavigationService.cs" />
+    <Compile Include="Presentation\ViewModels\Common\ShellViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelBase.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelLocator.cs" />
     <Compile Include="Presentation\ViewModels\Login\LoginViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Login\RegisterViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Profile\ProfileCreatingViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Profile\ProfileMainViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Profile\ProfileShellViewModel.cs" />
     <Compile Include="Presentation\Views\Auth\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Auth\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\Profile\CurrentProfilePage.xaml.cs">
-      <DependentUpon>CurrentProfilePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\Views\Profile\ProfileCreatingPage.xaml.cs">
       <DependentUpon>ProfileCreatingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Profile\ProfileMainPage.xaml.cs">
+      <DependentUpon>ProfileMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Profile\ProfileShellPage.xaml.cs">
+      <DependentUpon>ProfileShellPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\ShellPage.xaml.cs">
+      <DependentUpon>ShellPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -177,11 +187,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Presentation\Views\Profile\CurrentProfilePage.xaml">
+    <Page Include="Presentation\Views\Profile\ProfileCreatingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\Profile\ProfileCreatingPage.xaml">
+    <Page Include="Presentation\Views\Profile\ProfileMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Profile\ProfileShellPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\ShellPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

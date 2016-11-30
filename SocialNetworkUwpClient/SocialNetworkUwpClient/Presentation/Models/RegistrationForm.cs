@@ -1,6 +1,6 @@
 ﻿namespace SocialNetworkUwpClient.Presentation.Models
 {
-    public class RegistrationModel
+    public class RegistrationForm
     {
         public string Email { get; set; }
 
