@@ -39,6 +39,7 @@ namespace SocialNetworkApi.Controllers
         #region UsersOperations
 
         [HttpGet]
+        [Route("current")]
         public async Task<UserProfile> GetProfile()
         {
             var user = await GetCurrentUser(_applicationUserManager);
@@ -65,7 +66,7 @@ namespace SocialNetworkApi.Controllers
         }
 
         [HttpGet]
-        [Route("users/checkProfileExists")]
+        [Route("checkProfileExists")]
         public async Task<bool> CheckIfProfileExists()
         {
             var currentUser = await GetCurrentUser(_applicationUserManager);

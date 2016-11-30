@@ -16,6 +16,7 @@ using SocialNetworkUwpClient.Business.Managers.Interfaces;
 using SocialNetworkUwpClient.Data.Local.Interfaces;
 using SocialNetworkUwpClient.Presentation.Services.Implementations;
 using SocialNetworkUwpClient.Presentation.Services.Interfaces;
+using SocialNetworkUwpClient.Presentation.ViewModels.Common;
 using SocialNetworkUwpClient.Presentation.ViewModels.Login;
 using SocialNetworkUwpClient.Presentation.ViewModels.Profile;
 using SocialNetworkUwpClient.Presentation.Views.Auth;
@@ -139,8 +140,13 @@ namespace SocialNetworkUwpClient
 
             #region ViewModels
 
+            SimpleIoc.Default.Register<ShellViewModel>();
+
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<RegisterViewModel>();
+
+            SimpleIoc.Default.Register<ProfileShellViewModel>();
+            SimpleIoc.Default.Register<ProfileMainViewModel>();
             SimpleIoc.Default.Register<ProfileCreatingViewModel>(); 
 
             #endregion

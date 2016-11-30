@@ -49,7 +49,7 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
 
         public Task<Profile> GetProfile()
         {
-            return Url("userProfiles")
+            return Url("userProfiles/current")
                 .GetAsync<Profile>();
         }
 
@@ -67,7 +67,7 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
 
         public Task<bool> CheckIfProfileExists()
         {
-            return Url($"userProfiles/users/checkProfileExists")
+            return Url($"userProfiles/checkProfileExists")
                 .GetAsync<bool>();
         }
 

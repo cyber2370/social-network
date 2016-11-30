@@ -83,8 +83,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
             {
                 _preferencesService.Profile = await _profilesManager.CreateProfile(profile);
 
-                NavigationService.NavigateTo(
-                    _preferencesService.Profile != null ? PageKeys.Shell : PageKeys.Login);
+                NavigationService.NavigateTo(PageKeys.Login);
             }
             catch (Exception ex)
             {
