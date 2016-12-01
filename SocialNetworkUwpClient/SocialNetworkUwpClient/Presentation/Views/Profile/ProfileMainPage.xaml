@@ -8,7 +8,7 @@
     DataContext="{Binding ProfileMain, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    <Grid Background="Beige">
+    <Grid Background="Beige" x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="2*" />
@@ -56,6 +56,19 @@
                 RelativePanel.Below="StatusTextBlock"
                 Text="{Binding Profile.StatusUpdated.Date}" />
 
+            <Button
+                x:Name="PrintButton"
+                Height="80"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="GreenYellow"
+                Click="PrintButton_OnClick"
+                Content="Print Self-Report"
+                FontSize="20"
+                FontStyle="Italic"
+                RelativePanel.Above="SettingsButton"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True" />
 
             <Button
                 x:Name="SettingsButton"
@@ -63,9 +76,9 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Background="Chocolate"
+                Command="{Binding EditCommand}"
                 Content="Edit Profile"
                 FontSize="20"
-                Command="{Binding EditCommand}"
                 FontStyle="Italic"
                 RelativePanel.AlignBottomWithPanel="True"
                 RelativePanel.AlignLeftWithPanel="True"

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Net;
 using System.Windows.Input;
+using Windows.Graphics.Printing;
+using Windows.UI.Xaml.Printing;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.ServiceLocation;
 using SocialNetworkUwpClient.Business.Managers.Interfaces;
@@ -30,12 +32,11 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
             _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("ProfileInternal");
 
             EditCommand = new RelayCommand(EditProfile);
-            
+
             InitData();
         }
-
         public ICommand EditCommand { get; }
-
+        
         public Data.Api.SocialNetworkApi.Social.Entities.Profile Profile
         {
             get { return _profile; }
