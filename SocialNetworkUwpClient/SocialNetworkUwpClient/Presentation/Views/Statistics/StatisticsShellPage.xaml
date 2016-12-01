@@ -17,6 +17,13 @@
                     Background="Transparent"
                     Command="{Binding NavTo}"
                     CommandParameter="{Binding Main}"
+                    Icon="Home" />
+                <AppBarButton
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="Transparent"
+                    Command="{Binding NavTo}"
+                    CommandParameter="{Binding Users}"
                     Icon="Contact" />
             </StackPanel>
         </AppBar>

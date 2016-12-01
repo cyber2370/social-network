@@ -1,23 +1,63 @@
-﻿<Page xmlns:my="using:Syncfusion.UI.Xaml.Reports" 
+﻿<Page
     x:Class="SocialNetworkUwpClient.Presentation.Views.Statistics.StatisticsUsersPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:SocialNetworkUwpClient.Presentation.Views.Statistics"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    DataContext="{Binding StatisticsShell, Source={StaticResource Locator}}"
+    xmlns:my="using:Syncfusion.UI.Xaml.Charts"
+    xmlns:my1="using:Syncfusion.UI.Xaml.Grid"
+    DataContext="{Binding StatisticsUsers, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Grid Background="Beige">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
-        <my:SfReportViewer />
+
+        <ScrollViewer Grid.Column="1">
+            <StackPanel Padding="30">
+                <TextBlock Margin="10" FontSize="28">
+                    Gender statistics
+                </TextBlock>
+                <my1:SfDataGrid
+                    AutoGenerateColumns="False"
+                    ColumnSizer="Star"
+                    ItemsSource="{Binding Genders}">
+                    <my1:SfDataGrid.Columns>
+                        <my1:GridTextColumn HeaderText="Gender" MappingName="Key" />
+                        <my1:GridTextColumn HeaderText="Count" MappingName="CountKey" />
+                    </my1:SfDataGrid.Columns>
+                </my1:SfDataGrid>
+                <TextBlock Margin="0,40,0,10" FontSize="28">
+                    Relationships statistics
+                </TextBlock>
+                <my1:SfDataGrid
+                    AutoGenerateColumns="False"
+                    ColumnSizer="Star"
+                    ItemsSource="{Binding Relationships}">
+                    <my1:SfDataGrid.Columns>
+                        <my1:GridTextColumn HeaderText="Relation Type" MappingName="Key" />
+                        <my1:GridTextColumn HeaderText="Count" MappingName="CountKey" />
+                    </my1:SfDataGrid.Columns>
+                </my1:SfDataGrid>
+                <TextBlock Margin="0,40,0,10" FontSize="28">
+                    Country statistics
+                </TextBlock>
+                <my1:SfDataGrid
+                    AutoGenerateColumns="False"
+                    ColumnSizer="Star"
+                    ItemsSource="{Binding Countries}">
+                    <my1:SfDataGrid.Columns>
+                        <my1:GridTextColumn HeaderText="Country" MappingName="Key" />
+                        <my1:GridTextColumn HeaderText="Count" MappingName="CountKey" />
+                    </my1:SfDataGrid.Columns>
+                </my1:SfDataGrid>
+
+            </StackPanel>
+
+        </ScrollViewer>
     </Grid>
 </Page>

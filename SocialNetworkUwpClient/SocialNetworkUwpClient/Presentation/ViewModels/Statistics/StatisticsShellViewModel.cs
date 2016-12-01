@@ -33,6 +33,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Statistics
         public ICommand NavTo { get; set; }
 
         public PageKeys Main => PageKeys.StatisticsMain;
+        public PageKeys Users => PageKeys.StatisticsUsers;
 
         public Type CurrentInnerPageType
         {
