@@ -1,0 +1,62 @@
+﻿<Page
+    x:Class="SocialNetworkUwpClient.Presentation.Views.Workplaces.WorkplacesMainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SocialNetworkUwpClient.Presentation.Views.Workplaces"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="using:Syncfusion.UI.Xaml.Grid"
+    DataContext="{Binding WorkplacesMain, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+
+    <Grid Background="Beige">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="7*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Padding="90,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            FontFamily="Segoe WP Black"
+            FontSize="30"
+            FontWeight="Bold"
+            Foreground="DarkBlue"
+            Text="Workplaces" />
+
+        <syncfusion:SfDataGrid
+            Grid.Row="1"
+            Margin="10"
+            AllowDeleting="True"
+            AllowFiltering="True"
+            AutoGenerateColumns="False"
+            ColumnSizer="Star"
+            ItemsSource="{Binding Workplaces, Mode=TwoWay}"
+            RecordDeleting="SfDataGrid_OnRecordDeleting"
+            SelectedItem="{Binding SelectedWorkplace, Mode=TwoWay}"
+            SelectionMode="Single">
+
+            <syncfusion:SfDataGrid.RecordContextMenu>
+                <MenuFlyout>
+                    <MenuFlyout.Items>
+                        <MenuFlyoutItem Click="MenuFlyoutItemEdit_OnClick" Text="Edit" />
+                        <MenuFlyoutItem Click="MenuFlyoutItemDelete_OnClick" Text="Delete" />
+                    </MenuFlyout.Items>
+                </MenuFlyout>
+            </syncfusion:SfDataGrid.RecordContextMenu>
+
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:GridTextColumn
+                    HeaderText="Title"
+                    MappingName="Title" />
+                <syncfusion:GridTextColumn
+                    HeaderText="Description"
+                    MappingName="Description" />
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
+    </Grid>
+</Page>

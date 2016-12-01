@@ -9,5 +9,6 @@ namespace SocialNetworkUwpClient.Presentation.Models
     public class SegoeIcons
     {
         public const string User = "\xE181";
+        public const string Workplace = "\xE821";
     }
 }

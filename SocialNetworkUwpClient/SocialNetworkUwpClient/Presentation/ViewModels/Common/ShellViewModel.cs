@@ -89,6 +89,18 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Common
                     Text = "Profile",
                     TextLogo = SegoeIcons.User,
                     InnerPageKey = PageKeys.ProfileShell
+                },
+                new LeftMenuItem
+                {
+                    Text = "Workplaces",
+                    TextLogo = SegoeIcons.Workplace,
+                    InnerPageKey = PageKeys.WorkplacesShell
+                },
+                new LeftMenuItem
+                {
+                    Text = "Statistics",
+                    TextLogo = SegoeIcons.Workplace,
+                    InnerPageKey = PageKeys.StatisticsShell
                 }
             };
         }

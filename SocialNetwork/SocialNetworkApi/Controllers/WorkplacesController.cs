@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using DbContext.Entities;
@@ -32,6 +34,28 @@ namespace SocialNetworkApi.Controllers
         public async Task<Workplace> GetWorkplace(int id)
         {
             return await _workplacesManager.GetWorkplaceById(id);
+        }
+
+        [HttpPost]
+        public async Task<Workplace> CreateWorkplace([FromBody]Workplace workplace)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            return await _workplacesManager.AddWorkplace(workplace);
+        }
+
+        [HttpPut]
+        public async Task<Workplace> UpdateWorkplace([FromBody]Workplace workplace)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            return await _workplacesManager.UpdateWorkplace(workplace);
         }
 
         [HttpGet]

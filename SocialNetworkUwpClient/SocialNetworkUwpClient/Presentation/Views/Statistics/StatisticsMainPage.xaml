@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="SocialNetworkUwpClient.Presentation.Views.Statistics.StatisticsMainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SocialNetworkUwpClient.Presentation.Views.Statistics"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding StatisticsMain, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+
+    <Grid Background="Beige">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="1"
+            VerticalAlignment="Center">
+            <Button Height="60" HorizontalAlignment="Stretch">My Statistics</Button>
+            <Button Height="60" HorizontalAlignment="Stretch">Users Statistics</Button>
+            <Button Height="60" HorizontalAlignment="Stretch">Messages Statistics</Button>
+            <Button Height="60" HorizontalAlignment="Stretch">Relationships Statistics</Button>
+            <Button Height="60" HorizontalAlignment="Stretch">Relationships Statistics</Button>
+        </StackPanel>
+    </Grid>
+</Page>

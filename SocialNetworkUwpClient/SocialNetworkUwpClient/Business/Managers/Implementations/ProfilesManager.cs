@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using SocialNetworkUwpClient.Business.Factories.Interfaces;
 using SocialNetworkUwpClient.Business.Managers.Interfaces;
 using SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities;
@@ -13,6 +14,11 @@ namespace SocialNetworkUwpClient.Business.Managers.Implementations
         public ProfilesManager(IApiFactory apiFactory)
         {
             _socialApi = apiFactory.SocialApi;
+        }
+
+        public Task<IEnumerable<Profile>> GetProfiles()
+        {
+            return _socialApi.GetProfiles();
         }
 
         public Task<Profile> GetProfileById(int id)

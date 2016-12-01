@@ -2,6 +2,8 @@
 using Microsoft.Practices.ServiceLocation;
 using SocialNetworkUwpClient.Presentation.ViewModels.Login;
 using SocialNetworkUwpClient.Presentation.ViewModels.Profile;
+using SocialNetworkUwpClient.Presentation.ViewModels.Statistics;
+using SocialNetworkUwpClient.Presentation.ViewModels.Workplaces;
 
 namespace SocialNetworkUwpClient.Presentation.ViewModels.Common
 {
@@ -14,10 +16,18 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Common
 
         public ProfileShellViewModel ProfileShell => GetViewModel<ProfileShellViewModel>();
         public ProfileMainViewModel ProfileMain => GetViewModel<ProfileMainViewModel>();
-        public ProfileCreatingViewModel ProfileCreating => GetViewModel<ProfileCreatingViewModel>();
+        public ProfileEditViewModel ProfileCreating => GetViewModel<ProfileEditViewModel>();
+
+        
+        public WorkplacesShellViewModel WorkplacesShell => GetViewModel<WorkplacesShellViewModel>();
+        public WorkplacesMainViewModel WorkplacesMain => GetViewModel<WorkplacesMainViewModel>();
+        public WorkplacesEditViewModel WorkplacesEdit => GetViewModel<WorkplacesEditViewModel>();
 
 
 
+        public StatisticsShellViewModel StatisticsShell => GetViewModel<StatisticsShellViewModel>();
+        public StatisticsMainViewModel StatisticsMain => GetViewModel<StatisticsMainViewModel>();
+        public StatisticsUsersViewModel StatisticsUsers => GetViewModel<StatisticsUsersViewModel>();
 
         private T GetViewModel<T>()
         {

@@ -41,6 +41,12 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
             }
         }
 
+        public Task<IEnumerable<Profile>> GetProfiles()
+        {
+            return Url($"userProfiles/users/all")
+                .GetAsync<IEnumerable<Profile>>();
+        }
+
         public Task<User> GetUser()
         {
             return Url("account/user")
@@ -82,8 +88,42 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
         {
             return Url("userProfiles")
                 .FormUrlEncoded()
-                .PutJsonAsync<Profile>(profile);
+                .PutJsonAsync(profile);
         }
 
+
+        // Workplaces
+
+        public Task<IEnumerable<Workplace>> GetWorkplaces()
+        {
+            return Url("workplaces")
+                .GetAsync<IEnumerable<Workplace>>();
+        }
+
+        public Task<Workplace> GetWorkplaceById(int id)
+        {
+            return Url($"workplaces/{id}")
+                .GetAsync<Workplace>();
+        }
+
+        public Task<Workplace> CreateWorkplace(Workplace workplace)
+        {
+            return Url($"workplaces")
+                .FormUrlEncoded()
+                .PostJsonAsync(workplace);
+        }
+
+        public Task<Workplace> UpdateWorkplace(Workplace workplace)
+        {
+            return Url($"workplaces")
+                .FormUrlEncoded()
+                .PutJsonAsync(workplace);
+        }
+
+        public Task<bool> DeleteWorkplace(int id)
+        {
+            return Url($"workplaces/{id}")
+                .DeleteAsync<bool>();
+        }
     }
 }

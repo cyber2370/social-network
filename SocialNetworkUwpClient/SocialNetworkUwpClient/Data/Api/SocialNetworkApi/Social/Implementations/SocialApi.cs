@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities;
 using SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Interfaces;
@@ -18,6 +19,11 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
         public Task<User> GetUser()
         {
             return GetRestApi().GetUser();
+        }
+
+        public Task<IEnumerable<Profile>> GetProfiles()
+        {
+            return GetRestApi().GetProfiles();
         }
 
         public Task<Profile> GetProfile()
@@ -49,6 +55,35 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
         {
             return GetRestApi().UpdateProfile(profile);
         }
+
+
+
+        // WORKPLACES 
+        public Task<IEnumerable<Workplace>> GetWorkplaces()
+        {
+            return GetRestApi().GetWorkplaces();
+        }
+
+        public Task<Workplace> GetWorkplaceById(int id)
+        {
+            return GetRestApi().GetWorkplaceById(id);
+        }
+
+        public Task<Workplace> CreateWorkplace(Workplace workplace)
+        {
+            return GetRestApi().CreateWorkplace(workplace);
+        }
+
+        public Task<Workplace> UpdateWorkplace(Workplace workplace)
+        {
+            return GetRestApi().UpdateWorkplace(workplace);
+        }
+
+        public Task DeleteWorkplace(int id)
+        {
+            return GetRestApi().DeleteWorkplace(id);
+        }
+
 
         private RestApi GetRestApi()
         {

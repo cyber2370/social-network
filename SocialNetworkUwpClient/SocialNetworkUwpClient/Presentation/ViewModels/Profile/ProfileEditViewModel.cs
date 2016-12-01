@@ -15,7 +15,7 @@ using Syncfusion.UI.Xaml.PivotGrid;
 
 namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
 {
-    public class ProfileCreatingViewModel : ViewModelBase
+    public class ProfileEditViewModel : ViewModelBase
     {
         private readonly IProfilesManager _profilesManager;
         private readonly IPreferencesService _preferencesService;
@@ -24,7 +24,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
 
         private DateTimeOffset _birthDateOffset;
 
-        public ProfileCreatingViewModel(
+        public ProfileEditViewModel(
             IProfilesManager profilesManager,
             IPreferencesService preferencesService)
         {

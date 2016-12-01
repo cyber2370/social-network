@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities;
 
 namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Interfaces
@@ -6,6 +7,7 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Interfaces
     public interface ISocialApi
     {
         Task<User> GetUser();
+        Task<IEnumerable<Profile>> GetProfiles();
 
         Task<Profile> GetProfile();
 
@@ -19,5 +21,11 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Interfaces
 
         Task<Profile> UpdateProfile(Profile profile);
 
+
+        Task<IEnumerable<Workplace>> GetWorkplaces();
+        Task<Workplace> GetWorkplaceById(int id);
+        Task<Workplace> CreateWorkplace(Workplace workplace);
+        Task<Workplace> UpdateWorkplace(Workplace workplace);
+        Task DeleteWorkplace(int id);
     }
 }

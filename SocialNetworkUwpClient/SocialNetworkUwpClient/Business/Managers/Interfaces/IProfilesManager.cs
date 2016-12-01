@@ -9,6 +9,8 @@ namespace SocialNetworkUwpClient.Business.Managers.Interfaces
 {
     public interface IProfilesManager
     {
+        Task<IEnumerable<Profile>> GetProfiles();
+
         Task<Profile> GetProfileById(int id);
 
         Task<Profile> GetCurrentProfile();

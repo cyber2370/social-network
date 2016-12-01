@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -37,6 +38,13 @@ namespace SocialNetworkApi.Controllers
         }
 
         #region UsersOperations
+
+        [HttpGet]
+        [Route("all")]
+        public async Task<IEnumerable<UserProfile>> GetProfiles()
+        {
+            return (await _userProfilesManager.GetAllUsers()).Select(x => x.User.Profile = null);
+        }
 
         [HttpGet]
         [Route("current")]

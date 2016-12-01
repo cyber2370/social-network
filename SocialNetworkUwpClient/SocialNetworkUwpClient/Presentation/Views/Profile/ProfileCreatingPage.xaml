@@ -47,21 +47,22 @@
                     Text="{Binding Profile.Surname, Mode=TwoWay}" />
                 <DatePicker
                     x:Name="BirthdayDatePicker"
+                    HorizontalAlignment="Stretch"
                     Date="{Binding BirthDateOffset, Mode=TwoWay}"
                     FontSize="22"
                     Header="Birthday" />
                 <ComboBox
                     x:Name="RelationshipStatus"
+                    HorizontalAlignment="Stretch"
                     FontSize="22"
                     Header="Relationship Status"
-                    HorizontalAlignment="Stretch"
                     ItemsSource="{Binding RelationTypeList}"
                     SelectedItem="{Binding Profile.RelationshipStatus, Mode=TwoWay}" />
                 <ComboBox
                     x:Name="Sex"
+                    HorizontalAlignment="Stretch"
                     FontSize="22"
                     Header="Sex"
-                    HorizontalAlignment="Stretch"
                     ItemsSource="{Binding SexList}"
                     SelectedItem="{Binding Profile.Sex, Mode=TwoWay}" />
                 <TextBox
@@ -77,8 +78,8 @@
             x:Name="SaveButton"
             Grid.Row="2"
             Grid.Column="1"
-            Height="30"
-            Margin="70,0"
+            Height="50"
+            Margin="20,0"
             HorizontalAlignment="Stretch"
             Background="BurlyWood"
             Command="{Binding SaveChangesCommand}"

@@ -19,6 +19,8 @@ using SocialNetworkUwpClient.Presentation.Services.Interfaces;
 using SocialNetworkUwpClient.Presentation.ViewModels.Common;
 using SocialNetworkUwpClient.Presentation.ViewModels.Login;
 using SocialNetworkUwpClient.Presentation.ViewModels.Profile;
+using SocialNetworkUwpClient.Presentation.ViewModels.Statistics;
+using SocialNetworkUwpClient.Presentation.ViewModels.Workplaces;
 using SocialNetworkUwpClient.Presentation.Views;
 using SocialNetworkUwpClient.Presentation.Views.Auth;
 
@@ -140,6 +142,7 @@ namespace SocialNetworkUwpClient
 
             SimpleIoc.Default.Register<IAuthenticationManager, AuthenticationManager>();
             SimpleIoc.Default.Register<IProfilesManager, ProfilesManager>();
+            SimpleIoc.Default.Register<IWorkplacesManager, WorkplacesManager>();
 
             SimpleIoc.Default.Register<IApiFactory, ApiFactory>();
             SimpleIoc.Default.Register<SessionInfoHolder>();
@@ -155,7 +158,15 @@ namespace SocialNetworkUwpClient
 
             SimpleIoc.Default.Register<ProfileShellViewModel>();
             SimpleIoc.Default.Register<ProfileMainViewModel>();
-            SimpleIoc.Default.Register<ProfileCreatingViewModel>(); 
+            SimpleIoc.Default.Register<ProfileEditViewModel>();
+
+            SimpleIoc.Default.Register<WorkplacesShellViewModel>();
+            SimpleIoc.Default.Register<WorkplacesMainViewModel>();
+            SimpleIoc.Default.Register<WorkplacesEditViewModel>();
+
+            SimpleIoc.Default.Register<StatisticsShellViewModel>();
+            SimpleIoc.Default.Register<StatisticsMainViewModel>();
+            SimpleIoc.Default.Register<StatisticsUsersViewModel>();
 
             #endregion
         }

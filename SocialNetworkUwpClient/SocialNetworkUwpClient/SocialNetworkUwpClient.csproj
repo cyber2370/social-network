@@ -95,8 +95,10 @@
     <Compile Include="Business\Factories\Interfaces\IApiFactory.cs" />
     <Compile Include="Business\Managers\Implementations\AuthenticationManager.cs" />
     <Compile Include="Business\Managers\Implementations\ProfilesManager.cs" />
+    <Compile Include="Business\Managers\Implementations\WorkplacesManager.cs" />
     <Compile Include="Business\Managers\Interfaces\IAuthenticationManager.cs" />
     <Compile Include="Business\Managers\Interfaces\IProfilesManager.cs" />
+    <Compile Include="Business\Managers\Interfaces\IWorkplacesManager.cs" />
     <Compile Include="Data\Api\ApiException.cs" />
     <Compile Include="Data\Api\ApiRouting.cs" />
     <Compile Include="Data\Api\HttpException.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\Profile.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\SessionInfoHolder.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\User.cs" />
+    <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\Workplace.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Social\Implementations\RestApi.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Social\Implementations\SocialApi.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Social\Interfaces\ISocialApi.cs" />
@@ -133,9 +136,15 @@
     <Compile Include="Presentation\ViewModels\Common\ViewModelLocator.cs" />
     <Compile Include="Presentation\ViewModels\Login\LoginViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Login\RegisterViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Profile\ProfileCreatingViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Profile\ProfileEditViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Profile\ProfileMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Profile\ProfileShellViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Statistics\StatisticsMainViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Statistics\StatisticsShellViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Statistics\StatisticsUsersViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Workplaces\WorkplacesEditViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Workplaces\WorkplacesMainViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Workplaces\WorkplacesShellViewModel.cs" />
     <Compile Include="Presentation\Views\Auth\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -151,8 +160,32 @@
     <Compile Include="Presentation\Views\Profile\ProfileShellPage.xaml.cs">
       <DependentUpon>ProfileShellPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Views\Reports\ReportsMainPage.xaml.cs">
+      <DependentUpon>ReportsMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Reports\ReportsShellPage.xaml.cs">
+      <DependentUpon>ReportsShellPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Views\ShellPage.xaml.cs">
       <DependentUpon>ShellPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Statistics\StatisticsMainPage.xaml.cs">
+      <DependentUpon>StatisticsMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Statistics\StatisticsShellPage.xaml.cs">
+      <DependentUpon>StatisticsShellPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Statistics\StatisticsUsersPage.xaml.cs">
+      <DependentUpon>StatisticsUsersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Workplaces\WorkplacesEditPage.xaml.cs">
+      <DependentUpon>WorkplacesEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Workplaces\WorkplacesMainPage.xaml.cs">
+      <DependentUpon>WorkplacesMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Workplaces\WorkplacesShellPage.xaml.cs">
+      <DependentUpon>WorkplacesShellPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -202,7 +235,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Presentation\Views\Reports\ReportsMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Reports\ReportsShellPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Presentation\Views\ShellPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Statistics\StatisticsMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Statistics\StatisticsShellPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Statistics\StatisticsUsersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Workplaces\WorkplacesEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Workplaces\WorkplacesMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Workplaces\WorkplacesShellPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
