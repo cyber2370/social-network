@@ -51,6 +51,11 @@
                     Date="{Binding BirthDateOffset, Mode=TwoWay}"
                     FontSize="22"
                     Header="Birthday" />
+                <TextBox
+                    x:Name="CountryTextBox"
+                    FontSize="22"
+                    Header="Home Country"
+                    Text="{Binding Profile.HomeCountry, Mode=TwoWay}" />
                 <ComboBox
                     x:Name="RelationshipStatus"
                     HorizontalAlignment="Stretch"

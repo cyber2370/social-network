@@ -17,7 +17,9 @@ namespace DbContext.Entities
 
         public string Surname { get; set; }
 
-        public string Sex { get; set; }
+        public Genders Sex { get; set; }
+
+        public string HomeCountry { get; set; }
 
         public string AvatarUri { get; set; }
 
@@ -31,7 +33,7 @@ namespace DbContext.Entities
 
         public DateTime StatusUpdated { get; set; }
 
-        public string RelationshipStatus { get; set; }
+        public RelationshipTypes RelationshipStatus { get; set; }
 
 
         public virtual ApplicationUser User { get; set; }

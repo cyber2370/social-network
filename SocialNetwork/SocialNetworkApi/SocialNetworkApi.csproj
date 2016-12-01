@@ -242,6 +242,7 @@
     <Compile Include="Controllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\UserProfilesController.cs" />
     <Compile Include="Controllers\WorkplacesController.cs" />
     <Compile Include="DataInitializer.cs" />

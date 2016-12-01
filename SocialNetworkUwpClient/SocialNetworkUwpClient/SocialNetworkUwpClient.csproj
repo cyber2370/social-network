@@ -95,9 +95,11 @@
     <Compile Include="Business\Factories\Interfaces\IApiFactory.cs" />
     <Compile Include="Business\Managers\Implementations\AuthenticationManager.cs" />
     <Compile Include="Business\Managers\Implementations\ProfilesManager.cs" />
+    <Compile Include="Business\Managers\Implementations\ReportsManager.cs" />
     <Compile Include="Business\Managers\Implementations\WorkplacesManager.cs" />
     <Compile Include="Business\Managers\Interfaces\IAuthenticationManager.cs" />
     <Compile Include="Business\Managers\Interfaces\IProfilesManager.cs" />
+    <Compile Include="Business\Managers\Interfaces\IReportsManager.cs" />
     <Compile Include="Business\Managers\Interfaces\IWorkplacesManager.cs" />
     <Compile Include="Data\Api\ApiException.cs" />
     <Compile Include="Data\Api\ApiRouting.cs" />
@@ -114,8 +116,10 @@
     <Compile Include="Data\Api\SocialNetworkApi\Auth\Implementations\RestApi.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Auth\Interfaces\IAuthApi.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\Profile.cs" />
+    <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\Report.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\SessionInfoHolder.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\User.cs" />
+    <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\UsersReport.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\Workplace.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Social\Implementations\RestApi.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Social\Implementations\SocialApi.cs" />

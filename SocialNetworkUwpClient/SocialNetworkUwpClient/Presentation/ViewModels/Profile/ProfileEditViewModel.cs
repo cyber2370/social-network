@@ -35,7 +35,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
             var profile = customNavigationService.CurrentPageParams as ProfileModel;
             
             Profile = profile ?? new ProfileModel();
-            BirthDateOffset = Profile.BirthDate;
+            BirthDateOffset = profile != null ? Profile.BirthDate : DateTime.Now;
 
             PageText = profile == null ? "Creating Profile" : "Editing Profile";
 

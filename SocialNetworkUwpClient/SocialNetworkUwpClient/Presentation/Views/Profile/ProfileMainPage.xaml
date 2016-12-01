@@ -96,8 +96,10 @@
                     <TextBlock Margin="20,0" Text="{Binding Path=Profile.RegistrationDate}" />
                     <TextBlock Margin="20,20,20,0" Text="Relationship Status" />
                     <TextBlock Margin="20,0" Text="{Binding Profile.RelationshipStatus}" />
-                    <TextBlock Margin="20,20,20,0" Text="Sex" />
+                    <TextBlock Margin="20,20,20,0" Text="Gender" />
                     <TextBlock Margin="20,0" Text="{Binding Profile.Sex}" />
+                    <TextBlock Margin="20,20,20,0" Text="Home Country" />
+                    <TextBlock Margin="20,0" Text="{Binding Profile.HomeCountry}" />
                 </StackPanel>
                 <StackPanel
                     x:Name="ThirdPanel"

@@ -84,6 +84,11 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
             return GetRestApi().DeleteWorkplace(id);
         }
 
+        public Task<UsersReport> GetUsersReport()
+        {
+            return GetRestApi().GetUsersReport();
+        }
+
 
         private RestApi GetRestApi()
         {

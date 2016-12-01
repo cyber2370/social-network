@@ -21,8 +21,6 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Workplaces
 
         private ObservableCollection<Workplace> _workplaces;
 
-        private Type _currentPageType;
-
         public WorkplacesMainViewModel(IWorkplacesManager workplacesManager)
         {
             _workplacesManager = workplacesManager;
@@ -59,9 +57,16 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Workplaces
 
         private async void InitData()
         {
-            var workplaces = await _workplacesManager.GetWorkplaces();
+            try
+            {
+                var workplaces = await _workplacesManager.GetWorkplaces();
 
-            Workplaces = new ObservableCollection<Workplace>(workplaces);
+                Workplaces = new ObservableCollection<Workplace>(workplaces);
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
         }
     }
 }

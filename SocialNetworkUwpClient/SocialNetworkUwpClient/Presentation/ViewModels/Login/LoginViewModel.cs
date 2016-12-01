@@ -16,13 +16,18 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Login
     {
         private readonly IAuthenticationManager _authenticationManager;
         private readonly IProfilesManager _profilesManager;
+        private readonly IPreferencesService _preferencesService;
 
         public LoginViewModel(
             IAuthenticationManager authenticationManager,
-            IProfilesManager profilesManager)
+            IProfilesManager profilesManager,
+            IPreferencesService preferencesService)
         {
             _authenticationManager = authenticationManager;
             _profilesManager = profilesManager;
+            _preferencesService = preferencesService;
+
+            preferencesService.Clear();
 
             LoginCommand = new RelayCommand(Login);
             NavigateToSignUpCommand = new RelayCommand(NavigateToSignUp);

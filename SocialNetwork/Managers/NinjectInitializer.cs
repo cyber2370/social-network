@@ -17,6 +17,7 @@ namespace Managers
             kernel.Bind<IUsersWorkplacesManager>().To<UsersWorkplacesManager>();
             kernel.Bind<ILocationsManager>().To<LocationsManager>();
             kernel.Bind<IFriendRequestsManager>().To<FriendRequestsManager>();
+            kernel.Bind<IReportsManager>().To<ReportsManager>();
         }
     }
 }

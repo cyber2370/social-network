@@ -19,6 +19,8 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Common
 
             public PageKeys InnerPageKey { get; set; }
             public object Params { get; set; }
+
+            public PageKeys? OuterPageKey { get; set; }
         }
 
         private ObservableCollection<LeftMenuItem> _leftMenuItems;
@@ -59,6 +61,12 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Common
                 _selectedLeftMenuItem = value;
 
                 IsPaneOpen = false;
+
+                if (value.OuterPageKey != null)
+                {
+                    NavigationService.NavigateTo(value.OuterPageKey.Value);
+                    return;
+                }
 
                 CurrentPageType = value.InnerPageKey.GetPageType();
             }
@@ -101,6 +109,12 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Common
                     Text = "Statistics",
                     TextLogo = SegoeIcons.Workplace,
                     InnerPageKey = PageKeys.StatisticsShell
+                },
+                new LeftMenuItem
+                {
+                    Text = "Logout",
+                    TextLogo = SegoeIcons.Workplace,
+                    OuterPageKey = PageKeys.Login
                 }
             };
         }

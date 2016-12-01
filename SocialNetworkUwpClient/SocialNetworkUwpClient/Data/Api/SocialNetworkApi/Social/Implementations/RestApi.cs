@@ -125,5 +125,11 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
             return Url($"workplaces/{id}")
                 .DeleteAsync<bool>();
         }
+
+        public Task<UsersReport> GetUsersReport()
+        {
+            return Url($"reports/users")
+                .GetAsync<UsersReport>();
+        }
     }
 }

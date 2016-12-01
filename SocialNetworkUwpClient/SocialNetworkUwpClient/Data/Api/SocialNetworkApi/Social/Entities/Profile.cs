@@ -13,6 +13,8 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities
 
         public Sexes Sex { get; set; }
 
+        public string HomeCountry { get; set; }
+
         public Uri AvatarUri { get; set; }
 
         public DateTime BirthDate { get; set; }

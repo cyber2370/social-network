@@ -143,6 +143,7 @@ namespace SocialNetworkUwpClient
             SimpleIoc.Default.Register<IAuthenticationManager, AuthenticationManager>();
             SimpleIoc.Default.Register<IProfilesManager, ProfilesManager>();
             SimpleIoc.Default.Register<IWorkplacesManager, WorkplacesManager>();
+            SimpleIoc.Default.Register<IReportsManager, ReportsManager>();
 
             SimpleIoc.Default.Register<IApiFactory, ApiFactory>();
             SimpleIoc.Default.Register<SessionInfoHolder>();

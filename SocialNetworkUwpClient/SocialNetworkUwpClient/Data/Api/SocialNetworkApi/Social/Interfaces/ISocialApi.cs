@@ -27,5 +27,8 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Interfaces
         Task<Workplace> CreateWorkplace(Workplace workplace);
         Task<Workplace> UpdateWorkplace(Workplace workplace);
         Task DeleteWorkplace(int id);
+
+
+        Task<UsersReport> GetUsersReport();
     }
 }

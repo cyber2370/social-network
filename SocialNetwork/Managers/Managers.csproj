@@ -104,6 +104,7 @@
     <Compile Include="Implementations\ApplicationUserManager.cs" />
     <Compile Include="Implementations\FriendRequestsManager.cs" />
     <Compile Include="Implementations\MessagesManager.cs" />
+    <Compile Include="Implementations\ReportsManager.cs" />
     <Compile Include="Implementations\UserProfilesManager.cs" />
     <Compile Include="Implementations\UsersWorkplacesManager.cs" />
     <Compile Include="Implementations\WorkplacesManager.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Interfaces\IFriendRequestsManager.cs" />
     <Compile Include="Interfaces\ILocationsManager.cs" />
     <Compile Include="Interfaces\IMessagesManager.cs" />
+    <Compile Include="Interfaces\IReportsManager.cs" />
     <Compile Include="Interfaces\IUserProfilesManager.cs" />
     <Compile Include="Interfaces\IUsersWorkplacesManager.cs" />
     <Compile Include="Interfaces\IWorkplacesManager.cs" />
@@ -119,6 +121,8 @@
     <Compile Include="Models\Friends\FriendModel.cs" />
     <Compile Include="Models\Friends\FriendRequestModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
+    <Compile Include="Models\Reports\Report.cs" />
+    <Compile Include="Models\Reports\UsersReport.cs" />
     <Compile Include="NinjectInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
