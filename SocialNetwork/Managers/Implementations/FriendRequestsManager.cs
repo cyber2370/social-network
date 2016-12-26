@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -25,7 +26,7 @@ namespace Managers.Implementations
                 .Select(Mapper.Map<FriendRequest, FriendRequestModel>);
         }
 
-        public async Task<IEnumerable<FriendModel>> GetFriendsOf(int userId)
+        public async Task<IEnumerable<FriendModel>> GetFriendsOf(string userId)
         {
             var friends = await _friendRequestsRepository.GetItemsAsync
                 (x => x.Where(fr => fr.ConfirmedDateTime != null && (fr.ConfirmerId == userId || fr.RequesterId == userId)));
@@ -42,7 +43,7 @@ namespace Managers.Implementations
 
         }
 
-        public async Task<IEnumerable<FriendRequestModel>> GetFriendRequestsTo(int userId)
+        public async Task<IEnumerable<FriendRequestModel>> GetFriendRequestsTo(string userId)
         {
             var friendRequests = await _friendRequestsRepository.GetItemsAsync
                 (x => x.Where(fr => fr.ConfirmedDateTime == null && fr.ConfirmerId == userId));
@@ -50,7 +51,7 @@ namespace Managers.Implementations
             return friendRequests.Select(Mapper.Map<FriendRequest, FriendRequestModel>);
         }
 
-        public async Task<IEnumerable<FriendRequestModel>> GetFriendRequestsFrom(int userId)
+        public async Task<IEnumerable<FriendRequestModel>> GetFriendRequestsFrom(string userId)
         {
             var friendRequests = await _friendRequestsRepository.GetItemsAsync
                 (x => x.Where(fr => fr.ConfirmedDateTime == null && fr.RequesterId == userId));
@@ -58,18 +59,23 @@ namespace Managers.Implementations
             return friendRequests.Select(Mapper.Map<FriendRequest, FriendRequestModel>);
         }
 
-        public async Task<FriendRequestModel> GetFriendRequestById(int id)
+        public async Task<FriendRequestModel> GetFriendRequestById(string id)
         {
             FriendRequest dbFriendRequest = await _friendRequestsRepository.GetItemAsync(id);
 
             return Mapper.Map<FriendRequest, FriendRequestModel>(dbFriendRequest);
         }
 
-        public async Task<FriendRequestModel> AddFriendRequest(FriendRequestModel friendRequest)
+        public async Task<FriendRequestModel> AddFriendRequest(string senderId, string recipientId)
         {
-            FriendRequest dbFriendRequest = Mapper.Map<FriendRequestModel, FriendRequest>(friendRequest);
+            FriendRequest friendRequest = new FriendRequest
+            {
+                RequesterId = senderId,
+                ConfirmerId = recipientId,
+                RequestedDateTime = DateTime.Now
+            };
 
-            return Mapper.Map<FriendRequest, FriendRequestModel>(await _friendRequestsRepository.AddItemAsync(dbFriendRequest));
+            return Mapper.Map<FriendRequest, FriendRequestModel>(await _friendRequestsRepository.AddItemAsync(friendRequest));
         }
 
         public async Task<FriendRequestModel> UpdateFriendRequest(FriendRequestModel friendRequest)
@@ -79,14 +85,17 @@ namespace Managers.Implementations
             return Mapper.Map<FriendRequest, FriendRequestModel>(await _friendRequestsRepository.UpdateItemAsync(dbFriendRequest));
         }
 
-        public async Task<FriendRequestModel> ConfirmFriendRequest(FriendRequestModel friendRequest)
+        public async Task<FriendRequestModel> ConfirmFriendRequest(string senderId, string recipientId)
         {
-            friendRequest.IsConfirmed = true;
+            var friendRequest = await _friendRequestsRepository.GetItemAsync(
+                    x => x.Where(fr => fr.ConfirmerId == senderId && recipientId == fr.RequesterId));
 
-            return await UpdateFriendRequest(friendRequest);
+            friendRequest.ConfirmedDateTime = DateTime.Now;
+
+            return await UpdateFriendRequest(Mapper.Map<FriendRequest, FriendRequestModel>(friendRequest));
         }
 
-        public async Task<bool> DeleteFriendRequest(int userId, int friendId)
+        public async Task<bool> DeleteFriendRequest(string userId, string friendId)
         {
             try
             {

@@ -19,8 +19,6 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
     {
         private readonly IProfilesManager _profilesManager;
         private readonly IPreferencesService _preferencesService;
-        
-        private readonly ProfileModel _editingProfile;
 
         private DateTimeOffset _birthDateOffset;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Managers.Models.Friends
+namespace SocialNetworkUwpClient.Business.Entities
 {
     public class FriendModel
     {
@@ -13,5 +13,6 @@ namespace Managers.Models.Friends
         public string Surname { get; set; }
 
         public Uri AvatarUri { get; set; }
+
     }
 }

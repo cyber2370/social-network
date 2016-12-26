@@ -1,12 +1,13 @@
 ﻿<Page
-    x:Class="SocialNetworkUwpClient.Presentation.Views.Profile.ProfileMainPage"
+    x:Class="SocialNetworkUwpClient.Presentation.Views.People.PersonProfilePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SocialNetworkUwpClient.Presentation.Views.People"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="using:SocialNetworkUwpClient.Presentation.Views.Profile"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    DataContext="{Binding ProfileMain, Source={StaticResource Locator}}"
+    DataContext="{Binding PersonProfile, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
 
     <Grid Background="Beige" x:Name="MainGrid">
         <Grid.ColumnDefinitions>
@@ -27,9 +28,9 @@
                 RelativePanel.AlignLeftWithPanel="True"
                 RelativePanel.AlignRightWithPanel="True"
                 RelativePanel.AlignTopWithPanel="True">
-                <Run Text="{Binding Profile.Name}" />
+                <Run Text="{Binding PersonProfile.Name}" />
                 <Run />
-                <Run Text="{Binding Profile.Surname}" />
+                <Run Text="{Binding PersonProfile.Surname}" />
             </TextBlock>
             <Border
                 x:Name="AvatarImage"
@@ -49,34 +50,20 @@
                 x:Name="StatusTextBlock"
                 RelativePanel.AlignRightWithPanel="True"
                 RelativePanel.Below="AvatarImage"
-                Text="{Binding Profile.Status}" />
+                Text="{Binding PersonProfile.Status}" />
             <TextBlock
                 x:Name="StatusUpdatedDateTextBlock"
                 RelativePanel.AlignRightWithPanel="True"
                 RelativePanel.Below="StatusTextBlock"
-                Text="{Binding Profile.StatusUpdated.Date}" />
+                Text="{Binding PersonProfile.StatusUpdated.Date}" />
 
             <Button
-                x:Name="PrintButton"
+                x:Name="FriendButton"
                 Height="80"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Background="GreenYellow"
-                Content="Print Self-Report"
-                FontSize="20"
-                FontStyle="Italic"
-                RelativePanel.Above="SettingsButton"
-                RelativePanel.AlignLeftWithPanel="True"
-                RelativePanel.AlignRightWithPanel="True" />
-
-            <Button
-                x:Name="SettingsButton"
-                Height="80"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                Background="Chocolate"
-                Command="{Binding EditCommand}"
-                Content="Edit Profile"
+                Content="{Binding FriendButtonText}"
                 FontSize="20"
                 FontStyle="Italic"
                 RelativePanel.AlignBottomWithPanel="True"
@@ -103,15 +90,15 @@
                         FontWeight="Bold"
                         Text="Main Info" />
                     <TextBlock Margin="20,0" Text="Birthday" />
-                    <TextBlock Margin="20,0" Text="{Binding Profile.BirthDate.Date}" />
+                    <TextBlock Margin="20,0" Text="{Binding PersonProfile.BirthDate.Date}" />
                     <TextBlock Margin="20,20,20,0" Text="Registration Date" />
-                    <TextBlock Margin="20,0" Text="{Binding Path=Profile.RegistrationDate}" />
+                    <TextBlock Margin="20,0" Text="{Binding Path=PersonProfile.RegistrationDate}" />
                     <TextBlock Margin="20,20,20,0" Text="Relationship Status" />
-                    <TextBlock Margin="20,0" Text="{Binding Profile.RelationshipStatus}" />
+                    <TextBlock Margin="20,0" Text="{Binding PersonProfile.RelationshipStatus}" />
                     <TextBlock Margin="20,20,20,0" Text="Gender" />
-                    <TextBlock Margin="20,0" Text="{Binding Profile.Sex}" />
+                    <TextBlock Margin="20,0" Text="{Binding PersonProfile.Sex}" />
                     <TextBlock Margin="20,20,20,0" Text="Home Country" />
-                    <TextBlock Margin="20,0" Text="{Binding Profile.HomeCountry}" />
+                    <TextBlock Margin="20,0" Text="{Binding PersonProfile.HomeCountry}" />
                 </StackPanel>
                 <StackPanel
                     x:Name="ThirdPanel"
@@ -131,11 +118,12 @@
                     <TextBlock Margin="20,10,20,0" Text="AdditionalInformation" />
                     <TextBlock
                         Margin="20,0"
-                        Text="{Binding Profile.AdditionalInformation}"
+                        Text="{Binding PersonProfile.AdditionalInformation}"
                         TextWrapping="WrapWholeWords" />
                 </StackPanel>
             </RelativePanel>
 
         </ScrollViewer>
+
     </Grid>
 </Page>

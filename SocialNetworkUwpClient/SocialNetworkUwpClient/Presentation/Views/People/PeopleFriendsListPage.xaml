@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="SocialNetworkUwpClient.Presentation.Views.People.PeopleFriendsListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SocialNetworkUwpClient.Presentation.Views.People"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding FriendsList, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+
+    <Grid Background="Beige" x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView Grid.Column="1"
+                  Padding="25"
+                  ItemsSource="{Binding People}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <RelativePanel Height="40">
+                        <Image Source="ms-appx:///Assets/Profile/UnknownProfileAvatar.png"></Image>
+                    </RelativePanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

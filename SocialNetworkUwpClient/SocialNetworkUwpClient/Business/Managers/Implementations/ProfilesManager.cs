@@ -21,7 +21,7 @@ namespace SocialNetworkUwpClient.Business.Managers.Implementations
             return _socialApi.GetProfiles();
         }
 
-        public Task<Profile> GetProfileById(int id)
+        public Task<Profile> GetProfileById(string id)
         {
             return _socialApi.GetProfileById(id);
         }
@@ -31,7 +31,7 @@ namespace SocialNetworkUwpClient.Business.Managers.Implementations
             return _socialApi.GetProfile();
         }
 
-        public Task<Profile> GetProfileOf(int id)
+        public Task<Profile> GetProfileOf(string id)
         {
             return _socialApi.GetProfileOf(id);
         }

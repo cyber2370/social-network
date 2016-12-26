@@ -100,6 +100,12 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Common
                 },
                 new LeftMenuItem
                 {
+                    Text = "People",
+                    TextLogo = SegoeIcons.People,
+                    InnerPageKey = PageKeys.PeopleShell
+                },
+                new LeftMenuItem
+                {
                     Text = "Workplaces",
                     TextLogo = SegoeIcons.Workplace,
                     InnerPageKey = PageKeys.WorkplacesShell

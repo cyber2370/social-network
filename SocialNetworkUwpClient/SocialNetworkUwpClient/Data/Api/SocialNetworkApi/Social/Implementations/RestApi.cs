@@ -43,7 +43,7 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
 
         public Task<IEnumerable<Profile>> GetProfiles()
         {
-            return Url($"userProfiles/users/all")
+            return Url($"userProfiles/all")
                 .GetAsync<IEnumerable<Profile>>();
         }
 
@@ -59,13 +59,13 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
                 .GetAsync<Profile>();
         }
 
-        public Task<Profile> GetProfileById(int id)
+        public Task<Profile> GetProfileById(string id)
         {
             return Url($"userProfiles/{id}")
                 .GetAsync<Profile>();
         }
 
-        public Task<Profile> GetProfileByUserId(int id)
+        public Task<Profile> GetProfileByUserId(string id)
         {
             return Url($"userProfiles/users/{id}")
                 .GetAsync<Profile>();
@@ -130,6 +130,38 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
         {
             return Url($"reports/users")
                 .GetAsync<UsersReport>();
+        }
+
+        // FRIENDS
+        public Task<IEnumerable<Profile>> GetFriendsOf(string userId)
+        {
+            return Url($"userProfiles/{userId}/friends")
+                .GetAsync<IEnumerable<Profile>>();
+        }
+
+        public Task<IEnumerable<FriendRequest>> GetFriendRequestsOfCurrentUser()
+        {
+            return Url($"userProfiles/sendedFriendsRequests")
+                .GetAsync<IEnumerable<FriendRequest>>();
+        }
+
+        public Task<IEnumerable<FriendRequest>> GetFriendRequestsToCurrentUser()
+        {
+            return Url($"userProfiles/recievedFriendsRequests")
+                .GetAsync<IEnumerable<FriendRequest>>();
+        }
+
+        public Task<FriendRequest> SendFriendRequestTo(string userId)
+        {
+            return Url($"userProfiles/sendRequest/{userId}")
+                .FormUrlEncoded()
+                .PostAsync<FriendRequest>();
+        }
+
+        public Task<bool> RemoveFriends(string userId)
+        {
+            return Url($"userProfiles/friends/{userId}")
+                .DeleteAsync<bool>();
         }
     }
 }

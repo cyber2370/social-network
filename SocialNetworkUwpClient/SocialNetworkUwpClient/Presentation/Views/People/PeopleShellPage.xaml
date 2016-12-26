@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="SocialNetworkUwpClient.Presentation.Views.People.PeopleShellPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SocialNetworkUwpClient.Presentation.Views.People"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding PeopleShell, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+
+    <Page.BottomAppBar>
+        <AppBar ClosedDisplayMode="Compact">
+            <StackPanel Orientation="Horizontal">
+                <AppBarButton
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="Transparent"
+                    Command="{Binding NavTo}"
+                    CommandParameter="{Binding People}"
+                    Icon="Contact2" />
+                <AppBarButton
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="Transparent"
+                    Command="{Binding NavTo}"
+                    CommandParameter="{Binding Friends}"
+                    Icon="Contact2" />
+            </StackPanel>
+        </AppBar>
+    </Page.BottomAppBar>
+
+    <Frame SourcePageType="{Binding CurrentInnerPageType, Mode=TwoWay}" />
+</Page>

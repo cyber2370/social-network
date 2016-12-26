@@ -23,6 +23,7 @@ using SocialNetworkUwpClient.Presentation.ViewModels.Statistics;
 using SocialNetworkUwpClient.Presentation.ViewModels.Workplaces;
 using SocialNetworkUwpClient.Presentation.Views;
 using SocialNetworkUwpClient.Presentation.Views.Auth;
+using SocialNetworkUwpClient.Presentation.ViewModels.People;
 
 namespace SocialNetworkUwpClient
 {
@@ -142,6 +143,7 @@ namespace SocialNetworkUwpClient
 
             SimpleIoc.Default.Register<IAuthenticationManager, AuthenticationManager>();
             SimpleIoc.Default.Register<IProfilesManager, ProfilesManager>();
+            SimpleIoc.Default.Register<IFriendsManager, FriendsManager>();
             SimpleIoc.Default.Register<IWorkplacesManager, WorkplacesManager>();
             SimpleIoc.Default.Register<IReportsManager, ReportsManager>();
 
@@ -160,6 +162,11 @@ namespace SocialNetworkUwpClient
             SimpleIoc.Default.Register<ProfileShellViewModel>();
             SimpleIoc.Default.Register<ProfileMainViewModel>();
             SimpleIoc.Default.Register<ProfileEditViewModel>();
+
+            SimpleIoc.Default.Register<PeopleShellViewModel>();
+            SimpleIoc.Default.Register<PeopleProfileViewModel>();
+            SimpleIoc.Default.Register<PeopleListViewModel>();
+            SimpleIoc.Default.Register<FriendsListViewModel>();
 
             SimpleIoc.Default.Register<WorkplacesShellViewModel>();
             SimpleIoc.Default.Register<WorkplacesMainViewModel>();

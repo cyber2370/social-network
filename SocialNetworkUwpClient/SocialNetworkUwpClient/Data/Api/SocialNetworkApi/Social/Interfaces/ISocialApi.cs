@@ -8,19 +8,18 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Interfaces
     {
         Task<User> GetUser();
         Task<IEnumerable<Profile>> GetProfiles();
-
         Task<Profile> GetProfile();
-
-        Task<Profile> GetProfileById(int id);
-
-        Task<Profile> GetProfileOf(int userId);
-
+        Task<Profile> GetProfileById(string id);
+        Task<Profile> GetProfileOf(string userId);
         Task<bool> CheckIfProfileExists();
-
         Task<Profile> CreateProfile(Profile profile);
-
         Task<Profile> UpdateProfile(Profile profile);
 
+        Task<IEnumerable<Profile>> GetFriendsOf(string userId);
+        Task<IEnumerable<FriendRequest>> GetOutgoingFriendRequests();
+        Task<IEnumerable<FriendRequest>> GetIncomingFriendRequests();
+        Task<FriendRequest> SendFriendRequestTo(string userId);
+        Task<bool> RemoveFriends(string userId);
 
         Task<IEnumerable<Workplace>> GetWorkplaces();
         Task<Workplace> GetWorkplaceById(int id);

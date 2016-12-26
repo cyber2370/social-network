@@ -22,9 +22,16 @@ namespace Managers.Implementations
             _applicationUserManager = applicationUserManager;
         }
 
-        public Task<IEnumerable<UserProfile>> GetAllUsers()
+        public async Task<IEnumerable<UserProfile>> GetAllUsers()
         {
-            return _userProfilesRepository.GetItemsAsync();
+            var users = (await _userProfilesRepository.GetItemsAsync()).ToList();
+
+            foreach(var user in users)
+            {
+                user.User = null;
+            }
+
+            return users;
         }
         public Task<UserProfile> GetUserProfile(string userId)
         {

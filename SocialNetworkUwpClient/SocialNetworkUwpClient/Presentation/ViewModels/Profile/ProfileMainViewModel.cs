@@ -43,7 +43,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
             set { Set(() => Profile, ref _profile, value); }
         }
 
-        private async void InitData(int count = 0)
+        private async void InitData()
         {
             Profile = new Data.Api.SocialNetworkApi.Social.Entities.Profile();
 
@@ -60,19 +60,11 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
                 else
                 {
                     HandleError(ex);
-
-                    if (count == 5)
-                        return;
-                    InitData(++count);
                 }
             }
             catch (Exception ex)
             {
                 HandleError(ex);
-
-                if (count == 5)
-                    return;
-                InitData(++count);
             }
         }
 

@@ -11,11 +11,11 @@ namespace SocialNetworkUwpClient.Business.Managers.Interfaces
     {
         Task<IEnumerable<Profile>> GetProfiles();
 
-        Task<Profile> GetProfileById(int id);
+        Task<Profile> GetProfileById(string id);
 
         Task<Profile> GetCurrentProfile();
 
-        Task<Profile> GetProfileOf(int userId);
+        Task<Profile> GetProfileOf(string userId);
 
         Task<bool> CheckIfProfileExists();
 

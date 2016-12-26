@@ -9,20 +9,20 @@ namespace Managers.Interfaces
     {
         Task<IEnumerable<FriendRequestModel>> GetAllFriendRequests();
 
-        Task<IEnumerable<FriendModel>> GetFriendsOf(int userId);
+        Task<IEnumerable<FriendModel>> GetFriendsOf(string userId);
 
-        Task<IEnumerable<FriendRequestModel>> GetFriendRequestsTo(int userId);
+        Task<IEnumerable<FriendRequestModel>> GetFriendRequestsTo(string userId);
 
-        Task<IEnumerable<FriendRequestModel>> GetFriendRequestsFrom(int userId);
+        Task<IEnumerable<FriendRequestModel>> GetFriendRequestsFrom(string userId);
 
-        Task<FriendRequestModel> GetFriendRequestById(int id);
+        Task<FriendRequestModel> GetFriendRequestById(string id);
 
-        Task<FriendRequestModel> AddFriendRequest(FriendRequestModel friendRequest);
+        Task<FriendRequestModel> AddFriendRequest(string senderId, string recipientId);
 
         Task<FriendRequestModel> UpdateFriendRequest(FriendRequestModel friendRequest);
 
-        Task<FriendRequestModel> ConfirmFriendRequest(FriendRequestModel friendRequest);
+        Task<FriendRequestModel> ConfirmFriendRequest(string senderId, string recipientId);
 
-        Task<bool> DeleteFriendRequest(int userId, int friendId);
+        Task<bool> DeleteFriendRequest(string userId, string friendId);
     }
 }

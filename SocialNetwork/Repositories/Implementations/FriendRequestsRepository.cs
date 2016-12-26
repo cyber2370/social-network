@@ -6,14 +6,14 @@ using Repositories.Interfaces;
 
 namespace Repositories.Implementations
 {
-    internal class FriendRequestsRepository : CrudRepositoryBase<FriendRequest, int>, IFriendRequestsRepository
+    internal class FriendRequestsRepository : CrudRepositoryBase<FriendRequest, string>, IFriendRequestsRepository
     {
         public FriendRequestsRepository(AppDbContext dbContext) 
             : base(dbContext, dbContext.FriendRequests)
         {
         }
 
-        protected override Expression<Func<FriendRequest, bool>> KeyPredicate(int id) =>
+        protected override Expression<Func<FriendRequest, bool>> KeyPredicate(string id) =>
             request => request.Id == id;
     }
 }

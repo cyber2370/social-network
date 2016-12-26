@@ -8,6 +8,31 @@ namespace DbContext.Entities
 {
     public class UserProfile
     {
+        public UserProfile()
+        {
+
+        }
+
+        public UserProfile(UserProfile profile)
+        {
+            UserId = profile.UserId;
+            Email = profile.Email;
+            Name = profile.Name;
+            Surname = profile.Surname;
+            Sex = profile.Sex;
+            HomeCountry = profile.HomeCountry;
+            AvatarUri = profile.AvatarUri;
+            BirthDate = profile.BirthDate;
+            RegistrationDate = profile.RegistrationDate;
+            AdditionalInformation = profile.AdditionalInformation;
+            Status = profile.Status;
+            StatusUpdated = profile.StatusUpdated;
+            RelationshipStatus = profile.RelationshipStatus;
+
+            IncomingFriendRequests = profile.IncomingFriendRequests;
+            OutgoingFriendRequests = profile.OutgoingFriendRequests;
+        }
+
         [Key, ForeignKey("User")]
         public string UserId { get; set; }
 

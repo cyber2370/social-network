@@ -5,6 +5,7 @@ using SocialNetworkUwpClient.Presentation.Views.Profile;
 using SocialNetworkUwpClient.Presentation.Views.Statistics;
 using SocialNetworkUwpClient.Presentation.Views.Workplaces;
 using LoginPage = SocialNetworkUwpClient.Presentation.Views.Auth.LoginPage;
+using SocialNetworkUwpClient.Presentation.Views.People;
 
 namespace SocialNetworkUwpClient.Presentation.Models
 {
@@ -24,6 +25,15 @@ namespace SocialNetworkUwpClient.Presentation.Models
         ProfileMain,
         [PageType(typeof(ProfileCreatingPage))]
         ProfileCreating,
+
+        [PageType(typeof(PeopleShellPage))]
+        PeopleShell,
+        [PageType(typeof(PersonProfilePage))]
+        PeopleProfile,
+        [PageType(typeof(PeopleListPage))]
+        PeopleList,
+        [PageType(typeof(PeopleFriendsListPage))]
+        FriendsList,
 
         [PageType(typeof(WorkplacesShellPage))]
         WorkplacesShell,

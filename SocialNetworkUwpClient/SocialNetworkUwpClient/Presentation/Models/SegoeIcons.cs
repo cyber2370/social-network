@@ -10,5 +10,6 @@ namespace SocialNetworkUwpClient.Presentation.Models
     {
         public const string User = "\xE181";
         public const string Workplace = "\xE821";
+        public const string People = "\xE716";
     }
 }

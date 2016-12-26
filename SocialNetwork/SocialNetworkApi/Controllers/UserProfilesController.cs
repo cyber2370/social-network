@@ -43,7 +43,14 @@ namespace SocialNetworkApi.Controllers
         [Route("all")]
         public async Task<IEnumerable<UserProfile>> GetProfiles()
         {
-            return (await _userProfilesManager.GetAllUsers()).Select(x => x.User.Profile = null);
+            var profiles = (await _userProfilesManager.GetAllUsers()).ToList();
+
+            for (int i = 0; i < profiles.Count; i++)
+            {
+                profiles[i] = new UserProfile(profiles[i]);
+            }
+
+            return profiles;
         }
 
         [HttpGet]
@@ -76,7 +83,7 @@ namespace SocialNetworkApi.Controllers
         [Route("users/{userId}")]
         public async Task<UserProfile> GetUserProfile(string userId)
         {
-            return await _userProfilesManager.GetUserProfile(userId);
+            return new UserProfile(await _userProfilesManager.GetUserProfile(userId));
         }
 
         [HttpGet]
@@ -151,36 +158,42 @@ namespace SocialNetworkApi.Controllers
         #region FriendsOperations
 
         [Route("{userId}/friends/")]
-        public async Task<IEnumerable<FriendModel>> GetFriendsOf()
+        public async Task<IEnumerable<FriendModel>> GetFriendsOf([FromUri]string userId)
         {
-            int userId = 1;
-
             return await _friendRequestsManager.GetFriendsOf(userId);
         }
-        
-        [Route("{userId}/sendedFriendsRequests")]
+
+        [Route("sendedFriendsRequests")]
         public async Task<IEnumerable<FriendRequestModel>> GetFriendRequestsOf()
         {
-            int userId = 1;
+            var user = await GetCurrentUser(_applicationUserManager);
 
-            return await _friendRequestsManager.GetFriendRequestsFrom(userId);
+            return await _friendRequestsManager.GetFriendRequestsFrom(user.Id);
         }
-        
-        [Route("{userId}/recievedFriendsRequests")]
+
+        [Route("recievedFriendsRequests")]
         public async Task<IEnumerable<FriendRequestModel>> GetFriendRequestsTo()
         {
-            int userId = 1;
+            var user = await GetCurrentUser(_applicationUserManager);
 
-            return await _friendRequestsManager.GetFriendRequestsTo(userId);
+            return await _friendRequestsManager.GetFriendRequestsTo(user.Id);
         }
-        
-        [HttpDelete]
-        [Route("{userId}/friends/{friendId}")]
-        public async Task<bool> RemoveFriends(int friendId)
-        {
-            int userId = 1;
 
-            return await _friendRequestsManager.DeleteFriendRequest(userId, friendId);
+        [Route("sendRequest/{recipientId}")]
+        public async Task<FriendRequestModel> PostFriendRequest([FromUri]string recipientId)
+        {
+            var user = await GetCurrentUser(_applicationUserManager);
+
+            return await _friendRequestsManager.AddFriendRequest(user.Id, recipientId);
+        }
+
+        [HttpDelete]
+        [Route("friends/{friendId}")]
+        public async Task<bool> RemoveFriends([FromUri]string friendId)
+        {
+            var user = await GetCurrentUser(_applicationUserManager);
+
+            return await _friendRequestsManager.DeleteFriendRequest(user.Id, friendId);
         }
 
         #endregion

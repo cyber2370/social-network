@@ -31,12 +31,12 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
             return GetRestApi().GetProfile();
         }
 
-        public Task<Profile> GetProfileById(int id)
+        public Task<Profile> GetProfileById(string id)
         {
             return GetRestApi().GetProfileById(id);
         }
 
-        public Task<Profile> GetProfileOf(int userId)
+        public Task<Profile> GetProfileOf(string userId)
         {
             return GetRestApi().GetProfileByUserId(userId);
         }
@@ -56,6 +56,32 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
             return GetRestApi().UpdateProfile(profile);
         }
 
+
+        // FRIENDS
+        public Task<IEnumerable<Profile>> GetFriendsOf(string userId)
+        {
+            return GetRestApi().GetFriendsOf(userId);
+        }
+
+        public Task<IEnumerable<FriendRequest>> GetOutgoingFriendRequests()
+        {
+            return GetRestApi().GetFriendRequestsOfCurrentUser();
+        }
+
+        public Task<IEnumerable<FriendRequest>> GetIncomingFriendRequests()
+        {
+            return GetRestApi().GetFriendRequestsToCurrentUser();
+        }
+
+        public Task<FriendRequest> SendFriendRequestTo(string userId)
+        {
+            return GetRestApi().SendFriendRequestTo(userId);
+        }
+
+        public Task<bool> RemoveFriends(string userId)
+        {
+            return GetRestApi().RemoveFriends(userId);
+        }
 
 
         // WORKPLACES 

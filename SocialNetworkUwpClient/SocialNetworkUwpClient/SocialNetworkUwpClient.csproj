@@ -91,13 +91,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Business\Entities\FriendModel.cs" />
     <Compile Include="Business\Factories\Implementations\ApiFactory.cs" />
     <Compile Include="Business\Factories\Interfaces\IApiFactory.cs" />
     <Compile Include="Business\Managers\Implementations\AuthenticationManager.cs" />
+    <Compile Include="Business\Managers\Implementations\FriendsManager.cs" />
     <Compile Include="Business\Managers\Implementations\ProfilesManager.cs" />
     <Compile Include="Business\Managers\Implementations\ReportsManager.cs" />
     <Compile Include="Business\Managers\Implementations\WorkplacesManager.cs" />
     <Compile Include="Business\Managers\Interfaces\IAuthenticationManager.cs" />
+    <Compile Include="Business\Managers\Interfaces\IFriendsManager.cs" />
     <Compile Include="Business\Managers\Interfaces\IProfilesManager.cs" />
     <Compile Include="Business\Managers\Interfaces\IReportsManager.cs" />
     <Compile Include="Business\Managers\Interfaces\IWorkplacesManager.cs" />
@@ -115,6 +118,7 @@
     <Compile Include="Data\Api\SocialNetworkApi\Auth\Implementations\AuthApi.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Auth\Implementations\RestApi.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Auth\Interfaces\IAuthApi.cs" />
+    <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\FriendRequest.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\Profile.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\Report.cs" />
     <Compile Include="Data\Api\SocialNetworkApi\Social\Entities\SessionInfoHolder.cs" />
@@ -140,6 +144,10 @@
     <Compile Include="Presentation\ViewModels\Common\ViewModelLocator.cs" />
     <Compile Include="Presentation\ViewModels\Login\LoginViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Login\RegisterViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\People\FriendsListViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\People\PeopleShellViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\People\PeopleListViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\People\PeopleProfileViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Profile\ProfileEditViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Profile\ProfileMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Profile\ProfileShellViewModel.cs" />
@@ -154,6 +162,18 @@
     </Compile>
     <Compile Include="Presentation\Views\Auth\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\People\PeopleFriendsListPage.xaml.cs">
+      <DependentUpon>PeopleFriendsListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\People\PeopleListPage.xaml.cs">
+      <DependentUpon>PeopleListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\People\PeopleShellPage.xaml.cs">
+      <DependentUpon>PeopleShellPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\People\PersonProfilePage.xaml.cs">
+      <DependentUpon>PersonProfilePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Profile\ProfileCreatingPage.xaml.cs">
       <DependentUpon>ProfileCreatingPage.xaml</DependentUpon>
@@ -226,6 +246,22 @@
     <Page Include="Presentation\Views\Auth\RegisterPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Presentation\Views\People\PeopleFriendsListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\People\PeopleListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\People\PeopleShellPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\People\PersonProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Presentation\Views\Profile\ProfileCreatingPage.xaml">
       <SubType>Designer</SubType>

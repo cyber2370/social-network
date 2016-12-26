@@ -22,7 +22,7 @@ namespace Repositories.Implementations
 
         public virtual async Task<IEnumerable<TEntity>> GetItemsAsync()
         {
-            return await Queryable.ToArrayAsync();
+            return await Queryable.AsNoTracking().ToArrayAsync();
         }
 
         public virtual async Task<IEnumerable<TEntity>> GetItemsAsync(Func<IQueryable<TEntity>, IQueryable<TEntity>> convertQuery)

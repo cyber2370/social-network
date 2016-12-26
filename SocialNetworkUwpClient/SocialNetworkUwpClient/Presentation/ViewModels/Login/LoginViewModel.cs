@@ -9,6 +9,9 @@ using SocialNetworkUwpClient.Presentation.Models;
 using SocialNetworkUwpClient.Presentation.ViewModels.Common;
 using SocialNetworkUwpClient.Presentation.Helpers;
 using SocialNetworkUwpClient.Presentation.Services.Implementations;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SocialNetworkUwpClient.Presentation.ViewModels.Login
 {
@@ -53,7 +56,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Login
         {
             try
             {
-                if (!ValidateInputs())
+                if (!await ValidateInputs())
                     return;
 
                 await _authenticationManager.Authorize(Username, Password);
@@ -69,9 +72,32 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Login
             }
         }
 
-        private bool ValidateInputs()
+        private async Task<bool> ValidateInputs()
         {
-            return Username.Length > 5 && Password.Length > 5;
+            IList<string> errors = new List<string>();
+
+            if(Username.Length < 6)
+            {
+                errors.Add("Username must contain more than 5 symbols!");
+            }
+
+            if(Password.Length < 6)
+            {
+                errors.Add("Password must contain more than 5 symbols!");
+            }
+
+            string errorString = "";
+            foreach(string err in errors)
+            {
+                errorString += "\r\n" + err;
+            }
+            if (errors.Any())
+            {
+                await ShowMessage(errorString);
+                return false;
+            }
+
+            return true;
         }
     }
 }
