@@ -27,7 +27,8 @@ namespace Managers.Implementations
             {
                 Genders = await GetGendersReport(),
                 Countries = await GetCountriesReport(),
-                Relationships = await GetRelationshipsReport()
+                Relationships = await GetRelationshipsReport(),
+                RegistrationDates = await GetRegistrationDatesReport()
             };
         }
 
@@ -53,7 +54,18 @@ namespace Managers.Implementations
         {
             var group = (await _userProfilesManager.GetAllUsers())
                 .GroupBy(x => x.HomeCountry)
+                .OrderBy(x => x.Key)
                 .Select(x => new Report<string> { Key = x.Key, CountKey = x.Count() });
+
+            return group;
+        }
+
+        public async Task<IEnumerable<Report<int>>> GetRegistrationDatesReport()
+        {
+            var group = (await _userProfilesManager.GetAllUsers())
+                .GroupBy(x => x.RegistrationDate.Date.Year)
+                .OrderByDescending(x => x.Key)
+                .Select(x => new Report<int> { Key = x.Key, CountKey = x.Count() });
 
             return group;
         }

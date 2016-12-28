@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Microsoft.Practices.ServiceLocation;
 using SocialNetworkUwpClient.Business.Managers.Interfaces;
@@ -19,6 +20,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Statistics
         private IEnumerable<Report<Sexes>> _genders;
         private IEnumerable<Report<RelationTypes>> _relationships;
         private IEnumerable<Report<string>> _countries;
+        private IEnumerable<Report<int>> _registrationDates;
 
         public StatisticsUsersViewModel(IReportsManager reportsManager)
         {
@@ -37,6 +39,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Statistics
                 Genders = UsersReport.Genders;
                 Relationships = UsersReport.Relationships;
                 Countries = UsersReport.Countries;
+                RegistrationDates = UsersReport.RegistrationDates;
             }
         }
 
@@ -56,6 +59,12 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Statistics
         {
             get { return _countries; }
             set { Set(() => Countries, ref _countries, value); }
+        }
+
+        public IEnumerable<Report<int>> RegistrationDates
+        {
+            get { return _registrationDates; }
+            set { Set(() => RegistrationDates, ref _registrationDates, value); }
         }
 
         private async void LoadData()

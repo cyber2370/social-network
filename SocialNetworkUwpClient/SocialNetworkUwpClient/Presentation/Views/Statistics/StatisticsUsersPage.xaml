@@ -17,12 +17,16 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer Grid.Column="1" x:Name="ScrollViewer">
+        <ScrollViewer x:Name="ScrollViewer" Grid.Column="1">
             <StackPanel Padding="30">
                 <TextBlock Margin="10" FontSize="28">
                     Gender statistics
                 </TextBlock>
+                <Button x:Name="GenderPrintButton" Click="GenderPrintButton_OnClick">
+                    Print Gender statistics
+                </Button>
                 <my1:SfDataGrid
+                    x:Name="GenderDataGrid"
                     AutoGenerateColumns="False"
                     ColumnSizer="Star"
                     ItemsSource="{Binding Genders}">
@@ -34,7 +38,11 @@
                 <TextBlock Margin="0,40,0,10" FontSize="28">
                     Relationships statistics
                 </TextBlock>
+                <Button x:Name="RelationshipPrintButton" Click="RelationshipPrintButton_OnClick">
+                    Print Relationships statistics
+                </Button>
                 <my1:SfDataGrid
+                    x:Name="RelationshipDataGrid"
                     AutoGenerateColumns="False"
                     ColumnSizer="Star"
                     ItemsSource="{Binding Relationships}">
@@ -46,7 +54,11 @@
                 <TextBlock Margin="0,40,0,10" FontSize="28">
                     Country statistics
                 </TextBlock>
+                <Button x:Name="CountryPrintButton" Click="CountryPrintButton_OnClick">
+                    Print Country statistics
+                </Button>
                 <my1:SfDataGrid
+                    x:Name="CountryDataGrid"
                     AutoGenerateColumns="False"
                     ColumnSizer="Star"
                     ItemsSource="{Binding Countries}">
@@ -56,16 +68,24 @@
                     </my1:SfDataGrid.Columns>
                 </my1:SfDataGrid>
 
+                <TextBlock Margin="0,40,0,10" FontSize="28">
+                    Registration Statistics
+                </TextBlock>
+                <Button x:Name="RegistrationPrintButton" Click="RegisterPrintButton_OnClick">
+                    Print Registration statistics
+                </Button>
+                <my1:SfDataGrid
+                    x:Name="RegistrationDataGrid"
+                    AutoGenerateColumns="False"
+                    ColumnSizer="Star"
+                    ItemsSource="{Binding RegistrationDates}">
+                    <my1:SfDataGrid.Columns>
+                        <my1:GridTextColumn HeaderText="Year" MappingName="Key" />
+                        <my1:GridTextColumn HeaderText="Count" MappingName="CountKey" />
+                    </my1:SfDataGrid.Columns>
+                </my1:SfDataGrid>
+
             </StackPanel>
         </ScrollViewer>
-
-        <Button
-            Grid.Column="0"
-            Width="80"
-            VerticalAlignment="Stretch"
-            Background="Wheat"
-            Click="PrintButton_OnClick">
-            <TextBlock TextWrapping="WrapWholeWords">Print Report</TextBlock>
-        </Button>
     </Grid>
 </Page>

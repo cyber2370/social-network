@@ -16,6 +16,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+
         <notification:SfBusyIndicator
             Grid.RowSpan="3"
             Grid.ColumnSpan="3"
@@ -38,41 +39,48 @@
                 </DataTemplate>
             </notification:SfBusyIndicator.HeaderTemplate>
         </notification:SfBusyIndicator>
-
         <StackPanel Grid.Column="1">
-            <TextBlock
-                Padding="20"
-                FontSize="25"
-                FontWeight="Bold">
-                All Users
-            </TextBlock>
+            <Button x:Name="PeopleReportButton" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                    Click="PeopleReportButton_OnClick">
+                Print People Report
+            </Button>
 
-            <ListView
-                Padding="25"
-                ItemsSource="{Binding People}"
-                ScrollViewer.VerticalScrollMode="Auto"
-                SelectedItem="{Binding SelectedPerson, Mode=TwoWay}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <RelativePanel Height="40">
-                            <Image x:Name="AvatarImage" Source="ms-appx:///Assets/Profile/UnknownProfileAvatar.png" />
-                            <TextBlock
-                                x:Name="NameTextBlock"
-                                RelativePanel.AlignTopWith="AvatarImage"
-                                RelativePanel.RightOf="AvatarImage">
-                                <Run Text="{Binding Name}" />
-                                <Run />
-                                <Run Text="{Binding Surname}" />
-                            </TextBlock>
-                            <TextBlock
-                                x:Name="CityTextBlock"
-                                RelativePanel.Below="NameTextBlock"
-                                RelativePanel.RightOf="AvatarImage"
-                                Text="{Binding HomeCountry}" />
-                        </RelativePanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <StackPanel x:Name="MainStackPanel">
+                <TextBlock
+                    Padding="20"
+                    FontSize="25"
+                    FontWeight="Bold">
+                    All Users
+                </TextBlock>
+
+                <ListView
+                    Padding="25"
+                    ItemsSource="{Binding People}"
+                    ScrollViewer.VerticalScrollMode="Auto"
+                    SelectedItem="{Binding SelectedPerson, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <RelativePanel Height="40">
+                                <Image x:Name="AvatarImage" Source="ms-appx:///Assets/Profile/UnknownProfileAvatar.png" />
+                                <TextBlock
+                                    x:Name="NameTextBlock"
+                                    RelativePanel.AlignTopWith="AvatarImage"
+                                    RelativePanel.RightOf="AvatarImage">
+                                    <Run Text="{Binding Name}" />
+                                    <Run />
+                                    <Run Text="{Binding Surname}" />
+                                </TextBlock>
+                                <TextBlock
+                                    x:Name="CityTextBlock"
+                                    RelativePanel.Below="NameTextBlock"
+                                    RelativePanel.RightOf="AvatarImage"
+                                    Text="{Binding HomeCountry}" />
+                            </RelativePanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
         </StackPanel>
+
     </Grid>
 </Page>

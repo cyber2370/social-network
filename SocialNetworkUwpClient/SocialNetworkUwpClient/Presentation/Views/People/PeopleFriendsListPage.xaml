@@ -39,8 +39,8 @@
                 </DataTemplate>
             </notification:SfBusyIndicator.HeaderTemplate>
         </notification:SfBusyIndicator>
-
-        <StackPanel Grid.Column="1">
+        
+        <StackPanel x:Name="MainStackPanel" Grid.Column="1">
             <TextBlock
                 Padding="20"
                 FontSize="25"

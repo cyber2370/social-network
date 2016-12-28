@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SocialNetworkUwpClient.Presentation.Models;
 
 namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities
@@ -10,5 +11,7 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities
         public IEnumerable<Report<RelationTypes>> Relationships { get; set; }
 
         public IEnumerable<Report<string>> Countries { get; set; }
+
+        public IEnumerable<Report<int>> RegistrationDates { get; set; }
     }
 }

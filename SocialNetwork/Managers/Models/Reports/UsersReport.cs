@@ -15,5 +15,7 @@ namespace Managers.Models.Reports
 
         public IEnumerable<Report<string>> Countries { get; set; }
 
+        public IEnumerable<Report<int>> RegistrationDates { get; set; }
+
     }
 }
