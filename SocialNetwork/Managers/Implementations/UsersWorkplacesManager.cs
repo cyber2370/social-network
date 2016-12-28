@@ -34,14 +34,14 @@ namespace Managers.Implementations
             return usersWorkplaces.Select(Mapper.Map<UserWorkplace, UserWorkplace>);
         }
 
-        public async Task<IEnumerable<UserWorkplace>> GetUsersWorkplacesByUserId(int userId)
+        public async Task<IEnumerable<UserWorkplace>> GetUsersWorkplacesByUserId(string userId)
         {
             var usersWorkplaces = await _usersWorkplacesRepository.GetItemsAsync(x => x.Where(uw => uw.UserId == userId));
 
             return usersWorkplaces.Select(Mapper.Map<UserWorkplace, UserWorkplace>);
         }
 
-        public async Task<UserWorkplace> GetUserWorkplaceById(int userId, int workplaceId)
+        public async Task<UserWorkplace> GetUserWorkplaceById(string userId, int workplaceId)
         {
             var userWorkplace = await _usersWorkplacesRepository.GetItemAsync
                 (x => x.Where(uw => uw.UserId == userId && uw.WorkplaceId == workplaceId));
@@ -63,7 +63,7 @@ namespace Managers.Implementations
             return Mapper.Map<UserWorkplace, UserWorkplace>(await _usersWorkplacesRepository.UpdateItemAsync(dbUserWorkplace));
         }
 
-        public async Task<bool> DeleteUserWorkplace(int userId, int workplaceId)
+        public async Task<bool> DeleteUserWorkplace(string userId, int workplaceId)
         {
             try
             {

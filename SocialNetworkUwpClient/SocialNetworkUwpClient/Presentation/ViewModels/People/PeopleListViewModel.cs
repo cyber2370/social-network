@@ -6,6 +6,7 @@ using ProfileModel = SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Ent
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Practices.ServiceLocation;
+using SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities;
 using SocialNetworkUwpClient.Presentation.Models;
 using SocialNetworkUwpClient.Presentation.Services.Interfaces;
 
@@ -18,7 +19,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.People
 
         private IList<ProfileModel> _people;
         
-        private ProfileModel _currentUserProfile;
+        private User _currentUser;
         private ProfileModel _selectedPerson;
 
         public PeopleListViewModel(
@@ -28,7 +29,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.People
             _profilesManager = profilesManager;
             _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("PeopleInternal");
 
-            _currentUserProfile = preferencesService.Profile;
+            _currentUser = preferencesService.User;
 
             LoadData();
         }
@@ -54,12 +55,14 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.People
         {
             try
             {
+                IsBusy = true;
                 var profiles = (await _profilesManager.GetProfiles()).ToList();
 
-                var currentProfile = profiles.SingleOrDefault(x => x.UserId == _currentUserProfile.UserId);
+                var currentProfile = profiles.SingleOrDefault(x => x.UserId == _currentUser.Id);
                 profiles.Remove(currentProfile);
 
                 People = profiles;
+                IsBusy = false;
             }
             catch (Exception ex)
             {

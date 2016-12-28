@@ -145,6 +145,8 @@
     <Compile Include="Presentation\ViewModels\Login\LoginViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Login\RegisterViewModel.cs" />
     <Compile Include="Presentation\ViewModels\People\FriendsListViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\People\IncomingFriendRequestsViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\People\OutgoingFriendRequestsViewModel.cs" />
     <Compile Include="Presentation\ViewModels\People\PeopleShellViewModel.cs" />
     <Compile Include="Presentation\ViewModels\People\PeopleListViewModel.cs" />
     <Compile Include="Presentation\ViewModels\People\PeopleProfileViewModel.cs" />
@@ -162,6 +164,12 @@
     </Compile>
     <Compile Include="Presentation\Views\Auth\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\People\IncomingFriendRequestsPage.xaml.cs">
+      <DependentUpon>IncomingFriendRequestsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\People\OutgoingFriendRequestsPage.xaml.cs">
+      <DependentUpon>OutgoingFriendRequestsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\People\PeopleFriendsListPage.xaml.cs">
       <DependentUpon>PeopleFriendsListPage.xaml</DependentUpon>
@@ -246,6 +254,14 @@
     <Page Include="Presentation\Views\Auth\RegisterPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Presentation\Views\People\IncomingFriendRequestsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\People\OutgoingFriendRequestsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Presentation\Views\People\PeopleFriendsListPage.xaml">
       <SubType>Designer</SubType>

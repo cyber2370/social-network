@@ -65,13 +65,16 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
 
             try
             {
+                IsBusy = true;
                 _preferencesService.Profile = await _profilesManager.CreateProfile(Profile);
+                IsBusy = false;
 
                 NavigationService.NavigateTo(
                     _preferencesService.Profile != null ? PageKeys.Shell : PageKeys.Login);
             }
             catch (Exception ex)
             {
+                IsBusy = false;
                 HandleError(ex);
             }
         }
@@ -82,21 +85,29 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
 
             try
             {
+                IsBusy = true;
                 _preferencesService.Profile = await _profilesManager.UpdateProfile(Profile);
 
                 var csl = ServiceLocator.Current.GetInstance<ICustomNavigationService>("ProfileInternal");
+                IsBusy = false;
+
                 csl.NavigateTo(PageKeys.ProfileMain);
             }
             catch (Exception ex)
             {
+                IsBusy = false;
                 HandleError(ex);
             }
         }
 
         private void InitData()
         {
+            IsBusy = true;
+
             SexList = Enum.GetValues(typeof(Sexes)).Cast<Sexes>().ToList();
             RelationTypeList = Enum.GetValues(typeof(RelationTypes)).Cast<RelationTypes>().ToList();
+
+            IsBusy = false;
         }
     }
 }

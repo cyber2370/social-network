@@ -2,7 +2,7 @@
 
 namespace Repositories.Interfaces
 {
-    public interface IFriendRequestsRepository : ICrudRepositoryBase<FriendRequest, string>
+    public interface IFriendRequestsRepository : ICrudRepositoryBase<FriendRequest, int>
     {
     }
 }

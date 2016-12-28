@@ -73,6 +73,11 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
             return GetRestApi().GetFriendRequestsToCurrentUser();
         }
 
+        public Task<bool> ConfirmFriendRequest(string friendId)
+        {
+            return GetRestApi().ConfirmFriendRequest(friendId);
+        }
+
         public Task<FriendRequest> SendFriendRequestTo(string userId)
         {
             return GetRestApi().SendFriendRequestTo(userId);

@@ -167,6 +167,8 @@ namespace SocialNetworkUwpClient
             SimpleIoc.Default.Register<PeopleProfileViewModel>();
             SimpleIoc.Default.Register<PeopleListViewModel>();
             SimpleIoc.Default.Register<FriendsListViewModel>();
+            SimpleIoc.Default.Register<IncomingFriendRequestsViewModel>();
+            SimpleIoc.Default.Register<OutgoingFriendRequestsViewModel>();
 
             SimpleIoc.Default.Register<WorkplacesShellViewModel>();
             SimpleIoc.Default.Register<WorkplacesMainViewModel>();

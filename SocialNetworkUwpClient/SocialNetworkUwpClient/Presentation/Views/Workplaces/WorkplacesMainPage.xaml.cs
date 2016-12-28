@@ -53,5 +53,33 @@ namespace SocialNetworkUwpClient.Presentation.Views.Workplaces
 
             await _viewModel.DeleteWorkplace(itemToDelete);
         }
+
+        private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            var selectedValues = SfDataGrid.SelectedItems;
+            _viewModel.FilterCollection(SearchTextBox.Text);
+
+            var filteredColletion = _viewModel.FilteredWorkplaces;
+            var collectionFromSfDataGrid = _viewModel.Workplaces;
+
+            selectedValues.Clear();
+
+            if (!filteredColletion.Any())
+                return;
+
+            foreach (var element in collectionFromSfDataGrid.Intersect(filteredColletion))
+            {
+                selectedValues.Add(element);
+            }
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            SfDataGrid.PrintSettings.PrintScaleOption = PrintScaleOptions.FitAllColumnsonOnePage;
+            SfDataGrid.PrintSettings.AllowColumnWidthFitToPrintPage = true;
+            SfDataGrid.PrintSettings.AllowRepeatHeaders = true;
+
+            SfDataGrid.Print();
+        }
     }
 }

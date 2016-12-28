@@ -21,6 +21,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Login
             _profilesManager = profilesManager;
 
             RegisterCommand = new RelayCommand(Register);
+            IsBusy = false;
         }
 
         public ICommand RegisterCommand { get; set; }
@@ -37,18 +38,22 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Login
             {
                 if (!ValidateInputs())
                     return;
-
+                IsBusy = true;
                 await _authenticationManager.Register(Username, Password);
+                IsBusy = false;
 
                 await DialogService.ShowMessage("Registration successful!", "Registration");
 
+                IsBusy = true;
                 await _authenticationManager.Authorize(Username, Password);
-
                 bool isProfileCreated = await _profilesManager.CheckIfProfileExists();
+                IsBusy = false;
+
                 NavigationService.NavigateTo(isProfileCreated ? PageKeys.Shell : PageKeys.ProfileCreating);
             }
             catch (Exception ex)
             {
+                IsBusy = false;
                 HandleError(ex);
             }
         }

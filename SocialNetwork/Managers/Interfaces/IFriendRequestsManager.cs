@@ -15,7 +15,7 @@ namespace Managers.Interfaces
 
         Task<IEnumerable<FriendRequestModel>> GetFriendRequestsFrom(string userId);
 
-        Task<FriendRequestModel> GetFriendRequestById(string id);
+        Task<FriendRequestModel> GetFriendRequestById(int id);
 
         Task<FriendRequestModel> AddFriendRequest(string senderId, string recipientId);
 

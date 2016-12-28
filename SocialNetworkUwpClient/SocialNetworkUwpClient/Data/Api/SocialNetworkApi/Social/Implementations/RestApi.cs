@@ -151,6 +151,13 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Implementation
                 .GetAsync<IEnumerable<FriendRequest>>();
         }
 
+        public Task<bool> ConfirmFriendRequest(string friendId)
+        {
+            return Url($"userProfiles/friendRequest/{friendId}/confirm")
+                .FormUrlEncoded()
+                .PostAsync<bool>();
+        }
+
         public Task<FriendRequest> SendFriendRequestTo(string userId)
         {
             return Url($"userProfiles/sendRequest/{userId}")

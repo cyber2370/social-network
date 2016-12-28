@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:SocialNetworkUwpClient.Presentation.Views.Profile"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:notification="using:Syncfusion.UI.Xaml.Controls.Notification"
     DataContext="{Binding ProfileMain, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
@@ -13,6 +14,30 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
+
+
+        <notification:SfBusyIndicator
+            Grid.RowSpan="3"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            Canvas.ZIndex="10"
+            Header="Loading..."
+            IsBusy="{Binding IsBusy, Mode=OneWay}"
+            ViewboxHeight="150"
+            ViewboxWidth="150">
+            <notification:SfBusyIndicator.HeaderTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,0,0,18">
+                        <TextBlock
+                            FontSize="24"
+                            FontWeight="Bold"
+                            Text="{Binding}" />
+                    </Grid>
+                </DataTemplate>
+            </notification:SfBusyIndicator.HeaderTemplate>
+        </notification:SfBusyIndicator>
 
 
         <RelativePanel

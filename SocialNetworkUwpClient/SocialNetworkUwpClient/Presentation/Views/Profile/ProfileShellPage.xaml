@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:SocialNetworkUwpClient.Presentation.Views.Profile"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:notification="using:Syncfusion.UI.Xaml.Controls.Notification"
     DataContext="{Binding ProfileShell, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 

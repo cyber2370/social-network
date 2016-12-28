@@ -1,15 +1,16 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DbContext.Entities
 {
     public class FriendRequest
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
-        public string RequesterId { get; set; }
+        public string RequesterUserId { get; set; }
         public UserProfile Requester { get; set; }
 
-        public string ConfirmerId { get; set; }
+        public string ConfirmerUserId { get; set; }
         public UserProfile Confirmer { get; set; }
 
         public DateTime RequestedDateTime { get; set; }

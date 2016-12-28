@@ -25,6 +25,8 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Common
         public PeopleProfileViewModel PersonProfile => GetViewModel<PeopleProfileViewModel>();
         public PeopleListViewModel PeopleList => GetViewModel<PeopleListViewModel>();
         public FriendsListViewModel FriendsList => GetViewModel<FriendsListViewModel>();
+        public IncomingFriendRequestsViewModel IncomingFriendRequestList => GetViewModel<IncomingFriendRequestsViewModel>();
+        public OutgoingFriendRequestsViewModel OutgoingFriendRequestList => GetViewModel<OutgoingFriendRequestsViewModel>();
 
 
         public WorkplacesShellViewModel WorkplacesShell => GetViewModel<WorkplacesShellViewModel>();

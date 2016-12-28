@@ -105,8 +105,8 @@ namespace SocialNetworkApi.Controllers
                 model.RegistrationDate = DateTime.Now;
                 model.StatusUpdated = DateTime.Now;
                 model.UserId = user.Id;
-                model.IncomingFriendRequests = new List<FriendRequest>();
-                model.OutgoingFriendRequests = new List<FriendRequest>();
+                //model.IncomingFriendRequests = new List<FriendRequest>();
+                //model.OutgoingFriendRequests = new List<FriendRequest>();
 
                 return await _userProfilesManager.CreateProfile(model);
             }
@@ -121,7 +121,7 @@ namespace SocialNetworkApi.Controllers
         {
             try
             {
-                if (model.UserId == String.Empty)
+                if (model.UserId == string.Empty)
                 {
                     return null;
                 }
@@ -179,6 +179,17 @@ namespace SocialNetworkApi.Controllers
             return await _friendRequestsManager.GetFriendRequestsTo(user.Id);
         }
 
+        [Route("friendRequest/{friendId}/confirm")]
+        [HttpPost]
+        public async Task<bool> ConfirmFriendRequest([FromUri]string friendId)
+        {
+            var user = await GetCurrentUser(_applicationUserManager);
+
+            await _friendRequestsManager.ConfirmFriendRequest(friendId, user.Id);
+
+            return true;
+        }
+
         [Route("sendRequest/{recipientId}")]
         public async Task<FriendRequestModel> PostFriendRequest([FromUri]string recipientId)
         {
@@ -202,20 +213,20 @@ namespace SocialNetworkApi.Controllers
 
         [HttpGet]
         [Route("{userId}/messagesWith/{opponentId}")]
-        public async Task<IEnumerable<MessageModel>> GetUserMessagesWith(int opponentId)
+        public async Task<IEnumerable<MessageModel>> GetUserMessagesWith(string opponentId)
         {
-            int userId = 1;
+            var user = await GetCurrentUser(_applicationUserManager);
 
-            return await _messagesManager.GetMessagesBetween(userId, opponentId);
+            return await _messagesManager.GetMessagesBetween(user.Id, opponentId);
         }
 
         [HttpGet]
         [Route("{userId}/messages")]
         public async Task<IEnumerable<MessageModel>> GetUserMessages()
         {
-            int userId = 1;
+            var user = await GetCurrentUser(_applicationUserManager);
 
-            return await _messagesManager.GetMessagesOf(userId);
+            return await _messagesManager.GetMessagesOf(user.Id);
         }
 
         #endregion
@@ -224,20 +235,18 @@ namespace SocialNetworkApi.Controllers
 
         [HttpGet]
         [Route("{userId}/workplaces/")]
-        public async Task<IEnumerable<UserWorkplace>> GetUserWorkplaces()
+        public async Task<IEnumerable<UserWorkplace>> GetUserWorkplaces(string userId)
         {
-            int userId = 1;
-
             return await _usersWorkplacesManager.GetUsersWorkplacesByUserId(userId);
         }
 
         [HttpDelete]
-        [Route("{userId}/workplaces/{workplaceId}")]
+        [Route("workplaces/{workplaceId}")]
         public async Task<bool> RemoveWorkplaceFromUser(int workplaceId)
         {
-            int userId = 1;
+            var user = await GetCurrentUser(_applicationUserManager);
 
-            return await _usersWorkplacesManager.DeleteUserWorkplace(userId, workplaceId);
+            return await _usersWorkplacesManager.DeleteUserWorkplace(user.Id, workplaceId);
         }
 
         #endregion

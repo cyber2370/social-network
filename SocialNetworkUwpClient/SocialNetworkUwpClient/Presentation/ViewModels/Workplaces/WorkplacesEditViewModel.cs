@@ -41,7 +41,9 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Workplaces
         {
             try
             {
+                IsBusy = true;
                 await _workplacesManager.CreateWorkplace(Workplace);
+                IsBusy = false;
 
                 _customNavigationService.NavigateTo(PageKeys.WorkplacesMain);
             }
@@ -55,7 +57,9 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Workplaces
         {
             try
             {
+                IsBusy = true;
                 await _workplacesManager.UpdateWorkplace(Workplace);
+                IsBusy = false;
                 
                 _customNavigationService.NavigateTo(PageKeys.WorkplacesMain);
             }

@@ -49,13 +49,20 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
 
             try
             {
+                IsBusy = true;
                 Profile = await _profilesManager.GetCurrentProfile();
+                IsBusy = false;
             }
             catch (HttpException ex)
             {
+                IsBusy = false;
                 if (ex.StatusCode == HttpStatusCode.NotFound)
                 {
                     NavigationService.NavigateTo(PageKeys.ProfileCreating);
+                }
+                else if (ex.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    await ShowMessage("You entered wrong credentials");
                 }
                 else
                 {
@@ -64,6 +71,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Profile
             }
             catch (Exception ex)
             {
+                IsBusy = false;
                 HandleError(ex);
             }
         }

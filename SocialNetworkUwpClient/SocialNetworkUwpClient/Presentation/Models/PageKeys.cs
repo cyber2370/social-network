@@ -34,6 +34,10 @@ namespace SocialNetworkUwpClient.Presentation.Models
         PeopleList,
         [PageType(typeof(PeopleFriendsListPage))]
         FriendsList,
+        [PageType(typeof(IncomingFriendRequestsPage))]
+        IncomingFriendRequestList,
+        [PageType(typeof(OutgoingFriendRequestsPage))]
+        OutgoingFriendRequestList,
 
         [PageType(typeof(WorkplacesShellPage))]
         WorkplacesShell,

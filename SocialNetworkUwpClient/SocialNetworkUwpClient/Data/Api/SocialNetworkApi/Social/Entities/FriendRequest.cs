@@ -4,17 +4,15 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Entities
 {
     public class FriendRequest
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
-        public string SenderId { get; set; }
-        public Profile Sender { get; set; }
+        public string RequesterUserId { get; set; }
+        public Profile Requester { get; set; }
 
-        public string AddresseeId { get; set; }
-        public Profile Addressee { get; set; }
+        public string ConfirmerUserId { get; set; }
+        public Profile Confirmer { get; set; }
 
         public DateTime RequestDateTime { get; set; }
-
-        public bool IsConfirmed { get; set; }
 
         public DateTime? ConfirmedDateTime { get; set; }
     }

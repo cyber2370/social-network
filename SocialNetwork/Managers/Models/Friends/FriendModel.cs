@@ -12,6 +12,6 @@ namespace Managers.Models.Friends
 
         public string Surname { get; set; }
 
-        public Uri AvatarUri { get; set; }
+        public string AvatarUri { get; set; }
     }
 }

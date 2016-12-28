@@ -27,21 +27,21 @@ namespace Managers.Implementations
                 .Select(Mapper.Map<Message, MessageModel>);
         }
 
-        public async Task<IEnumerable<MessageModel>> GetMessagesOf(int userId)
+        public async Task<IEnumerable<MessageModel>> GetMessagesOf(string userId)
         {
             return (await _messagesRepository.GetItemsAsync(
                 x => x.Where(msg => msg.SenderId == userId || msg.AddresseeId == userId)))
                 .Select(Mapper.Map<Message, MessageModel>);
         }
 
-        public async Task<IEnumerable<MessageModel>> GetUserMessagesToUser(int senderId, int recipientId)
+        public async Task<IEnumerable<MessageModel>> GetUserMessagesToUser(string senderId, string recipientId)
         {
             return (await _messagesRepository.GetItemsAsync(
                 x => x.Where(msg => msg.SenderId == senderId && msg.AddresseeId == recipientId)))
                 .Select(Mapper.Map<Message, MessageModel>);
         }
 
-        public async Task<IEnumerable<MessageModel>> GetMessagesBetween(int firstUserId, int secondUserId)
+        public async Task<IEnumerable<MessageModel>> GetMessagesBetween(string firstUserId, string secondUserId)
         {
             return (await _messagesRepository.GetItemsAsync(
                 x => x.Where(msg =>
@@ -50,7 +50,7 @@ namespace Managers.Implementations
                 .Select(Mapper.Map<Message, MessageModel>);
         }
 
-        public async Task<IEnumerable<MessageModel>> GetRecievedMessagesBy(int recipientId)
+        public async Task<IEnumerable<MessageModel>> GetRecievedMessagesBy(string recipientId)
         {
             return (await _messagesRepository.GetItemsAsync(
                 x => x.Where(msg => msg.AddresseeId == recipientId)))

@@ -8,13 +8,13 @@ namespace Managers.Interfaces
     {
         Task<IEnumerable<MessageModel>> GetAllMessages();
 
-        Task<IEnumerable<MessageModel>> GetMessagesOf(int userId);
+        Task<IEnumerable<MessageModel>> GetMessagesOf(string userId);
 
-        Task<IEnumerable<MessageModel>> GetUserMessagesToUser(int senderId, int recipientId);
+        Task<IEnumerable<MessageModel>> GetUserMessagesToUser(string senderId, string recipientId);
 
-        Task<IEnumerable<MessageModel>> GetMessagesBetween(int firstUserId, int secondUserId);
+        Task<IEnumerable<MessageModel>> GetMessagesBetween(string firstUserId, string secondUserId);
 
-        Task<IEnumerable<MessageModel>> GetRecievedMessagesBy(int recipientId);
+        Task<IEnumerable<MessageModel>> GetRecievedMessagesBy(string recipientId);
 
         Task<MessageModel> GetMessageById(int id);
 

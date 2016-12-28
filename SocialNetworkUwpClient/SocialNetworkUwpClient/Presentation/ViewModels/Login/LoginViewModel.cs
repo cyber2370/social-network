@@ -37,6 +37,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Login
 
             string defaultUsername = CustomNavigationService.CurrentPageParams?.ToString() ?? "";
             Username = defaultUsername;
+            IsBusy = false;
         }
 
         public ICommand LoginCommand { get; set; }
@@ -59,7 +60,11 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Login
                 if (!await ValidateInputs())
                     return;
 
+                IsBusy = true;
+
                 await _authenticationManager.Authorize(Username, Password);
+
+                IsBusy = false;
 
                 await DialogService.ShowMessage("Authorization successful!", "Authorization");
 
@@ -68,6 +73,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Login
             }
             catch (Exception ex)
             {
+                IsBusy = false;
                 HandleError(ex);
             }
         }

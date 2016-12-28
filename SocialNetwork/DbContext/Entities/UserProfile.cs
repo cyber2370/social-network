@@ -29,8 +29,8 @@ namespace DbContext.Entities
             StatusUpdated = profile.StatusUpdated;
             RelationshipStatus = profile.RelationshipStatus;
 
-            IncomingFriendRequests = profile.IncomingFriendRequests;
-            OutgoingFriendRequests = profile.OutgoingFriendRequests;
+            //IncomingFriendRequests = profile.IncomingFriendRequests;
+            //OutgoingFriendRequests = profile.OutgoingFriendRequests;
         }
 
         [Key, ForeignKey("User")]
@@ -63,7 +63,7 @@ namespace DbContext.Entities
 
         public virtual ApplicationUser User { get; set; }
 
-        public IList<FriendRequest> IncomingFriendRequests { get; set; }
-        public IList<FriendRequest> OutgoingFriendRequests { get; set; }
+        //public IList<FriendRequest> IncomingFriendRequests { get; set; }
+        //public IList<FriendRequest> OutgoingFriendRequests { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace SocialNetworkUwpClient.Data.Api.SocialNetworkApi.Social.Interfaces
         Task<IEnumerable<Profile>> GetFriendsOf(string userId);
         Task<IEnumerable<FriendRequest>> GetOutgoingFriendRequests();
         Task<IEnumerable<FriendRequest>> GetIncomingFriendRequests();
+        Task<bool> ConfirmFriendRequest(string friendId);
         Task<FriendRequest> SendFriendRequestTo(string userId);
         Task<bool> RemoveFriends(string userId);
 

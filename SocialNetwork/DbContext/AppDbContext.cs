@@ -35,18 +35,6 @@ namespace DbContext
                 .HasKey(x => x.UserId)
                 .HasRequired(x => x.User)
                 .WithRequiredDependent(x => x.Profile);
-
-            modelBuilder
-                .Entity<FriendRequest>()
-                .HasRequired(p => p.Requester)
-                .WithMany(x => x.OutgoingFriendRequests)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder
-                .Entity<FriendRequest>()
-                .HasRequired(p => p.Confirmer)
-                .WithMany(x => x.IncomingFriendRequests)
-                .WillCascadeOnDelete(false);
         }
 
         public static AppDbContext Create()

@@ -33,7 +33,9 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.People
         public ICommand NavTo { get; set; }
 
         public PageKeys People => PageKeys.PeopleList;
-        public PageKeys Friends => PageKeys.PeopleList;
+        public PageKeys Friends => PageKeys.FriendsList;
+        public PageKeys OutgoingRequests => PageKeys.OutgoingFriendRequestList;
+        public PageKeys IncomingRequests => PageKeys.IncomingFriendRequestList;
 
         public Type CurrentInnerPageType
         {

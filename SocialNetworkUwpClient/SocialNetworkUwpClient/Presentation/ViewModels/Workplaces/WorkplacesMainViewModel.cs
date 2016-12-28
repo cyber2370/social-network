@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Graphics.Printing;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.ServiceLocation;
 using SocialNetworkUwpClient.Business.Managers.Interfaces;
@@ -19,7 +20,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Workplaces
         private readonly ICustomNavigationService _customNavigationService;
         private readonly IWorkplacesManager _workplacesManager;
 
-        private ObservableCollection<Workplace> _workplaces;
+        private IList<Workplace> _workplaces;
 
         public WorkplacesMainViewModel(IWorkplacesManager workplacesManager)
         {
@@ -29,11 +30,13 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Workplaces
             InitData();
         }
 
-        public ObservableCollection<Workplace> Workplaces
+        public IList<Workplace> Workplaces
         {
             get { return _workplaces; }
             set { Set(() => Workplaces, ref _workplaces, value); }
         }
+
+        public IList<Workplace> FilteredWorkplaces { get; set; }
 
         public Workplace SelectedWorkplace { get; set; }
 
@@ -44,24 +47,46 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Workplaces
 
         public async Task DeleteWorkplace(object wp)
         {
-            var workplace = wp as Workplace;
+            try
+            {
+                var workplace = wp as Workplace;
 
-            if (workplace == null)
-                return;
+                if (workplace == null)
+                    return;
 
-            await _workplacesManager.DeleteWorkplace(workplace.Id);
+                IsBusy = true;
+                await _workplacesManager.DeleteWorkplace(workplace.Id);
 
-            Workplaces.Remove(workplace);
+                Workplaces.Remove(workplace);
+                IsBusy = false;
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
         }
+        public void FilterCollection(string filteringSubstring)
+        {
+            filteringSubstring = filteringSubstring.Trim().ToLower();
 
+            if (string.IsNullOrEmpty(filteringSubstring))
+            {
+                FilteredWorkplaces.Clear();
+                return;
+            }
+
+            FilteredWorkplaces = Workplaces.Where(x => x.Title.ToLower().Contains(filteringSubstring)).ToList();
+        }
 
         private async void InitData()
         {
             try
             {
+                IsBusy = true;
                 var workplaces = await _workplacesManager.GetWorkplaces();
 
                 Workplaces = new ObservableCollection<Workplace>(workplaces);
+                IsBusy = false;
             }
             catch (Exception ex)
             {

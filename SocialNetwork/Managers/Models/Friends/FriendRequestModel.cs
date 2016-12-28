@@ -7,15 +7,13 @@ namespace Managers.Models.Friends
     {
         public int Id { get; set; }
 
-        public int SenderId { get; set; }
-        public UserProfile Sender { get; set; }
+        public string RequesterUserId { get; set; }
+        public UserProfile Requester { get; set; }
 
-        public int AddresseeId { get; set; }
-        public UserProfile Addressee { get; set; }
+        public string ConfirmerUserId { get; set; }
+        public UserProfile Confirmer { get; set; }
 
-        public DateTime RequestDateTime { get; set; }
-
-        public bool IsConfirmed { get; set; }
+        public DateTime RequestedDateTime { get; set; }
 
         public DateTime? ConfirmedDateTime { get; set; }
     }

@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:my="using:Syncfusion.UI.Xaml.Controls.Input"
     xmlns:my1="using:Syncfusion.UI.Xaml.RichTextBoxAdv"
+    xmlns:notification="using:Syncfusion.UI.Xaml.Controls.Notification"
     DataContext="{Binding ProfileCreating, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
@@ -29,6 +30,30 @@
             FontSize="26"
             FontWeight="Bold"
             Text="{Binding PageText}" />
+
+
+        <notification:SfBusyIndicator
+            Grid.RowSpan="3"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            Canvas.ZIndex="10"
+            Header="Loading..."
+            IsBusy="{Binding IsBusy, Mode=OneWay}"
+            ViewboxHeight="150"
+            ViewboxWidth="150">
+            <notification:SfBusyIndicator.HeaderTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,0,0,18">
+                        <TextBlock
+                            FontSize="24"
+                            FontWeight="Bold"
+                            Text="{Binding}" />
+                    </Grid>
+                </DataTemplate>
+            </notification:SfBusyIndicator.HeaderTemplate>
+        </notification:SfBusyIndicator>
 
         <ScrollViewer
             Grid.Row="1"

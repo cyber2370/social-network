@@ -1,14 +1,15 @@
 ﻿<Page
-    x:Class="SocialNetworkUwpClient.Presentation.Views.People.PeopleFriendsListPage"
+    x:Name="Page"
+    x:Class="SocialNetworkUwpClient.Presentation.Views.People.OutgoingFriendRequestsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:SocialNetworkUwpClient.Presentation.Views.People"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:notification="using:Syncfusion.UI.Xaml.Controls.Notification"
-    x:Name="Page"
-    DataContext="{Binding FriendsList, Source={StaticResource Locator}}"
+    DataContext="{Binding OutgoingFriendRequestList, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
 
     <Grid x:Name="MainGrid" Background="Beige">
         <Grid.ColumnDefinitions>
@@ -45,34 +46,40 @@
                 Padding="20"
                 FontSize="25"
                 FontWeight="Bold">
-                My Friends
+                Outgoing Friend Requests
             </TextBlock>
+
             <ListView
-                Grid.Column="1"
+                x:Name="ListView"
                 Padding="25"
-                ItemsSource="{Binding People}"
-                SelectedItem="{Binding SelectedFriend, Mode=TwoWay}">
+                ItemsSource="{Binding FriendRequestsList}"
+                ScrollViewer.VerticalScrollMode="Auto"
+                HorizontalAlignment="Stretch">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <RelativePanel Height="40">
+                        <RelativePanel Height="40" HorizontalAlignment="Stretch">
                             <Image x:Name="AvatarImage" Source="ms-appx:///Assets/Profile/UnknownProfileAvatar.png" />
                             <TextBlock
                                 x:Name="NameTextBlock"
                                 RelativePanel.AlignTopWith="AvatarImage"
                                 RelativePanel.RightOf="AvatarImage">
-                                <Run Text="{Binding Name}" />
+                                <Run Text="{Binding Confirmer.Name}" />
                                 <Run />
-                                <Run Text="{Binding Surname}" />
+                                <Run Text="{Binding Confirmer.Surname}" />
                             </TextBlock>
-
-                            <AppBarButton
-                                x:Name="Cancel"
-                                Command="{Binding ElementName=Page, Path=DataContext.RemoveFriendCommand}"
-                                CommandParameter="{Binding Id}"
-                                Icon="Cancel"
-                                RelativePanel.AlignBottomWithPanel="True"
-                                RelativePanel.AlignTopWithPanel="True"
-                                RelativePanel.RightOf="NameTextBlock" />
+                            <TextBlock
+                                x:Name="CityTextBlock"
+                                RelativePanel.Below="NameTextBlock"
+                                RelativePanel.RightOf="AvatarImage"
+                                Text="{Binding Confirmer.HomeCountry}" />
+                            
+                            <AppBarButton Icon="Cancel"
+                                          x:Name="Cancel"
+                                          RelativePanel.RightOf="NameTextBlock"
+                                          RelativePanel.AlignTopWithPanel="True"
+                                          RelativePanel.AlignBottomWithPanel="True"
+                                          Command="{Binding ElementName=Page, Path=DataContext.RemoveFriendRequestCommand}"
+                                          CommandParameter="{Binding ConfirmerUserId}"/>
                         </RelativePanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

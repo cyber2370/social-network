@@ -8,10 +8,10 @@ namespace DbContext.Entities
     {
         public int Id { get; set; }
 
-        public int SenderId { get; set; }
+        public string SenderId { get; set; }
         public UserProfile Sender { get; set; }
 
-        public int AddresseeId { get; set; }
+        public string AddresseeId { get; set; }
         public UserProfile Addresee { get; set; }
 
         public string Text { get; set; }

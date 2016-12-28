@@ -1,14 +1,15 @@
 ﻿<Page
-    x:Class="SocialNetworkUwpClient.Presentation.Views.People.PeopleFriendsListPage"
+    x:Name="Page"
+    x:Class="SocialNetworkUwpClient.Presentation.Views.People.IncomingFriendRequestsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:SocialNetworkUwpClient.Presentation.Views.People"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:notification="using:Syncfusion.UI.Xaml.Controls.Notification"
-    x:Name="Page"
-    DataContext="{Binding FriendsList, Source={StaticResource Locator}}"
+    DataContext="{Binding IncomingFriendRequestList, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
 
     <Grid x:Name="MainGrid" Background="Beige">
         <Grid.ColumnDefinitions>
@@ -16,6 +17,7 @@
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+
 
         <notification:SfBusyIndicator
             Grid.RowSpan="3"
@@ -45,13 +47,13 @@
                 Padding="20"
                 FontSize="25"
                 FontWeight="Bold">
-                My Friends
+                Incoming Friend Requests
             </TextBlock>
+
             <ListView
-                Grid.Column="1"
                 Padding="25"
-                ItemsSource="{Binding People}"
-                SelectedItem="{Binding SelectedFriend, Mode=TwoWay}">
+                ItemsSource="{Binding FriendRequestsList}"
+                ScrollViewer.VerticalScrollMode="Auto">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <RelativePanel Height="40">
@@ -60,19 +62,34 @@
                                 x:Name="NameTextBlock"
                                 RelativePanel.AlignTopWith="AvatarImage"
                                 RelativePanel.RightOf="AvatarImage">
-                                <Run Text="{Binding Name}" />
+                                <Run Text="{Binding Requester.Name}" />
                                 <Run />
-                                <Run Text="{Binding Surname}" />
+                                <Run Text="{Binding Requester.Surname}" />
                             </TextBlock>
+                            <TextBlock
+                                x:Name="CityTextBlock"
+                                RelativePanel.Below="NameTextBlock"
+                                RelativePanel.RightOf="AvatarImage"
+                                Text="{Binding Requester.HomeCountry}" />
+
 
                             <AppBarButton
-                                x:Name="Cancel"
-                                Command="{Binding ElementName=Page, Path=DataContext.RemoveFriendCommand}"
-                                CommandParameter="{Binding Id}"
-                                Icon="Cancel"
+                                x:Name="Accept"
+                                Command="{Binding ElementName=Page, Path=DataContext.ConfirmFriendRequestCommand}"
+                                CommandParameter="{Binding RequesterUserId}"
+                                Icon="Accept"
                                 RelativePanel.AlignBottomWithPanel="True"
                                 RelativePanel.AlignTopWithPanel="True"
                                 RelativePanel.RightOf="NameTextBlock" />
+
+                            <AppBarButton
+                                x:Name="Cancel"
+                                Command="{Binding ElementName=Page, Path=DataContext.RemoveFriendRequestCommand}"
+                                CommandParameter="{Binding RequesterUserId}"
+                                Icon="Cancel"
+                                RelativePanel.AlignBottomWithPanel="True"
+                                RelativePanel.AlignTopWithPanel="True"
+                                RelativePanel.RightOf="Accept" />
                         </RelativePanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

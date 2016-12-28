@@ -18,7 +18,7 @@ namespace SocialNetworkUwpClient.Business.Managers.Implementations
 
         public Task<IEnumerable<Profile>> GetProfiles()
         {
-            return _socialApi.GetProfiles();
+           return _socialApi.GetProfiles();
         }
 
         public Task<Profile> GetProfileById(string id)

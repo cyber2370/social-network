@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbInitializer.cs" />
     <Compile Include="Implementations\AspNet\AspNetUsersRepository.cs" />
     <Compile Include="Implementations\CrudRepositoryBase.cs" />
     <Compile Include="Implementations\FriendRequestsRepository.cs" />

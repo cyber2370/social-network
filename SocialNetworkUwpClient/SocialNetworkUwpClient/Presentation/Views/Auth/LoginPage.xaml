@@ -6,6 +6,7 @@
     xmlns:local="using:SocialNetworkUwpClient.Presentation.Views.Auth"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:my="using:Syncfusion.UI.Xaml.Controls.Input"
+    xmlns:notification="using:Syncfusion.UI.Xaml.Controls.Notification"
     DataContext="{Binding Login, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
@@ -27,6 +28,30 @@
             MaxHeight="125"
             Source="ms-appx:///Assets/Logo/logo-512x512.png" />
 
+        <notification:SfBusyIndicator
+            Grid.RowSpan="3"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            Canvas.ZIndex="10"
+            Header="Loading..."
+            IsBusy="{Binding IsBusy, Mode=OneWay}"
+            ViewboxHeight="150"
+            ViewboxWidth="150">
+            <notification:SfBusyIndicator.HeaderTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,0,0,18">
+                        <TextBlock
+                            FontSize="24"
+                            FontWeight="Bold"
+                            Text="{Binding}" />
+                    </Grid>
+                </DataTemplate>
+            </notification:SfBusyIndicator.HeaderTemplate>
+        </notification:SfBusyIndicator>
+
+
         <StackPanel
             x:Name="LoginStackPanel"
             Grid.Row="1"
@@ -35,8 +60,8 @@
                 x:Name="LoginTextBox"
                 Margin="0,10,0,0"
                 FontSize="22"
-                IsSpellCheckEnabled="False"
                 Header="Login"
+                IsSpellCheckEnabled="False"
                 Text="{Binding Username, Mode=TwoWay}" />
 
             <PasswordBox

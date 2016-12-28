@@ -281,6 +281,10 @@
       <Project>{b04088f6-2b07-48ea-b301-56fecdf7b6b0}</Project>
       <Name>Managers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Repositories\Repositories.csproj">
+      <Project>{8A6FAAE7-3D70-450A-85ED-7E6FE4B30643}</Project>
+      <Name>Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

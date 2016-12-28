@@ -15,6 +15,8 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Common
 {
     public class ViewModelBase : GalaSoft.MvvmLight.ViewModelBase
     {
+        private bool _isBusy;
+
         public ViewModelBase()
         {
             NavigationService = ServiceLocator.Current.GetInstance<INavigationService>();
@@ -23,6 +25,14 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Common
             DialogService = new DialogService();
 
             GoBackCommand = new RelayCommand(NavigationService.GoBack);
+
+            IsBusy = false;
+        }
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { Set(() => IsBusy, ref _isBusy, value); }
         }
 
         protected ICustomNavigationService CustomNavigationService { get; }
@@ -36,6 +46,7 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.Common
         protected async void HandleError(Exception ex)
         {
             string message = ex.Message;
+            IsBusy = false;
 
             if (ex is HttpException)
             {

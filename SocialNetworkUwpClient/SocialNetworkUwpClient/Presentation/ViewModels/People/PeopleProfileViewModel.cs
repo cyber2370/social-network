@@ -13,6 +13,13 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.People
 {
     public class PeopleProfileViewModel : ViewModelBase
     {
+        private enum FriendRequestStatus
+        {
+            Confirmed, 
+            NotConfirmed,
+            NotSended
+        }
+
         private readonly IProfilesManager _profilesManager;
         private readonly IFriendsManager _friendsManager;
         private readonly ICustomNavigationService _customNavigationService;
@@ -21,9 +28,10 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.People
         private ProfileModel _personProfile;
         private readonly string _personProfileId;
         private ProfileModel _profile;
-        private bool _isFriend;
+        private FriendRequestStatus _friendRequestStatus;
 
         private string _friendButtonText;
+        private ICommand _friendButtonCommand;
 
         public PeopleProfileViewModel(
             IProfilesManager profilesManager,
@@ -38,7 +46,6 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.People
             _personProfileId = (string) _customNavigationService.CurrentPageParams;
 
             _profile = preferencesService.Profile;
-            FriendButtonText = "Add Friend";
 
             LoadProfile();
         }
@@ -55,18 +62,57 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.People
             set { Set(() => PersonProfile, ref _personProfile, value); }
         }
 
-        public ICommand FriendButtonCommand { get; set; }
+        public ICommand FriendButtonCommand
+        {
+            get { return _friendButtonCommand; }
+            set { Set(() => FriendButtonCommand, ref _friendButtonCommand, value); }
+            
+        }
 
         private async void LoadProfile()
         {
             try
             {
+                IsBusy = true;
                 PersonProfile = await _profilesManager.GetProfileById(_personProfileId);
 
-                _isFriend = await _friendsManager.CheckIfFriendsWith(_personProfileId);
+                var friendRequest = await _friendsManager.CheckIfFriendsWith(_personProfileId);
+                if (friendRequest == null)
+                {
+                    _friendRequestStatus = FriendRequestStatus.NotSended;
+                }
+                else if (friendRequest.ConfirmedDateTime == null)
+                {
+                    _friendRequestStatus = FriendRequestStatus.NotConfirmed;
+                }
+                else
+                {
+                    _friendRequestStatus = FriendRequestStatus.Confirmed;
+                }
 
-                FriendButtonText = _isFriend ? "Remove from friends" : "Send Request For Friends";
-                FriendButtonCommand = _isFriend ? new RelayCommand(RemoveFriend)  : new RelayCommand(AddFriend);
+                switch (_friendRequestStatus)
+                {
+                    case FriendRequestStatus.Confirmed:
+                    {
+                        FriendButtonText = "Remove from friends";
+                        FriendButtonCommand = new RelayCommand(RemoveFriend);
+                        break;
+                    }
+                    case FriendRequestStatus.NotConfirmed:
+                    {
+                        FriendButtonText = "Cancel Friend Request";
+                        FriendButtonCommand = new RelayCommand(RemoveFriend);
+                        break;
+                    }
+                    case FriendRequestStatus.NotSended:
+                    {
+                        FriendButtonText = "Send Request For Friends";
+                        FriendButtonCommand = new RelayCommand(AddFriend);
+                        break;
+                    }
+                }
+
+                IsBusy = false;
             }
             catch (Exception ex)
             {
@@ -76,20 +122,38 @@ namespace SocialNetworkUwpClient.Presentation.ViewModels.People
 
         private async void RemoveFriend()
         {
-            await _friendsManager.RemoveFriendsLinkingWith(_personProfileId);
+            try
+            {
+                IsBusy = true;
+                await _friendsManager.RemoveFriendsLinkingWith(_personProfileId);
+                IsBusy = false;
 
-            await ShowMessage("Successfully deleted!");
+                await ShowMessage("Successfully deleted!");
 
-            _customNavigationService.NavigateTo(PageKeys.FriendsList);
+                _customNavigationService.NavigateTo(PageKeys.FriendsList);
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
         }
 
         private async void AddFriend()
         {
-            await _friendsManager.SendFriendRequestTo(_personProfileId);
+            try
+            {
+                IsBusy = true;
+                await _friendsManager.SendFriendRequestTo(_personProfileId);
+                IsBusy = false;
 
-            await ShowMessage("Successfully sended!");
+                await ShowMessage("Successfully sended!");
 
-            _customNavigationService.NavigateTo(PageKeys.FriendsList);
+                _customNavigationService.NavigateTo(PageKeys.FriendsList);
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
         }
     }
 }

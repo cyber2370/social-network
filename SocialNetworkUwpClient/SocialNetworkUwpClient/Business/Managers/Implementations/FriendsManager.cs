@@ -44,29 +44,29 @@ namespace SocialNetworkUwpClient.Business.Managers.Implementations
             return _socialApi.GetOutgoingFriendRequests();
         }
 
-        public async Task<bool> CheckIfFriendsWith(string userId)
+        public async Task<FriendRequest> CheckIfFriendsWith(string userId)
         {
             var incoming = await GetIncomingFriendRequests();
 
             FriendRequest request = incoming.FirstOrDefault(x => 
-            (x.SenderId == _preferencesService.Profile.UserId && x.AddresseeId == userId)
-            || (x.SenderId == userId && x.AddresseeId == _preferencesService.Profile.UserId));
+            (x.RequesterUserId == _preferencesService.User.Id && x.ConfirmerUserId == userId)
+            || (x.RequesterUserId == userId && x.ConfirmerUserId == _preferencesService.User.Id));
 
             if (request == null)
             {
                 var outgoing = await GetOutgoingFriendRequests();
                 request = outgoing.FirstOrDefault(x =>
-                (x.SenderId == _preferencesService.Profile.UserId && x.AddresseeId == userId)
-                || (x.SenderId == userId && x.AddresseeId == _preferencesService.Profile.UserId));
+                (x.RequesterUserId == _preferencesService.User.Id && x.ConfirmerUserId == userId)
+                || (x.RequesterUserId == userId && x.ConfirmerUserId == _preferencesService.User.Id));
             }
 
-            if (request == null)
-            {
-                return false;
-            }
+            return request;
 
-            return request.IsConfirmed;
+        }
 
+        public Task<bool> ConfirmFriendRequests(string friendId)
+        {
+            return _socialApi.ConfirmFriendRequest(friendId);
         }
 
         public Task<FriendRequest> SendFriendRequestTo(string userId)

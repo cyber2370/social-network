@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:SocialNetworkUwpClient.Presentation.Views.Workplaces"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:notification="using:Syncfusion.UI.Xaml.Controls.Notification"
     xmlns:syncfusion="using:Syncfusion.UI.Xaml.Grid"
     DataContext="{Binding WorkplacesMain, Source={StaticResource Locator}}"
     mc:Ignorable="d">
@@ -18,6 +19,30 @@
             <RowDefinition Height="7*" />
         </Grid.RowDefinitions>
 
+
+        <notification:SfBusyIndicator
+            Grid.RowSpan="3"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            Canvas.ZIndex="10"
+            Header="Loading..."
+            IsBusy="{Binding IsBusy, Mode=OneWay}"
+            ViewboxHeight="150"
+            ViewboxWidth="150">
+            <notification:SfBusyIndicator.HeaderTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,0,0,18">
+                        <TextBlock
+                            FontSize="24"
+                            FontWeight="Bold"
+                            Text="{Binding}" />
+                    </Grid>
+                </DataTemplate>
+            </notification:SfBusyIndicator.HeaderTemplate>
+        </notification:SfBusyIndicator>
+
         <TextBlock
             Padding="90,0"
             HorizontalAlignment="Left"
@@ -27,36 +52,64 @@
             FontWeight="Bold"
             Foreground="DarkBlue"
             Text="Workplaces" />
+        <StackPanel Grid.Row="1">
+            <StackPanel
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <AppBarButton
+                    Margin="5,0"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    FontSize="20"
+                    Icon="Find" />
+                <TextBox
+                    x:Name="SearchTextBox"
+                    Width="200"
+                    VerticalAlignment="Center"
+                    Background="White"
+                    FontSize="20"
+                    PlaceholderText="Title"
+                    TextChanged="SearchTextBox_OnTextChanged" />
 
-        <syncfusion:SfDataGrid
-            Grid.Row="1"
-            Margin="10"
-            AllowDeleting="True"
-            AllowFiltering="True"
-            AutoGenerateColumns="False"
-            ColumnSizer="Star"
-            ItemsSource="{Binding Workplaces, Mode=TwoWay}"
-            RecordDeleting="SfDataGrid_OnRecordDeleting"
-            SelectedItem="{Binding SelectedWorkplace, Mode=TwoWay}"
-            SelectionMode="Single">
+                <AppBarButton
+                    Margin="50,0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Background="Transparent"
+                    FontSize="20"
+                    Click="ButtonBase_OnClick"
+                    Icon="Preview" />
+            </StackPanel>
 
-            <syncfusion:SfDataGrid.RecordContextMenu>
-                <MenuFlyout>
-                    <MenuFlyout.Items>
-                        <MenuFlyoutItem Click="MenuFlyoutItemEdit_OnClick" Text="Edit" />
-                        <MenuFlyoutItem Click="MenuFlyoutItemDelete_OnClick" Text="Delete" />
-                    </MenuFlyout.Items>
-                </MenuFlyout>
-            </syncfusion:SfDataGrid.RecordContextMenu>
+            <syncfusion:SfDataGrid
+                x:Name="SfDataGrid"
+                Grid.Row="1"
+                Margin="10"
+                AllowDeleting="True"
+                AllowFiltering="True"
+                AutoGenerateColumns="False"
+                ColumnSizer="Star"
+                ItemsSource="{Binding Workplaces, Mode=TwoWay}"
+                RecordDeleting="SfDataGrid_OnRecordDeleting"
+                SelectedItem="{Binding SelectedWorkplace, Mode=TwoWay}"
+                SelectionMode="Multiple">
 
-            <syncfusion:SfDataGrid.Columns>
-                <syncfusion:GridTextColumn
-                    HeaderText="Title"
-                    MappingName="Title" />
-                <syncfusion:GridTextColumn
-                    HeaderText="Description"
-                    MappingName="Description" />
-            </syncfusion:SfDataGrid.Columns>
-        </syncfusion:SfDataGrid>
+                <syncfusion:SfDataGrid.RecordContextMenu>
+                    <MenuFlyout>
+                        <MenuFlyout.Items>
+                            <MenuFlyoutItem Click="MenuFlyoutItemEdit_OnClick" Text="Edit" />
+                            <MenuFlyoutItem Click="MenuFlyoutItemDelete_OnClick" Text="Delete" />
+                        </MenuFlyout.Items>
+                    </MenuFlyout>
+                </syncfusion:SfDataGrid.RecordContextMenu>
+
+                <syncfusion:SfDataGrid.Columns>
+                    <syncfusion:GridTextColumn HeaderText="Title" MappingName="Title" />
+                    <syncfusion:GridTextColumn HeaderText="Description" MappingName="Description" />
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+
+        </StackPanel>
     </Grid>
 </Page>

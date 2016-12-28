@@ -15,8 +15,7 @@ namespace Managers
                 .ReverseMap();
 
             cfg.CreateMap<FriendRequest, FriendRequestModel>()
-                .ForMember(dest => dest.IsConfirmed, x => x.MapFrom(src => src.ConfirmedDateTime != null)).
-                ReverseMap();
+                .ReverseMap();
 
             cfg.CreateMap<UserProfile, FriendModel>()
                 .ReverseMap();
